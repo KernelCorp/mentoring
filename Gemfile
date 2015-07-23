@@ -35,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'cancan'
 gem 'rolify'
+gem 'annotate'
 
 gem 'slim-rails'
 gem 'react-rails'

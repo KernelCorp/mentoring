@@ -30,13 +30,6 @@ Feature: Meetings
      And the meeting should have state "rejected"
      And I should be redirected to list of meetings
 
-  Scenario: Visible reporting about meeeting
-    Given a meeting to "Stalin" and user "mentor@example.com" at tomorrow
-      And a meeting to "Stalin" and user "mentor@example.com" at yesterday
-    And I signed in as user with email: "mentor@example.com"
-    When I go to "/meetings"
-    Then I should meeting's action "reporting" visible only meeting at yesterday
-
   Scenario: Show meetings for curator
     Given a child with name "Lenin"
     And a child with name "Putin"
