@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/doabit/semantic-ui-sass.git
+  revision: 867150f9380e9793b5c9e054746442ff6bf1b934
+  specs:
+    semantic-ui-sass (2.0.7.0)
+      sass (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -37,6 +44,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.7)
+    annotate (2.6.10)
+      activerecord (>= 3.2, <= 4.3)
+      rake (~> 10.4)
     arel (6.0.2)
     babel-source (5.6.20)
     babel-transpiler (0.7.0)
@@ -140,7 +150,7 @@ GEM
       thin (~> 1.5.0)
     mime-types (2.6.1)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.0)
     multi_json (1.11.2)
     multi_test (0.1.2)
     netrc (0.10.3)
@@ -247,7 +257,7 @@ GEM
       railties (>= 3.1, < 5.0)
       slim (~> 3.0)
     spring (1.3.6)
-    sprockets (3.2.0)
+    sprockets (3.3.0)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
       actionpack (>= 3.0)
@@ -287,6 +297,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   byebug
   cancan
   capybara (~> 2.3.0)
@@ -311,6 +322,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver
+  semantic-ui-sass!
   simplecov
   slim-rails
   spring

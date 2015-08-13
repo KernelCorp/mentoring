@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    title Mentoring
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body
+    .ui.visible.top.sidebar.green.inverted.menu
+      .right.menu
+        .item
+          i.user.icon
+        a.item
+          | user@example.com
+        a.item
+          | выйти
+
+    .ui.visible.inverted.left.vertical.sidebar.labeled.icon.menu.green
+      .item
+        .ui.inverted.header
+          | Наставничество
+      a.item
+        i.home.icon
+        | Мои встречи
+      a.item
+        i.mail.icon
+        | Сообщения
+
+
+    #page-wrapp
+      .ui.basic.container.segment
+        = yield
+

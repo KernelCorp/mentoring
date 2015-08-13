@@ -37,6 +37,8 @@ gem 'cancan'
 gem 'rolify'
 gem 'annotate'
 
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
+
 gem 'slim-rails'
 gem 'react-rails'
 
