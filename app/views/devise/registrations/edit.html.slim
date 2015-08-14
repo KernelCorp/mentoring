@@ -1,0 +1,32 @@
+.column
+  h2.ui.header.center.aligned Изменение пароля
+
+  .ui.orange.segment.middle.aligned
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'ui large form', method: :put }) do |f|
+      = devise_error_messages!
+
+      .field
+        .ui.left.icon.input
+          i.lock.icon
+          - if @minimum_password_length
+            em
+              | Минимальное количество символов:
+              = @minimum_password_length
+          = f.password_field :password, autofocus: true, autocomplete: 'off', placeholder: 'Новый пароль'
+
+      .field
+        .ui.left.icon.input
+          i.lock.icon
+          br
+          = f.password_field :password_confirmation, autocomplete: 'off', placeholder: 'Подтверждение пароля'
+
+      .field
+        .ui.left.icon.input
+          i.lock.icon
+          br
+          = f.password_field :current_password, autocomplete: 'off', placeholder: 'Текущий пароль'
+
+
+      = f.submit 'Сменить мой пароль', class: 'ui field fluid large green submit button'
+
+  = render 'devise/shared/links'

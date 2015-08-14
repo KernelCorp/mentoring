@@ -9,12 +9,17 @@ html
   body
     .ui.visible.top.sidebar.green.inverted.menu
       .right.menu
-        .item
-          i.user.icon
-        a.item
-          | user@example.com
-        a.item
-          | выйти
+        - unless current_user.blank?
+          .item
+            i.user.icon
+          a.item
+            = current_user.email
+          = link_to('Сменить пароль', edit_user_registration_path, class: 'item')
+
+        - if user_signed_in?
+          = link_to('Выйти', destroy_user_session_path, :method => :delete, class: 'item')
+        - else
+          = link_to('Войти', new_user_session_path, class: 'item')
 
     .ui.visible.inverted.left.vertical.sidebar.labeled.icon.menu.green
       .item

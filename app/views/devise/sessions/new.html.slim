@@ -1,0 +1,26 @@
+.column
+  h2.ui.header.center.aligned Вход
+
+  .ui.orange.segment.middle.aligned
+    = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'ui large form' } do |f|
+      .field
+        .ui.left.icon.input
+          i.user.icon
+          = f.email_field :email, autofocus: true, placeholder: 'E-mail'
+
+      .field
+        .ui.left.icon.input
+          i.lock.icon
+          = f.password_field :password, autocomplete: 'off', placeholder: 'Пароль'
+
+      .field
+        - if devise_mapping.rememberable?
+          .ui.checkbox
+            = f.check_box :remember_me, class: 'hidden'
+            = f.label :remember_me, 'Запомнить меня'
+
+      = f.submit 'Войти', class: 'ui field fluid large green submit button'
+
+      .ui.error.message
+
+  = render 'devise/shared/links'
