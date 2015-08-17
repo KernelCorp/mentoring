@@ -34,3 +34,23 @@ Feature: Reporting
      And I click on the submit button
     Then a report of the meeting should be created
      And I should be redirected to list of meetings
+     And The meeting should have state "report_sent"
+
+  Scenario: Psych reject report
+    Given meeting to "Stalin" and user "mentor@example.com" at yesterday on state "report_sent"
+      And I signed in as user with email: "psych@example.com"
+    When I go to "/reports"
+     And I reject a report of meeting "mentor@example.com" with "Stalin"
+    Then The report should have state "rejected"
+     And The meeting should have state "report_rejected"
+
+  Scenario: Approve Report
+    Given meeting to "Stalin" and user "mentor@example.com" at yesterday on state "report_sent"
+    And I signed in as user with email: "psych@example.com"
+    When I go to "/reports"
+    And I approve a report of meeting "mentor@example.com" with "Stalin"
+    Then The report should have state "approved"
+    And The meeting should have state "report_approved"
+
+
+

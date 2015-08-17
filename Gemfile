@@ -37,6 +37,7 @@ gem 'cancan'
 gem 'rolify'
 gem 'annotate'
 gem 'aasm'
+gem 'active_link_to'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
