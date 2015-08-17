@@ -43,6 +43,10 @@ gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'slim-rails'
 gem 'react-rails'
 
+# forum
+gem 'forem', :github => "radar/forem", :branch => "rails4"
+gem 'kaminari', '0.15.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
