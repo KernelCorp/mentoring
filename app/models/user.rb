@@ -3,4 +3,8 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :recoverable, :registerable,
          :rememberable, :trackable, :validatable
+
+  def forem_name
+    email
+  end
 end

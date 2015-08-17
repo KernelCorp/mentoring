@@ -1,9 +1,9 @@
-<div class='forum'>
+<div class='forum ui basic very padded container segment'>
   <%= render :partial => 'forem/forums/head', :locals => { :forum => @forum } %>
 
   <%= forem_pages_widget(@topics) %>
-  <table class='topics table-striped table' cellspacing='0'>
-    <thead>
+  <table class='topics table-striped table ui celled table' cellspacing='0'>
+    <thead class="ui inverted green table">
       <tr>
         <th class="icon"></th>
         <th class="byline"><%= t('forem.topic.headings.topic') -%></th>
