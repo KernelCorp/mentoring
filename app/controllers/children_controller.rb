@@ -1,5 +1,6 @@
 class ChildrenController < ApplicationController
-  before_action :set_child, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource :child
 
   # GET /children
   # GET /children.json

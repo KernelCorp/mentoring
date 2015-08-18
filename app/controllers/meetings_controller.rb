@@ -1,21 +1,11 @@
 class MeetingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_roles
-  before_action :set_meeting, only: [:show, :edit, :update, :destroy, :reject, :reopen]
+  load_and_authorize_resource :meeting
 
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = []
-
-    if current_user.has_role? :admin
-      @meetings += Meeting.all
-    elsif current_user.has_role? :curator
-      @meetings += Meeting.joins(:mentor).where(users: {curator_id: current_user.id})
-    elsif current_user.has_role? :mentor
-      @meetings += current_user.meetings.all
-    end
-
+    @meetings = Meeting.accessible_by(current_ability, :read)
   end
 
   # GET /meetings/1
@@ -25,7 +15,6 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/new
   def new
-    @meeting = Meeting.new
     @children = current_user.children
   end
 
@@ -36,7 +25,7 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
-    @meeting = Meeting.new(meeting_params)
+    #@meeting = Meeting.new(meeting_params)
 
     respond_to do |format|
       if @meeting.save
@@ -74,28 +63,26 @@ class MeetingsController < ApplicationController
   end
 
   def reopen
-    @meeting.reopen!
-    flash[:notice] = 'Встреча была успешно переназначена.'
+    if @meeting.reopen
+      flash[:notice] = 'Встреча была успешно переназначена.'
+    else
+      flash[:notice] = 'Встречу не удалось переназначить.'
+      flash[:error] = @meeting.errors[:name].first
+    end
     redirect_to meetings_path
   end
 
   def reject
-    @meeting.reject!
-    flash[:notice] = current_user.has_role?(:mentor) ? 'Вы отказались от встречи.' : 'Вы отклонили встречу.'
+    if @meeting.reject
+      flash[:notice] = current_user.has_role?(:mentor) ? 'Вы отказались от встречи.' : 'Вы отклонили встречу.'
+    else
+      flash[:notice] = 'Встречу не удалось отклонить.'
+      flash[:error] = @meeting.errors[:name].first
+    end
     redirect_to meetings_path
   end
 
   private
-    def check_roles
-      unless current_user.has_any_role? :mentor, :curator, :admin
-        redirect_to root_path
-      end
-    end
-
-    def set_meeting
-      @meeting = Meeting.find(params[:id])
-    end
-
     def meeting_params
       params.require(:meeting).permit(:date, :state, :child_id, :mentor_id)
     end

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :children, foreign_key: :mentor_id
   has_many :meetings, foreign_key: :mentor_id
   has_many :subordinates, class_name: 'User', foreign_key: :curator_id
+  belongs_to :orphanage
   belongs_to :curator, class_name: 'User'
 
   rolify
@@ -19,5 +20,13 @@ class User < ActiveRecord::Base
 
   def forem_name
     email
+  end
+
+  def subordinate_ids
+    if user.has_role? :curator
+      self.subordinates.map(&:id)
+    else
+      nil
+    end
   end
 end
