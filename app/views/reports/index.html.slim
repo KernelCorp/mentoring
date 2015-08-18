@@ -1,0 +1,25 @@
+h1 Listing reports
+
+table
+  thead
+    tr
+      th Text
+      th State
+      th Meeting
+      th
+      th
+      th
+
+  tbody
+    - @reports.each do |report|
+      tr
+        td = report.text
+        td = report.state
+        td = report.meeting
+        td = link_to 'Show', report
+        td = link_to 'Edit', edit_report_path(report)
+        td = link_to 'Destroy', report, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Report', new_report_path

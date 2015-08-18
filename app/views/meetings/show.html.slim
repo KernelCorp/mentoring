@@ -1,0 +1,23 @@
+p#notice = notice
+
+
+.ui.orange.segment
+  p
+    strong ID: &nbsp;
+    = @meeting.id
+  p
+    strong Дата/время: &nbsp;
+    = @meeting.date.strftime('%d.%m.%Y %H:%M')
+  p
+    strong Статус: &nbsp;
+    = @meeting.state
+  p
+    strong Ребёнок: &nbsp;
+    = @meeting.child.full_name
+  p
+    strong Наставник: &nbsp;
+    = @meeting.mentor.full_name
+
+= active_link_to meetings_path, class: 'ui button green' do
+  i.icon.chevron.left
+  | Назад

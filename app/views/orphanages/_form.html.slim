@@ -1,0 +1,15 @@
+= form_for @orphanage do |f|
+  - if @orphanage.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@orphanage.errors.count, "error")} prohibited this orphanage from being saved:"
+      ul
+        - @orphanage.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :address
+    = f.text_field :address
+  .actions = f.submit

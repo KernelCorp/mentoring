@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong First name:
+  = @child.first_name
+p
+  strong Last name:
+  = @child.last_name
+p
+  strong Middle name:
+  = @child.middle_name
+p
+  strong Birthdate:
+  = @child.birthdate
+p
+  strong Orphanage:
+  = @child.orphanage
+p
+  strong Mentor:
+  = @child.mentor_id
+
+= link_to 'Edit', edit_child_path(@child)
+'|
+= link_to 'Back', children_path

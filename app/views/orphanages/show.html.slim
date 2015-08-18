@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @orphanage.name
+p
+  strong Address:
+  = @orphanage.address
+
+= link_to 'Edit', edit_orphanage_path(@orphanage)
+'|
+= link_to 'Back', orphanages_path

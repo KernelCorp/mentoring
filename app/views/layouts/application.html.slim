@@ -9,14 +9,14 @@ html
   body
     .ui.visible.top.sidebar.green.inverted.menu
       .right.menu
-        - unless current_user.blank?
+        - if user_signed_in?
           .item
             i.user.icon
+
           a.item
             = current_user.email
-          = link_to('Сменить пароль', edit_user_registration_path, class: 'item')
 
-        - if user_signed_in?
+          = link_to('Сменить пароль', edit_user_registration_path, class: 'item')
           = link_to('Выйти', destroy_user_session_path, :method => :delete, class: 'item')
         - else
           = link_to('Войти', new_user_session_path, class: 'item')
@@ -25,9 +25,11 @@ html
       .item
         .ui.inverted.header
           | Наставничество
-      a.item
-        i.home.icon
-        | Мои встречи
+
+      - if user_signed_in? and current_user.has_any_role? :admin, :curator, :mentor
+        = link_to meetings_path, class: 'item' do
+          i.home.icon
+          | Мои встречи
       a.item
         i.mail.icon
         | Сообщения
@@ -36,4 +38,3 @@ html
     #page-wrapp
       .ui.basic.container.segment
         = yield
-

@@ -277,7 +277,6 @@ ru:
         current_password: Текущий пароль
         password_confirmation: Подтверждение пароля
 
-
     errors:
       models:
         user:

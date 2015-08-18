@@ -7,6 +7,17 @@ Rails.application.routes.draw do
   # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
   mount Forem::Engine, :at => '/forums'
 
+  resources :reports
+
+  resources :meetings do
+    get 'reject', on: :member
+    get 'reopen', on: :member
+  end
+
+  resources :children
+
+  resources :orphanages
+
   root 'main#index'
 
   devise_for :users, :skip => [:registrations]
