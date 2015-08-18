@@ -1,5 +1,11 @@
 <div id='forum'>
-  <h2 class="ui header"><%= link_to t('forem.forum.forums'), forem.root_path %> &raquo; <%= link_to forem_emojify(forum.category), [forem, forum.category] %> &raquo; <%= link_to forem_emojify(forum.title), [forem, forum] %></h2>
+  <h2 class="ui header breadcrumb">
+    <%= link_to t('forem.forum.forums'), forem.root_path, class: "section" %>
+    <div class="divider"> / </div>
+    <%= link_to forem_emojify(forum.category), [forem, forum.category], class: "section" %>
+    <div class="divider"> / </div>
+    <div class="active section"><%= forem_emojify(forum.title) %></div>
+  </h2>
   <p id='description'><%= forem_format(forum.description) %></p>
   <div id='forum_topic_links' class='btn-group'>
     <% unless @topic.try(:new_record?) %>
@@ -8,7 +14,7 @@
       <% end %>
     <% end %>
     <% if @topic %>
-      <%= link_to t('forem.topic.links.back_to_topics'), forem.forum_path(forum), :class => "btn" %>
+      <%= link_to t('forem.topic.links.back_to_topics'), forem.forum_path(forum), :class => "btn ui green button" %>
     <% end %>
     <% if can? :moderate, @forum %>
       <%= link_to t('forem.forum.moderator_tools'), forem.forum_moderator_tools_path(forum), :class => "btn btn-primary ui green button" %>

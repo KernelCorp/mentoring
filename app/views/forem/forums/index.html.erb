@@ -1,4 +1,4 @@
-<div id='forums_container' class="ui basic very padded container segment">
+<div id='forums_container'>
   <h1 id='forums_title' class="ui header"><%= t('.title') %></h1>
 
   <%= render @categories %>
@@ -10,3 +10,4 @@
     <%= link_to t("area", :scope => "forem.admin"), forem.admin_root_path %>
   <% end %>
 </footer>
+

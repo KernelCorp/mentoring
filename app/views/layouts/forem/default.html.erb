@@ -8,9 +8,11 @@
     <%= forem_atom_auto_discovery_link_tag %>
   </head>
   <body>
-    <% flash.each do |k,v| %>
-      <div class='flash <%= k %>'><%= v %></div>
-    <% end %>
-    <%= yield %>
+    <div class="ui basic very padded container segment">
+      <% flash.each do |k,v| %>
+        <div class='flash ui message <%= k.gsub(/alert/, 'error').gsub(/notice/, 'success') %>'><%= v %></div>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
