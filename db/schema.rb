@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817070475) do
+ActiveRecord::Schema.define(version: 20150817095452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,47 @@ ActiveRecord::Schema.define(version: 20150817070475) do
   add_index "forem_views", ["user_id"], name: "index_forem_views_on_user_id", using: :btree
   add_index "forem_views", ["viewable_id"], name: "index_forem_views_on_viewable_id", using: :btree
 
+  create_table "children", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_name"
+    t.date     "birthdate"
+    t.integer  "orphanage_id"
+    t.integer  "mentor_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "children", ["orphanage_id"], name: "index_children_on_orphanage_id", using: :btree
+
+  create_table "meetings", force: :cascade do |t|
+    t.datetime "date"
+    t.string   "state"
+    t.integer  "child_id"
+    t.integer  "mentor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "meetings", ["child_id"], name: "index_meetings_on_child_id", using: :btree
+
+  create_table "orphanages", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.text     "text"
+    t.string   "state"
+    t.integer  "meeting_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reports", ["meeting_id"], name: "index_reports_on_meeting_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -138,8 +179,9 @@ ActiveRecord::Schema.define(version: 20150817070475) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middle_name"
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "curator_id"
     t.boolean  "forem_admin",            default: false
     t.string   "forem_state",            default: "pending_review"
     t.boolean  "forem_auto_subscribe",   default: false
@@ -155,4 +197,7 @@ ActiveRecord::Schema.define(version: 20150817070475) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "children", "orphanages"
+  add_foreign_key "meetings", "children"
+  add_foreign_key "reports", "meetings"
 end

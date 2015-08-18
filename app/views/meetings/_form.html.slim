@@ -1,0 +1,27 @@
+= form_for @meeting, html: { class: 'ui form large'} do |f|
+  - if @meeting.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@meeting.errors.count, "error")} prohibited this meeting from being saved:"
+      ul
+        - @meeting.errors.full_messages.each do |message|
+          li = message
+
+  = f.hidden_field :mentor_id, value: current_user.id
+  .field.five.wide
+      = f.label :date, 'Дата/время'
+      = f.text_field :date, class: 'datepicker'
+
+  .field.five.wide
+    = f.label :child_id, 'Ребёнок'
+    .ui.selection.dropdown
+      = f.hidden_field :child_id
+      i.icon.dropdown
+      .default.text
+        | Выберите ребёнка
+      .menu
+        - @children.each do |child|
+          .item data-value="#{child.id}"
+            = child.name
+
+  .actions
+    = f.submit 'Создать', class: 'ui green button'

@@ -1,6 +1,13 @@
 FactoryGirl.define do
   factory :role do
-    
-  end
+    name 'mentor'
 
+    trait :curator do
+      name 'curator'
+    end
+
+    trait :admin do
+      name 'admin'
+    end
+  end
 end

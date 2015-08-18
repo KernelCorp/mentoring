@@ -1,0 +1,31 @@
+h1 Listing children
+
+table
+  thead
+    tr
+      th First name
+      th Last name
+      th Middle name
+      th Birthdate
+      th Orphanage
+      th Mentor
+      th
+      th
+      th
+
+  tbody
+    - @children.each do |child|
+      tr
+        td = child.first_name
+        td = child.last_name
+        td = child.middle_name
+        td = child.birthdate
+        td = child.orphanage
+        td = child.mentor_id
+        td = link_to 'Show', child
+        td = link_to 'Edit', edit_child_path(child)
+        td = link_to 'Destroy', child, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Child', new_child_path
