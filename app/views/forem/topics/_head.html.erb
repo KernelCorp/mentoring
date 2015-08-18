@@ -1,1 +1,7 @@
-<h2><%= link_to t('forem.forum.forums'), forem.forums_path %> &raquo; <%= link_to forem_emojify(topic.forum.title), [forem, topic.forum] %> &raquo; <%= forem_emojify(topic.subject) %></h2>
+<h2 class="ui header breadcrumb">
+  <%= link_to t('forem.forum.forums'), forem.forums_path, class: "section" %>
+  <div class="divider"> / </div>
+  <%= link_to forem_emojify(topic.forum.title), [forem, topic.forum], class: "section" %>
+  <div class="divider"> / </div>
+  <div class="active section"><%= forem_emojify(topic.subject) %></div>
+</h2>
