@@ -7,19 +7,7 @@ html
     = csrf_meta_tags
 
   body
-    .ui.visible.top.sidebar.green.inverted.menu
-      .right.menu
-        - if user_signed_in?
-          .item
-            i.user.icon
-
-          a.item
-            = current_user.email
-
-          = link_to('Сменить пароль', edit_user_registration_path, class: 'item')
-          = link_to('Выйти', destroy_user_session_path, :method => :delete, class: 'item')
-        - else
-          = link_to('Войти', new_user_session_path, class: 'item')
+    = render partial: '/layouts/header'
 
     .ui.visible.inverted.left.vertical.sidebar.labeled.icon.menu.green
       .item

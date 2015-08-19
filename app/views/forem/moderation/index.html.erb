@@ -1,12 +1,18 @@
-<h2><%= t('.title', :forum => forum) %></h2>
+<h2 class="ui header"><%= t('.title', :forum => forum) %></h2>
 
-<h3><%= t('posts_count', :count => @posts.count, :scope => 'forem.general') %></h3>
+<h3 class="ui header"><%= t('posts_count', :count => @posts.count, :scope => 'forem.general') %></h3>
 
 <%= form_tag forem.forum_moderate_posts_url(forum), :method => :put do %>
   <div id='posts'>
     <% @posts.limit(25).group_by(&:topic).each do |topic, posts| %>
-      <h4><%= forem_emojify(topic.forum.title) %> &raquo; <%= forem_emojify(topic.subject) %></h4>
-      <%= render posts, :mass_moderation => true %>
+      <h4 class="ui header breadcrumb">
+        <div class="section"><%= forem_emojify(topic.forum.title) %></div>
+        <div class="divider"> / </div>
+        <div class="active section"><%= forem_emojify(topic.subject) %></div>
+      </h4>
+      <div class="ui form">
+        <%= render posts, :mass_moderation => true %>
+      </div>
     <% end %>
   </div>
 <% end %>

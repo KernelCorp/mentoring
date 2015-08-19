@@ -1,9 +1,9 @@
-<p>
+<p class="ui radio checkbox field">
   <%= f.radio_button "moderation_option", "approve" %>
   <%= f.label "moderation_option_approve", t('approve', :scope => 'forem.posts.moderation'), :class => "label label-success" %>
 </p>
-<p>
+<p class="ui radio checkbox field">
   <%= f.radio_button "moderation_option", "spam" %>
   <%= f.label "moderation_option_spam", t('spam', :scope => 'forem.posts.moderation'), :class => "label label-danger" %>
 </p>
-<%= f.submit t('moderate', :scope => 'forem.posts.moderation'), :class => "btn btn-primary ui green button" %>
+<%= f.submit t('moderate', :scope => 'forem.posts.moderation'), :class => "btn btn-primary ui green compact button" %>

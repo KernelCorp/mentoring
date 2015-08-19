@@ -1,10 +1,10 @@
-<%= simple_form_for [forem, :admin, @forum] do |f| %>
-  <%= f.association :category, :include_blank => false %>
-  <%= f.input :title %>
-  <%= f.input :position %>
-  <%= f.input :description, :as => :text %>
+<%= simple_form_for [forem, :admin, @forum], html: {class: 'ui form'} do |f| %>
+  <%= f.association :category, :include_blank => false, wrapper_html: { class: 'field' }, required: false %>
+  <%= f.input :title, wrapper_html: { class: 'field' }, required: false %>
+  <%= f.input :position, wrapper_html: { class: 'field' }, required: false %>
+  <%= f.input :description, :as => :text, wrapper_html: { class: 'field' }, required: false %>
 
-  <h3><%= t('forem.admin.forum.moderator_groups') %></h3>
-  <%= f.association :moderators, :as => :check_boxes %>
-  <%= f.submit :class => "btn btn-primary" %>
+  <h3 class="ui header"><%= t('forem.admin.forum.moderator_groups') %></h3>
+  <%= f.association :moderators, required: false, wrapper_html: {class: 'field'} %>
+  <%= f.submit :class => "btn btn-primary ui green button" %>
 <% end %>

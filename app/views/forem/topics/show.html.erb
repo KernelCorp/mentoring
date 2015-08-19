@@ -1,4 +1,4 @@
-<div id='topic' class='<%= 'un' unless @topic.locked? %>locked ui basic very padded container segment'>
+<div id='topic' class='<%= 'un' unless @topic.locked? %>locked'>
   <%= render :partial => 'forem/topics/head', :locals => { :topic => @topic } %>
 
   <div id='menu'>
@@ -16,24 +16,20 @@
           <%= link_to t(".unsubscribe"), forem.unsubscribe_forum_topic_path(@forum, @topic), :method => :post, :class => "btn btn-danger ui red button" %>
         <% end %>
       <% end %>
-    </div>
-
-    <% if forem_admin? %>
-      <br>
-      <div class='btn-group'>
+      <% if forem_admin? %>
         <%= link_to t('forem.topic.links.edit'), forem.edit_admin_forum_topic_path(@forum, @topic), :class => "btn ui green button" %>
         <%= link_to t(".hide.#{@topic.hidden}"), forem.toggle_hide_admin_forum_topic_path(@forum, @topic), :method => :put, :class => "btn ui green button" %>
         <%= link_to t(".lock.#{@topic.locked}"), forem.toggle_lock_admin_forum_topic_path(@forum, @topic), :method => :put, :class => "btn ui green button" %>
         <%= link_to t(".pin.#{@topic.pinned}"), forem.toggle_pin_admin_forum_topic_path(@forum, @topic), :method => :put, :class => "btn ui green button" %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
   <% if @topic.pending_review? %>
-    <div class="moderation alert" id='topic_moderation'>
+    <div class="moderation alert ui info message form" id='topic_moderation'>
       <%= t(".pending_review") %>
       <% if forem_admin_or_moderator?(@topic.forum) %>
-        <%= form_for @topic, :url => forem.moderate_forum_topic_path(@topic.forum, @topic), :method => :put do |f| %>
+        <%= form_for @topic, :url => forem.moderate_forum_topic_path(@topic.forum, @topic), :method => :put, html: {class: 'grouped fields'} do |f| %>
           <%= render "/forem/moderation/options", :f => f %>
         <% end %>
       <% end %>
@@ -44,7 +40,5 @@
     <%= render :partial => "forem/posts/post", :collection => @posts %>
   </div>
   <br>
-  <div>
-    <%= forem_pages_widget(@posts) %>
-  </div>
+  <%= forem_pages_widget(@posts) %>
 </div>

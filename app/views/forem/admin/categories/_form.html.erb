@@ -1,5 +1,5 @@
-<%= simple_form_for [forem, :admin, @category] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :position %>
-  <%= f.submit :class => "btn btn-primary" %>
+<%= simple_form_for [forem, :admin, @category], html: {class: 'ui form'} do |f| %>
+  <%= f.input :name, wrapper_html: { class: 'field' }, required: false %>
+  <%= f.input :position, wrapper_html: { class: 'field' }, required: false %>
+  <%= f.submit :class => "btn btn-primary ui green button" %>
 <% end %>

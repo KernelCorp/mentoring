@@ -1,4 +1,4 @@
-<%= simple_form_for([forem, :admin, @group]) do |f| %>
-  <%= f.input :name %>
-  <%= f.submit :class => "btn btn-primary" %>
+<%= simple_form_for([forem, :admin, @group], html: {class: 'ui form'}) do |f| %>
+  <%= f.input :name, wrapper_html: { class: 'field' }, required: false %>
+  <%= f.submit :class => "btn btn-primary ui green button" %>
 <% end %>

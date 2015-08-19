@@ -16,6 +16,19 @@ ActiveRecord::Schema.define(version: 20150817095452) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "children", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_name"
+    t.date     "birthdate"
+    t.integer  "orphanage_id"
+    t.integer  "mentor_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "children", ["orphanage_id"], name: "index_children_on_orphanage_id", using: :btree
+
   create_table "forem_categories", force: :cascade do |t|
     t.string   "name",                   null: false
     t.datetime "created_at"
@@ -113,19 +126,6 @@ ActiveRecord::Schema.define(version: 20150817095452) do
   add_index "forem_views", ["user_id"], name: "index_forem_views_on_user_id", using: :btree
   add_index "forem_views", ["viewable_id"], name: "index_forem_views_on_viewable_id", using: :btree
 
-  create_table "children", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "middle_name"
-    t.date     "birthdate"
-    t.integer  "orphanage_id"
-    t.integer  "mentor_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "children", ["orphanage_id"], name: "index_children_on_orphanage_id", using: :btree
-
   create_table "meetings", force: :cascade do |t|
     t.datetime "date"
     t.string   "state"
@@ -179,12 +179,12 @@ ActiveRecord::Schema.define(version: 20150817095452) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middle_name"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "curator_id"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.boolean  "forem_admin",            default: false
     t.string   "forem_state",            default: "pending_review"
     t.boolean  "forem_auto_subscribe",   default: false
+    t.integer  "curator_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

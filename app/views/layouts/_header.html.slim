@@ -1,0 +1,13 @@
+.ui.visible.top.sidebar.green.inverted.menu
+  .right.menu
+    - if user_signed_in?
+      .item
+        i.user.icon
+
+      a.item
+        = current_user.email
+
+      = link_to('Сменить пароль', '/users/edit', class: 'item')
+      = link_to('Выйти', '/users/sign_out', :method => :delete, class: 'item')
+    - else
+      = link_to('Войти', '/users/sign_in', class: 'item')

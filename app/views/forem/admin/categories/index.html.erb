@@ -1,23 +1,23 @@
-<h2><%= t("forem.admin.category.index") %></h2>
-<%= link_to t('back_to_admin', :scope => "forem.admin"), forem.admin_root_path %><br><br>
-<%= link_to t("forem.admin.category.new_link"), forem.new_admin_category_path, :class => "btn btn-primary" %><br><br>
+<h2 class="ui header"><%= t("forem.admin.category.index") %></h2>
+<%= link_to t('back_to_admin', :scope => "forem.admin"), forem.admin_root_path, class: 'ui green button' %>
+<%= link_to t("forem.admin.category.new_link"), forem.new_admin_category_path, :class => "btn btn-primary ui green button" %>
 
-<table id='forums' class='forums table-striped table' cellspacing='0'>
-  <thead>
+<table id='forums' class='forums table-striped table ui celled striped table' cellspacing='0'>
+  <thead class="ui inverted green table">
     <tr>
-      <th><%= t('edit', :scope => 'forem.admin.categories') %></th>
-      <th><%= t('delete', :scope => 'forem.admin.categories') %></th>
-      <th><%= t('category', :scope => 'forem.admin.categories') %></th>
+      <th class="center aligned"><%= t('edit', :scope => 'forem.admin.categories') %></th>
+      <th class="center aligned"><%= t('delete', :scope => 'forem.admin.categories') %></th>
+      <th class="center aligned"><%= t('category', :scope => 'forem.admin.categories') %></th>
 
     </tr>
   </thead>
   <tbody>
     <% @categories.each do |category| %>
       <tr class="forum <%= cycle("odd", "even") %>">
-        <td><%= link_to t('edit', :scope => 'forem.admin.categories'), forem.edit_admin_category_path(category), :class => "btn btn-info" %></td>
-        <td><%= link_to t('delete', :scope => 'forem.admin.categories'), forem.admin_category_path(category), :method => :delete, 
-        data: { :confirm => t("delete_confirm", :scope => 'forem.admin.categories') }, :class => "btn btn-danger" %></td>
-        <td>
+        <td class="center aligned"><%= link_to t('edit', :scope => 'forem.admin.categories'), forem.edit_admin_category_path(category), :class => "btn btn-info ui green compact button" %></td>
+        <td class="center aligned"><%= link_to t('delete', :scope => 'forem.admin.categories'), forem.admin_category_path(category), :method => :delete,
+        data: { :confirm => t("delete_confirm", :scope => 'forem.admin.categories') }, :class => "btn btn-danger ui red compact button" %></td>
+        <td class="center aligned">
           <%= forem_emojify(category.name) %>
         </td>
       </tr>
@@ -25,5 +25,5 @@
   </tbody>
 </table>
 
-<%= link_to t('forem.admin.forum.index'), forem.admin_forums_path %>
+<%= link_to t('forem.admin.forum.index'), forem.admin_forums_path, class: "ui green button" %>
 
