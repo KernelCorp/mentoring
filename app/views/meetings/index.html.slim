@@ -33,17 +33,17 @@ p#notice = notice
                 i.icon.file.text
                 | Посмотреть
 
-              - if meeting.may_reject? and current_user.has_any_role? :admin, :curator, :mentor
+              - if meeting.may_reject? and can?(:reject, meeting)
                 = active_link_to reject_meeting_path(meeting), class: 'ui basic button green' do
                   i.icon.remove.circle.outline
                   | Отменить встречу
 
-              - if meeting.may_reopen? and current_user.has_any_role? :admin, :curator, :mentor
+              - if meeting.may_reopen? and can?(:reopen, meeting)
                 = active_link_to reopen_meeting_path(meeting), class: 'ui basic button green' do
                   i.icon.repeat
                   | Переназначить встречу
 
-- if current_user.has_any_role? :admin, :mentor
-  = active_link_to new_meeting_path, class: 'ui button green' do
+- if can? :new, Meeting
+  = button_to new_meeting_path, method: :get, class: 'ui button green' do
     i.icon.plus
     | Назначить новую встречу

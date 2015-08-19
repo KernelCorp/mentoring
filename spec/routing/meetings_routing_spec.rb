@@ -31,5 +31,13 @@ RSpec.describe MeetingsController, :type => :routing do
       expect(:delete => "/meetings/1").to route_to("meetings#destroy", :id => "1")
     end
 
+    it "routes to #reject" do
+      expect(:get => "/meetings/1/reject").to route_to("meetings#reject", :id => "1")
+    end
+
+    it "routes to #reopen" do
+      expect(:get => "/meetings/1/reopen").to route_to("meetings#reopen", :id => "1")
+    end
+
   end
 end

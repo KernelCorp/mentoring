@@ -13,8 +13,9 @@
 
   .field.five.wide
     = f.label :child_id, 'Ребёнок'
+
     .ui.selection.dropdown
-      = f.hidden_field :child_id
+      = f.select :child_id, @children.map{|e| [e.name, e.id]}, {include_blank: true}
       i.icon.dropdown
       .default.text
         | Выберите ребёнка
