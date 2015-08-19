@@ -44,6 +44,6 @@ p#notice = notice
                   | Переназначить встречу
 
 - if can? :new, Meeting
-  = active_link_to new_meeting_path, class: 'ui button green' do
+  = button_to new_meeting_path, method: :get, class: 'ui button green' do
     i.icon.plus
     | Назначить новую встречу

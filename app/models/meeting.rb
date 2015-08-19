@@ -6,6 +6,7 @@ class Meeting < ActiveRecord::Base
 
   validates :child, presence: true
   validates :mentor_id, presence: true
+  validates :date, presence: true
 
   aasm column: :state, whiny_transitions: false do
     state :new, initial: true
