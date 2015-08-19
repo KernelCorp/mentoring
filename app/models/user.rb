@@ -22,11 +22,4 @@ class User < ActiveRecord::Base
     email
   end
 
-  def subordinate_ids
-    if user.has_role? :curator
-      self.subordinates.map(&:id)
-    else
-      nil
-    end
-  end
 end

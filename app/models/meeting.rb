@@ -4,9 +4,10 @@ class Meeting < ActiveRecord::Base
   belongs_to :child
   belongs_to :mentor, foreign_key: :mentor_id, class_name: 'User'
 
-  validates :mentor, presence: true
+  validates :child, presence: true
+  validates :mentor_id, presence: true
 
-  aasm column: :state do
+  aasm column: :state, whiny_transitions: false do
     state :new, initial: true
     state :rejected
     state :report_sent
