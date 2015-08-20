@@ -1,12 +1,12 @@
 
-Given /^a orphanage '(.+)'$/ do |name|
+Given /^a orphanage "(.+)"$/ do |name|
   @orphanage = Orphanage.new do |orphanage|
     orphanage.name = name
     orphanage.address = 'any address'
   end
 end
 
-And /^a child with name '(.+)'$/ do |name|
+And /^a child with name "(.+)"$/ do |name|
   Child.create! do |child|
     child.first_name = name
     child.last_name = 'any_last_name'
@@ -16,7 +16,7 @@ And /^a child with name '(.+)'$/ do |name|
   end
 end
 
-And /^a user with email: '(.+)' and role 'curator' for orphanage '(.+)'$/ do |email, orphanage_name|
+And /^a user with email: "(.+)" and role "curator" for orphanage "(.+)"$/ do |email, orphanage_name|
   curator = User.create! do |user|
     user.email = email
     user.orphanage = Orphanage.find_by_name(orphanage_name)
@@ -26,7 +26,7 @@ And /^a user with email: '(.+)' and role 'curator' for orphanage '(.+)'$/ do |em
   curator.add_role :curator
 end
 
-And /^a user with email: '(.+)' and role 'mentor' for child '(.+)' and curator: '(.+)'$/ do |email, child_name, curator_email|
+And /^a user with email: "(.+)" and role "mentor" for child "(.+)" and curator: "(.+)"$/ do |email, child_name, curator_email|
   curator = User.with_role(:curator).find_by_email(curator_email)
   mentor = User.create! do |user|
     user.email = email
@@ -42,46 +42,51 @@ And /^a user with email: '(.+)' and role 'mentor' for child '(.+)' and curator: 
 end
 
 
-Given /^I signed in as user with email: '(.+)'$/ do |email|
+Given /^I signed in as user with email: "(.+)"$/ do |email|
   visit '/users/sign_in'
   fill_in 'user_email', :with => email
   fill_in 'user_password', :with => 'password'
   click_button 'Войти'
 end
 
-When /^I go to '(.*)'$/ do |path|
+When /^I go to "(.*)"$/ do |path|
   visit path
   expect(current_path).to eq(path)
 end
 
-And /^I click to the button '(.+)'$/ do |button_label|
+And /^I click to the button "(.+)"$/ do |button_label|
   click_on button_label
 end
 
-And /^I select child '(.+)'$/ do |child_name|
+And /^I select child "(.+)"$/ do |child_name|
   expect(current_path).to eq(new_meeting_path)
   select child_name, from: 'Ребёнок'
 end
 
-And /^I select date 'tomorrow'$/ do
+And /^I select date "tomorrow"$/ do
   fill_in 'meeting_date', with: DateTime.tomorrow
 end
 
-Then /^I should see success message '(.+)'$/ do |message|
+And /^I click to the submit button$/ do
+  find('input[type=submit]').click
+end
+
+
+Then /^I should see success message "(.+)"$/ do |message|
   expect(page).to have_content(message)
 end
 
-And /^I should be redirected to new meeting's page$/ do
+And /^I should be redirected to new meeting"s page$/ do
   expect(current_path).to eq(meeting_path(Meeting.last))
 end
 
-And /^a new meeting to '(.+)' at tomorrow should be created$/ do |name|
-  expect(page).to have_content(name)
-  expect(page).to have_content(Date.tomorrow.strftime('%d.%m.%Y'))
+And /^a new meeting to "(.+)" at tomorrow should be created$/ do |name|
+  expect(Meeting.last.child.name).to eq(name)
+  expect(Meeting.last.date.to_date).to eq(Date.tomorrow)
 end
 
 
-Given /^a meeting to '(.+)' and user '(.+)' at tomorrow$/ do |child_name, email|
+Given /^a meeting to "(.+)" and user "(.+)" at tomorrow$/ do |child_name, email|
   Meeting.create! do |meeting|
     meeting.date = DateTime.tomorrow
     meeting.child_id = Child.find_by_first_name(child_name).id
@@ -89,7 +94,7 @@ Given /^a meeting to '(.+)' and user '(.+)' at tomorrow$/ do |child_name, email|
   end
 end
 
-And /^the meeting should have state '(.+)'$/ do |state|
+And /^the meeting should have state "(.+)"$/ do |state|
   expect(Meeting.last.state).to eq(state)
 end
 
@@ -97,6 +102,6 @@ And /^I should be redirected to list of meetings$/ do
   expect(current_path).to eq(meetings_path)
 end
 
-Then /^I should see only (\d+) meetings to '(.+)', '(.+)'$/ do |count, first, second|
+Then /^I should see only (\d+) meetings to "(.+)", "(.+)"$/ do |count, first, second|
   expect(page).to have_selector('table tbody tr', count: 2)
 end

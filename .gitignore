@@ -14,5 +14,6 @@
 
 /config/database.yml
 .idea
+/coverage/*
 
-db/schema.rb
+/db/schema.rb

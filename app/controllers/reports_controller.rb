@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
+  skip_authorize_resource only: [:new]
 
   # GET /reports
   def index
@@ -12,6 +13,8 @@ class ReportsController < ApplicationController
 
   # GET /reports/new
   def new
+    @report = Report.new(meeting_id: params[:meeting_id])
+    authorize! :new, @report
   end
 
   # GET /reports/1/edit

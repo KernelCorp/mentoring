@@ -3,6 +3,7 @@ class Meeting < ActiveRecord::Base
 
   belongs_to :child
   belongs_to :mentor, foreign_key: :mentor_id, class_name: 'User'
+  has_one :report
 
   validates :child, presence: true
   validates :mentor_id, presence: true

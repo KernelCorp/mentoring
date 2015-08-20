@@ -29,21 +29,26 @@ p#notice = notice
             td = meeting.state
             td = meeting.child.name
             td
-              = active_link_to meeting_path(meeting), class: 'ui basic button green' do
-                i.icon.file.text
+              = link_to meeting_path(meeting), class: 'ui basic button green' do
+                i.icon.unhide
                 | Посмотреть
 
-              - if meeting.may_reject? and can?(:reject, meeting)
-                = active_link_to reject_meeting_path(meeting), class: 'ui basic button green' do
+              - if meeting.may_reject? && can?(:reject, meeting)
+                = link_to reject_meeting_path(meeting), class: 'ui basic button green' do
                   i.icon.remove.circle.outline
                   | Отменить встречу
 
-              - if meeting.may_reopen? and can?(:reopen, meeting)
-                = active_link_to reopen_meeting_path(meeting), class: 'ui basic button green' do
+              - if meeting.may_reopen? && can?(:reopen, meeting)
+                = link_to reopen_meeting_path(meeting), class: 'ui basic button green' do
                   i.icon.repeat
                   | Переназначить встречу
 
+              - if meeting.may_send_report? && meeting.date.past? && can?(:new, Report)
+                = link_to new_report_path(meeting_id: meeting.id), class: 'ui basic button green' do
+                  i.icon.file.text.outline
+                  | Составить отчёт
+
 - if can? :new, Meeting
-  = button_to new_meeting_path, method: :get, class: 'ui button green' do
+  = link_to new_meeting_path, class: 'ui button green' do
     i.icon.plus
     | Назначить новую встречу
