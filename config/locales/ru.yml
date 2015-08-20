@@ -185,6 +185,12 @@ ru:
       create: Создать %{model}
       submit: Сохранить %{model}
       update: Сохранить %{model}
+      category:
+        create: Создать категорию
+        update: Изменить категорию
+      group:
+        create: Создать группу
+        update: Изменить группу
   number:
     currency:
       format:
@@ -290,4 +296,11 @@ ru:
             password_confirmation:
               confirmation: не совпадает со значением поля %{attribute}
 
-
+  simple_form:
+    labels:
+      category:
+        position: Позиция
+      forum:
+        position: Позиция
+  by: от
+  started_by: "Автор: "
