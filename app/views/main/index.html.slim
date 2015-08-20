@@ -1,61 +1,200 @@
-h1 Мои встречи
+doctype html
+html
+  head
+    title Mentoring
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
 
-.ui.orange.segment
-  table.ui.celled.table
-    thead
-      tr
-        th
-          | ID
-        th
-          | Дата
-        th
-          | Статус
-        th
-          | Ребенок
-    tbody
-      tr
-        td
-          | 223
-        td
-          | 2015-04-01
-        td
-          | Пройдена
-        td
-          | Иосиф
-
-      tr
-        td
-          | 223
-        td
-          | 2015-04-01
-        td
-          | Пройдена
-        td
-          | Иосиф
-      tr
-        td
-          | 223
-        td
-          | 2015-04-01
-        td
-          | Пройдена
-        td
-          | Иосиф
-      tr
-        td
-          | 223
-        td
-          | 2015-04-01
-        td
-          | Пройдена
-        td
-          | Иосиф
-      tr
-        td
-          | 223
-        td
-          | 2015-04-01
-        td
-          | Пройдена
-        td
-          | Иосиф
+  body
+    .main_page_wrapper
+      header
+        .title
+          span.middle_text.bold_text
+            | НАСТАВНИЧЕСТВО
+          br
+          | благотворительный проект
+        .menu_item
+          | О ПРОЕКТЕ
+        .menu_item
+          | ПРИСОЕДИНИТЬСЯ
+        .menu_item
+          | ХОЧУ ДРУЖИТЬ
+        .menu_item
+          | КОНТАКТЫ
+        .menu_item
+          - if user_signed_in?
+            = link_to('ВЫЙТИ', '/users/sign_out', :method => :delete, class: 'item')
+          - else
+            = link_to('ВХОД', '/users/sign_in', class: 'item')
+      .first_image_block
+        .image_content_block
+          p.title
+            | Проект &laquo;Наставничество&raquo; призван помочь
+            br
+            | показать ребенку жизнь за пределами детского дома
+          | Когда ребёнок живет в детском доме, мира взрослых как будто и не существует.
+          br
+          | Есть только воспитатели и дети, которым не хватает заботы и внимания.
+          br
+          | Поэтому только 10% из числа выпускников детского дома находят своё место во взрослой жизни,
+          br
+          | ведь откуда им о ней узнать?
+        .button_block.green.big_text
+          | Я ХОЧУ ПОМОЧЬ
+      .image_bottom_attached_block.orange.big_text
+        | Что такое проект &laquo;Наставничество&raquo;?
+      .first_content_block
+        .inner_content_block
+          .column
+            .icon.female
+            .title
+              | ПРОФЕССИОНАЛЬНЫЕ
+              br
+              | ПСИХОЛОГИ
+            .text
+              | Проект сопровождают
+              br
+              | профессиональные психологи,
+              br
+              | которые несколько раз в месяц
+              br
+              | проводят с участниками
+              br
+              | групповые и индивидуальные
+              br
+              | супервизии, оценивают работу
+              br
+              | наставников, дают
+              br
+              | рекомендации, корректируют
+              br
+              | маршрутные листы детей
+          .column
+            .icon.screen
+            .title
+              | ЛИЧНЫЙ КАБИНЕТ
+              br
+              | &nbsp;
+            .text
+              | Проект сопровождают
+              br
+              | профессиональные психологи,
+              br
+              | которые несколько раз в месяц
+              br
+              | проводят с участниками
+              br
+              | групповые и индивидуальные
+              br
+              | супервизии, оценивают работу
+              br
+              | наставников, дают
+              br
+              | рекомендации, корректируют
+              br
+              | маршрутные листы детей
+          .column
+            .icon.open
+            .title
+              | БИБЛИОТЕКА
+              br
+              | &nbsp;
+            .text
+              | Проект сопровождают
+              br
+              | профессиональные психологи,
+              br
+              | которые несколько раз в месяц
+              br
+              | проводят с участниками
+              br
+              | групповые и индивидуальные
+              br
+              | супервизии, оценивают работу
+              br
+              | наставников, дают
+              br
+              | рекомендации, корректируют
+              br
+              | маршрутные листы детей
+          .column
+            .icon.social
+            .title
+              | СООБЩЕСТВО
+              br
+              | &nbsp;
+            .text
+              | Проект сопровождают
+              br
+              | профессиональные психологи,
+              br
+              | которые несколько раз в месяц
+              br
+              | проводят с участниками
+              br
+              | групповые и индивидуальные
+              br
+              | супервизии, оценивают работу
+              br
+              | наставников, дают
+              br
+              | рекомендации, корректируют
+              br
+              | маршрутные листы детей
+        .button_block.orange.big_text
+          | ХОЧУ УЧАСТВОВАТЬ
+      .second_image_block
+        .image_content_block
+          | Результаты регулярных тестирований показывают,
+          br
+          | что дети становятся более подготовленными к взрослой жизни,
+          br
+          | отмечается положительная динамика в плане коммуникации,
+          br
+          | целеполагания, социализации и профориентации.
+      .image_bottom_attached_block.green.very_big_text
+        | Как это работает:
+      .second_content_block
+        .inner_content_block
+          p
+            span.number.orange_text.middle_text.bold_text
+              | 1.
+            | Вы заполняете анкету Волонтера
+          p
+            span.number.orange_text.middle_text.bold_text
+              | 2.
+            | Анкета анализируется психологами и специалистами проекта
+          p
+            span.number.orange_text.middle_text.bold_text
+              | 3.
+            | Вам назначается подопечный
+          p
+            span.number.orange_text.middle_text.bold_text
+              | 4.
+            | Проводится встреча в формате &laquo;быстрого свидания&raquo;, на которой будущий
+            br
+            | наставник рассказывает, чему он может научить, а подросток решает, интересно
+            br
+            | ему будет с этим человеком или нет.
+          p
+            span.number.orange_text.middle_text.bold_text
+              | 5.
+            | Подопечный закрепляется за наставником
+        .button_block.green.big_text
+          | ЗАПОЛНИТЬ АНКЕТУ
+      .third_image_block
+        .image_content_block
+          | Ребёнок в детском доме живет в искусственных условиях.
+          br
+          | Показать ему путь в реальную жизнь может
+          br
+          | только неравнодушный взрослый.
+          br
+          | В результате мы можем подарить ребёнку
+          br
+          | шанс на нормальное будущее.
+      footer
+        | &copy; 2015 Проект &laquo;Наставничество&raquo;
+        br
+        | Студия разработки Kernel Web
