@@ -18,6 +18,4 @@ p#notice = notice
     strong Наставник: &nbsp;
     = @meeting.mentor.full_name
 
-= active_link_to meetings_path, class: 'ui button green' do
-  i.icon.chevron.left
-  | Назад
+== render 'back'
