@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe MeetingsController, :type => :controller do
 
-  let! (:mentor) { create :user, :mentor }
-  let! (:user) { create :user }
   let! (:orphanage) { create :orphanage}
+  let! (:mentor) { create :user, :mentor, orphanage_id: orphanage.id }
+  let! (:user) { create :user, orphanage_id: orphanage.id }
   let! (:child) { create :child, orphanage_id: orphanage.id, mentor_id: mentor.id  }
   let! (:meeting) { create :meeting, mentor_id: mentor.id, child_id: child.id  }
   let! (:rejected_meeting) { create :meeting, state: 'rejected', mentor_id: mentor.id, child_id: child.id  }

@@ -1,8 +1,10 @@
 FactoryGirl.define do
   factory :report do
-    text "MyText"
-    state "MyString"
-    meeting nil
+    duration 2
+    aim 'MyText'
+    result 'Mytext'
+    state 'new'
+    meeting_id 1
   end
 
 end

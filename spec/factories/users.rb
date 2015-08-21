@@ -8,8 +8,11 @@ FactoryGirl.define do
     last_name 'name'
     middle_name 'name'
 
+    orphanage_id 1
+
     trait :mentor do
       email 'mentor@example.com'
+      curator_id 1
       after(:create) {|user| user.add_role(:mentor)}
     end
 

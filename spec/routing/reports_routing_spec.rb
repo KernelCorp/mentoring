@@ -31,5 +31,13 @@ RSpec.describe ReportsController, :type => :routing do
       expect(:delete => "/reports/1").to route_to("reports#destroy", :id => "1")
     end
 
+    it "routes to #reject" do
+      expect(:get => "/reports/1/reject").to route_to("reports#reject", :id => "1")
+    end
+
+    it "routes to #approve" do
+      expect(:get => "/reports/1/approve").to route_to("reports#approve", :id => "1")
+    end
+
   end
 end

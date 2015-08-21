@@ -8,9 +8,37 @@
 
   = f.hidden_field :meeting_id, value: params[:meeting_id]
 
-  .field.eight.wide
-    = f.label :text, 'Текст'
-    = f.text_area :text
+  .field.three.wide
+    = f.label :duration, 'Длительность в часах'
+    = f.number_field :duration, min: 0
+
+  .field.six.wide
+    = f.label :aim, 'Цель'
+    = f.text_area :aim
+
+  .field.six.wide
+    = f.label :short_description, 'Краткое описание'
+    = f.text_area :short_description
+
+  .field.six.wide
+    = f.label :result, 'Результат'
+    = f.text_area :result
+
+  .field.six.wide
+    = f.label :feelings, 'Ощущения'
+    = f.text_area :feelings
+
+  .field.six.wide
+    = f.label :questions, 'Вопросы'
+    = f.text_area :questions
+
+  .field.six.wide
+    = f.label :next_aim, 'Следующая цель'
+    = f.text_area :next_aim
+
+  .field.six.wide
+    = f.label :other_comments, 'Дополнительные комментарии'
+    = f.text_area :other_comments
 
   .actions
     = f.submit 'Создать' , class: 'ui green button'
