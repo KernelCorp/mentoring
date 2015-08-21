@@ -274,6 +274,12 @@ ru:
       short: "%d %b, %H:%M"
     pm: вечера
 
+  helpers:
+    submit:
+      meeting:
+        create: Назначить встречу
+        update: Переназначить встречу
+
   activerecord:
     models:
       user: Пользователь

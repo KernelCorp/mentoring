@@ -17,7 +17,7 @@ Then /^I should meeting's action "(.+)" visible only meeting at yesterday$/ do |
   end
 end
 
-And /^I fill in an input "(.+)" as "(.+)" in the form "(.+)"$/ do |input, value, form_id|
+Then /^I fill in an input "(.+)" as "(.+)" in the form "(.+)"$/ do |input, value, form_id|
   within "form##{form_id}" do
     fill_in input, :with => value
   end
@@ -42,7 +42,7 @@ Given /^meeting to "(.+)" and user "(.+)" at yesterday on state "report_sent"$/ 
   end
 end
 
-And /^I reject a report of meeting "(.+)" with "(.+)"$/ do |email, name|
+When /^I reject a report of meeting "(.+)" with "(.+)"$/ do |email, name|
   find('tbody tr', /#{name}(.+)#{email}/).find(:link_or_button, 'Отклонить').click
 end
 
@@ -50,6 +50,6 @@ Then /^the report should have state "(.+)"$/ do |state|
   expect(Report.last.state).to eq(state)
 end
 
-And /^I approve a report of meeting "(.+)" with "(.+)"$/ do |email, name|
+When /^I approve a report of meeting "(.+)" with "(.+)"$/ do |email, name|
   find('tbody tr', /#{name}(.+)#{email}/).find(:link_or_button, 'Одобрить').click
 end
