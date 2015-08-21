@@ -33,7 +33,12 @@ class ReportsController < ApplicationController
   # PATCH/PUT /reports/1
   def update
     if @report.update(report_params)
-      redirect_to @report.meeting, notice: 'Отчёт успешно обновлён.'
+      if @report.may_resend?
+        @report.resend
+        @report.save
+      end
+
+      redirect_to @report, notice: 'Отчёт успешно обновлён.'
     else
       render :edit
     end

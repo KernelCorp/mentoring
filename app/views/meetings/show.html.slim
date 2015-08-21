@@ -6,16 +6,43 @@ p#notice = notice
     strong ID: &nbsp;
     = @meeting.id
   p
-    strong Дата/время: &nbsp;
-    = @meeting.date.strftime('%d.%m.%Y %H:%M')
-  p
-    strong Статус: &nbsp;
+    strong Статус:
+    br
     = @meeting.state
   p
-    strong Ребёнок: &nbsp;
+    strong Дата/время:
+    br
+    = @meeting.date.strftime('%d.%m.%Y %H:%M')
+  p
+    strong Ребёнок:
+    br
     = @meeting.child.full_name
   p
-    strong Наставник: &nbsp;
+    strong Наставник:
+    br
     = @meeting.mentor.full_name
+    br
+    = @meeting.mentor.email
+
+  - if @meeting.report && can?(:read, @meeting.report)
+    p
+      strong
+        = link_to 'Отчёт', report_path(@meeting.report)
+
+  .actions
+    - if @meeting.may_reject? && can?(:reject, @meeting)
+      = link_to reject_meeting_path(@meeting), class: 'ui button green' do
+        i.icon.remove.circle.outline
+        | Отменить встречу
+
+    - if @meeting.may_reopen? && can?(:reopen, @meeting)
+      = link_to reopen_meeting_path(@meeting), class: 'ui button green' do
+        i.icon.repeat
+        | Переназначить встречу
+
+    - if @meeting.may_send_report? && @meeting.date.past? && can?(:new, Report)
+      = link_to new_report_path(meeting_id: @meeting.id), class: 'ui button green' do
+        i.icon.file.text.outline
+        | Составить отчёт
 
 == render 'back'

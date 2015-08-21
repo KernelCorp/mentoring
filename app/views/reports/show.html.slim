@@ -18,13 +18,56 @@ p#notice = notice
     = @report.aim
 
   p
+    strong Краткое описание:
+    br
+    = @report.short_description
+
+  p
+    strong Ощущения:
+    br
+    = @report.feelings
+
+  p
+    strong Вопросы:
+    br
+    = @report.questions
+
+  p
+    strong Следующая цель:
+    br
+    = @report.next_aim
+
+  p
+    strong Дополнительные комментарии:
+    br
+    = @report.other_comments
+
+  p
     strong Результат:
     br
     = @report.result
 
-  p
-    strong Встреча:
-    br
-    = link_to "#{@report.meeting.mentor.email} и #{@report.meeting.child.name}", meeting_path(@report.meeting)
+  - if can?(:read, @report.meeting)
+    p
+      strong Встреча:
+      br
+      = link_to "#{@report.meeting.mentor.email} и #{@report.meeting.child.name} (#{l(@report.meeting.date)})",
+                meeting_path(@report.meeting)
+
+  .actions
+    - if (@report.state != 'approved') && can?(:update, @report)
+      = link_to edit_report_path(@report), class: 'ui button green' do
+        i.icon.write
+        | Редактировать
+
+    - if @report.may_reject? && can?(:reject, @report)
+      = link_to reject_report_path(@report), class: 'ui button green' do
+        i.icon.remove.circle.outline
+        | Отклонить
+
+    - if @report.may_approve? && can?(:approve, @report)
+      = link_to approve_report_path(@report), class: 'ui button green' do
+        i.icon.checkmark
+        | Одобрить
 
 == render 'back'

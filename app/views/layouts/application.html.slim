@@ -14,10 +14,15 @@ html
         .ui.inverted.header
           | Наставничество
 
-      - if user_signed_in? and current_user.has_any_role? :admin, :curator, :mentor
+      - if user_signed_in? and can? :read, Meeting
         = link_to meetings_path, class: 'item' do
           i.home.icon
           | Мои встречи
+
+      - if user_signed_in? and can? :read, Report
+        = link_to reports_path, class: 'item' do
+          i.icon.folder.open
+          | Отчёты
       a.item
         i.mail.icon
         | Сообщения

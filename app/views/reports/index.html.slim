@@ -35,6 +35,11 @@ p#alert = flash[:error]
                 i.icon.unhide
                 | Посмотреть
 
+              - if (report.state != 'approved') && can?(:update, report)
+                = link_to edit_report_path(report), class: 'ui basic button green' do
+                  i.icon.write
+                  | Редактировать
+
               - if report.may_reject? && can?(:reject, report)
                 = link_to reject_report_path(report), class: 'ui basic button green' do
                   i.icon.remove.circle.outline

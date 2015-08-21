@@ -6,7 +6,7 @@
         - @report.errors.full_messages.each do |message|
           li = message
 
-  = f.hidden_field :meeting_id, value: params[:meeting_id]
+  = f.hidden_field :meeting_id, value: @report.meeting_id || params[:meeting_id]
 
   .field.three.wide
     = f.label :duration, 'Длительность в часах'

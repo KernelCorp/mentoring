@@ -39,7 +39,7 @@ p#notice = notice
                   i.icon.remove.circle.outline
                   | Отменить встречу
 
-              - if meeting.may_reopen? && can?(:reopen, meeting)
+              - if meeting.may_reopen? && can?(:reopen, meeting) && meeting.date.future?
                 = link_to reopen_meeting_path(meeting), class: 'ui basic button green' do
                   i.icon.repeat
                   | Переназначить встречу

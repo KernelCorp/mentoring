@@ -191,6 +191,12 @@ ru:
       group:
         create: Создать группу
         update: Изменить группу
+      meeting:
+        create: Назначить встречу
+        update: Переназначить встречу
+      report:
+        create: Отправить отчёт
+        update: Сохранить отчёт
   number:
     currency:
       format:
@@ -269,16 +275,11 @@ ru:
   time:
     am: утра
     formats:
-      default: "%a, %d %b %Y, %H:%M:%S %z"
+      default: '%d.%m.%Y %H:%M'
+      too_long: "%a, %d %b %Y, %H:%M:%S %z"
       long: "%d %B %Y, %H:%M"
       short: "%d %b, %H:%M"
     pm: вечера
-
-  helpers:
-    submit:
-      meeting:
-        create: Назначить встречу
-        update: Переназначить встречу
 
   activerecord:
     models:

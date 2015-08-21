@@ -3,14 +3,18 @@ class Report < ActiveRecord::Base
 
   belongs_to :meeting
 
-  validates :meeting,  presence: true
-  validates :duration, presence: true
-  validates :aim,      presence: true
-  validates :result,   presence: true
+  validates :meeting,         presence: true
+  validates :duration,        presence: true
+  validates :aim,             presence: true
+  validates :short_description, presence: true
+  validates :result,          presence: true
+  validates :feelings,        presence: true
+  validates :questions,       presence: true
+  validates :next_aim,        presence: true
+  validates :other_comments,  presence: true
 
   after_create do
-    meeting.send_report
-    meeting.save
+    meeting.send_report!
   end
 
   aasm column: :state, whiny_transitions: false do
