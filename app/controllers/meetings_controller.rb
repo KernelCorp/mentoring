@@ -4,6 +4,7 @@ class MeetingsController < ApplicationController
 
   # GET /meetings
   def index
+    @meetings = @meetings.order date: :desc
   end
 
   # GET /meetings/1

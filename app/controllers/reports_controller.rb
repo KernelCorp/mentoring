@@ -5,6 +5,7 @@ class ReportsController < ApplicationController
 
   # GET /reports
   def index
+    @reports = @reports.order updated_at: :desc
   end
 
   # GET /reports/1
