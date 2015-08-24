@@ -234,11 +234,18 @@ ActiveRecord::Schema.define(version: 20150824064910) do
   end
 
   create_table "reports", force: :cascade do |t|
-    t.text     "text"
+    t.text     "aim"
     t.string   "state"
     t.integer  "meeting_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "duration"
+    t.text     "short_description"
+    t.text     "result"
+    t.text     "feelings"
+    t.text     "questions"
+    t.text     "next_aim"
+    t.text     "other_comments"
   end
 
   add_index "reports", ["meeting_id"], name: "index_reports_on_meeting_id", using: :btree
@@ -270,10 +277,10 @@ ActiveRecord::Schema.define(version: 20150824064910) do
     t.string   "middle_name"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+    t.integer  "curator_id"
     t.boolean  "forem_admin",            default: false
     t.string   "forem_state",            default: "pending_review"
     t.boolean  "forem_auto_subscribe",   default: false
-    t.integer  "curator_id"
     t.integer  "orphanage_id"
   end
 

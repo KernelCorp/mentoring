@@ -1,15 +1,73 @@
 p#notice = notice
 
-p
-  strong Text:
-  = @report.text
-p
-  strong State:
-  = @report.state
-p
-  strong Meeting:
-  = @report.meeting
 
-= link_to 'Edit', edit_report_path(@report)
-'|
-= link_to 'Back', reports_path
+.ui.orange.segment
+  p
+    strong Статус:
+    br
+    = @report.state
+
+  p
+    strong Длительность:
+    br
+    = @report.duration
+
+  p
+    strong Цель:
+    br
+    = @report.aim
+
+  p
+    strong Краткое описание:
+    br
+    = @report.short_description
+
+  p
+    strong Ощущения:
+    br
+    = @report.feelings
+
+  p
+    strong Вопросы:
+    br
+    = @report.questions
+
+  p
+    strong Следующая цель:
+    br
+    = @report.next_aim
+
+  p
+    strong Дополнительные комментарии:
+    br
+    = @report.other_comments
+
+  p
+    strong Результат:
+    br
+    = @report.result
+
+  - if can?(:read, @report.meeting)
+    p
+      strong Встреча:
+      br
+      = link_to "#{@report.meeting.mentor.email} и #{@report.meeting.child.name} (#{l(@report.meeting.date)})",
+                meeting_path(@report.meeting)
+
+  .actions
+    - if (@report.state != 'approved') && can?(:update, @report)
+      = link_to edit_report_path(@report), class: 'ui button green' do
+        i.icon.write
+        | Редактировать
+
+    - if @report.may_reject? && can?(:reject, @report)
+      = link_to reject_report_path(@report), class: 'ui button green' do
+        i.icon.remove.circle.outline
+        | Отклонить
+
+    - if @report.may_approve? && can?(:approve, @report)
+      = link_to approve_report_path(@report), class: 'ui button green' do
+        i.icon.checkmark
+        | Одобрить
+
+== render 'back'

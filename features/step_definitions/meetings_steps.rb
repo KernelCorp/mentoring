@@ -6,7 +6,7 @@ Given /^a orphanage "(.+)"$/ do |name|
   end
 end
 
-And /^a child with name "(.+)"$/ do |name|
+Given /^a child with name "(.+)"$/ do |name|
   Child.create! do |child|
     child.first_name = name
     child.last_name = 'any_last_name'
@@ -16,7 +16,7 @@ And /^a child with name "(.+)"$/ do |name|
   end
 end
 
-And /^a user with email: "(.+)" and role "curator" for orphanage "(.+)"$/ do |email, orphanage_name|
+Given /^a user with email: "(.+)" and role "curator" for orphanage "(.+)"$/ do |email, orphanage_name|
   curator = User.create! do |user|
     user.email = email
     user.orphanage = Orphanage.find_by_name(orphanage_name)
@@ -26,7 +26,7 @@ And /^a user with email: "(.+)" and role "curator" for orphanage "(.+)"$/ do |em
   curator.add_role :curator
 end
 
-And /^a user with email: "(.+)" and role "mentor" for child "(.+)" and curator: "(.+)"$/ do |email, child_name, curator_email|
+Given /^a user with email: "(.+)" and role "mentor" for child "(.+)" and curator: "(.+)"$/ do |email, child_name, curator_email|
   curator = User.with_role(:curator).find_by_email(curator_email)
   mentor = User.create! do |user|
     user.email = email
@@ -54,20 +54,20 @@ When /^I go to "(.*)"$/ do |path|
   expect(current_path).to eq(path)
 end
 
-And /^I click to the button "(.+)"$/ do |button_label|
+When /^I click to the button "(.+)"$/ do |button_label|
   click_on button_label
 end
 
-And /^I select child "(.+)"$/ do |child_name|
+When /^I select child "(.+)"$/ do |child_name|
   expect(current_path).to eq(new_meeting_path)
   select child_name, from: 'Ребёнок'
 end
 
-And /^I select date "tomorrow"$/ do
+When /^I select date "tomorrow"$/ do
   fill_in 'meeting_date', with: DateTime.tomorrow
 end
 
-And /^I click to the submit button$/ do
+When /^I click to the submit button$/ do
   find('input[type=submit]').click
 end
 
@@ -76,11 +76,11 @@ Then /^I should see success message "(.+)"$/ do |message|
   expect(page).to have_content(message)
 end
 
-And /^I should be redirected to new meeting"s page$/ do
+Then /^I should be redirected to new meeting"s page$/ do
   expect(current_path).to eq(meeting_path(Meeting.last))
 end
 
-And /^a new meeting to "(.+)" at tomorrow should be created$/ do |name|
+Then /^a new meeting to "(.+)" at tomorrow should be created$/ do |name|
   expect(Meeting.last.child.name).to eq(name)
   expect(Meeting.last.date.to_date).to eq(Date.tomorrow)
 end
@@ -94,11 +94,11 @@ Given /^a meeting to "(.+)" and user "(.+)" at tomorrow$/ do |child_name, email|
   end
 end
 
-And /^the meeting should have state "(.+)"$/ do |state|
+Then /^the meeting should have state "(.+)"$/ do |state|
   expect(Meeting.last.state).to eq(state)
 end
 
-And /^I should be redirected to list of meetings$/ do
+Then /^I should be redirected to list of meetings$/ do
   expect(current_path).to eq(meetings_path)
 end
 

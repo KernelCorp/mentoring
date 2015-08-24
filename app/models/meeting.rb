@@ -14,7 +14,7 @@ class Meeting < ActiveRecord::Base
     state :rejected
     state :report_sent
     state :report_rejected
-    state :verified
+    state :report_approved
 
     event :reject do
       transitions from: :new, to: :rejected
@@ -28,8 +28,8 @@ class Meeting < ActiveRecord::Base
       transitions from: :rejected, to: :new
     end
 
-    event :verify do
-      transitions from: :report_sent, to: :verified
+    event :approve_report do
+      transitions from: :report_sent, to: :report_approved
     end
 
     event :reject_report do

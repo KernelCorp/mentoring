@@ -4,6 +4,7 @@ class MeetingsController < ApplicationController
 
   # GET /meetings
   def index
+    @meetings = @meetings.order date: :desc
   end
 
   # GET /meetings/1
@@ -75,7 +76,7 @@ class MeetingsController < ApplicationController
 
   private
     def meeting_params
-      params.require(:meeting).permit(:date, :state, :child_id, :mentor_id)
+      params.require(:meeting).permit(:date, :child_id, :mentor_id)
     end
 
 end
