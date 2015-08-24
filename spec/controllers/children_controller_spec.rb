@@ -54,7 +54,7 @@ RSpec.describe ChildrenController, :type => :controller do
 
   describe "GET new" do
     it "assigns a new child as @child" do
-      get :new, {}, valid_session
+      get :new,
       expect(assigns(:child)).to be_a_new(Child)
     end
   end
@@ -71,7 +71,7 @@ RSpec.describe ChildrenController, :type => :controller do
     describe "with valid params" do
       it "creates a new Child" do
         expect {
-          post :create, {:child => valid_attributes}, valid_session
+          post :create, {:child => valid_attributes}
         }.to change(Child, :count).by(1)
       end
 

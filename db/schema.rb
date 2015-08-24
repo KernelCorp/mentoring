@@ -11,10 +11,99 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818111413) do
+ActiveRecord::Schema.define(version: 20150824064910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "candidate_children_experiences", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.string   "organization_name"
+    t.string   "organization_contacts"
+    t.string   "position"
+    t.text     "functions"
+    t.string   "children_age"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "candidate_children_experiences", ["candidate_id"], name: "index_candidate_children_experiences_on_candidate_id", using: :btree
+
+  create_table "candidate_educations", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.string   "education"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "specialty"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "candidate_educations", ["candidate_id"], name: "index_candidate_educations_on_candidate_id", using: :btree
+
+  create_table "candidate_family_members", force: :cascade do |t|
+    t.integer  "candidate_id"
+    t.string   "name"
+    t.string   "gender"
+    t.string   "age"
+    t.string   "relation"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "candidate_family_members", ["candidate_id"], name: "index_candidate_family_members_on_candidate_id", using: :btree
+
+  create_table "candidates", force: :cascade do |t|
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "registration_address"
+    t.string   "home_address"
+    t.string   "phone_number"
+    t.string   "email"
+    t.date     "birth_date"
+    t.string   "nationality"
+    t.string   "confession"
+    t.string   "health_status"
+    t.string   "serious_diseases"
+    t.date     "work_start_date"
+    t.date     "work_end_date"
+    t.string   "organization_name"
+    t.string   "work_contacts"
+    t.string   "work_position"
+    t.string   "work_functions"
+    t.string   "work_schedule"
+    t.string   "hobby"
+    t.string   "martial_status"
+    t.string   "house_type"
+    t.integer  "number_of_rooms"
+    t.integer  "peoples_for_room"
+    t.text     "peoples"
+    t.string   "pets"
+    t.string   "program_role"
+    t.text     "program_reason"
+    t.text     "person_character"
+    t.text     "person_information"
+    t.text     "help_reason"
+    t.integer  "child_age"
+    t.string   "child_gender"
+    t.text     "child_character"
+    t.string   "visit_frequency"
+    t.boolean  "invalid_child"
+    t.string   "alcohol"
+    t.boolean  "tobacco"
+    t.string   "psychoactive"
+    t.string   "drugs"
+    t.string   "child_crime"
+    t.string   "disabled_parental_rights"
+    t.boolean  "reports"
+    t.boolean  "photo_rights"
+    t.string   "info_about_program"
+    t.boolean  "agreement"
+    t.string   "state"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "children", force: :cascade do |t|
     t.string   "first_name"

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :orphanages
 
+  resources :candidates, only: [:new, :create]
+
   root 'main#index'
 
   devise_for :users, :skip => [:registrations]
