@@ -23,9 +23,11 @@ html
         = link_to reports_path, class: 'item' do
           i.icon.folder.open
           | Отчёты
-      a.item
-        i.mail.icon
-        | Сообщения
+
+      - if user_signed_in? and can? :read, Report
+        = link_to mailbox_path, class: 'item' do
+          i.mail.icon
+          | Сообщения
 
 
     #page-wrapp

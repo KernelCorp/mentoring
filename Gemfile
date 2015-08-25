@@ -39,6 +39,8 @@ gem 'annotate'
 gem 'aasm'
 gem 'active_link_to'
 
+gem 'mailboxer'
+
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'jquery-datetimepicker-rails'
 

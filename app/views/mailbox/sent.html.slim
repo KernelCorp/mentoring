@@ -1,0 +1,4 @@
+h1 Исходящие
+
+.ui.segment.orange.grid
+  = render partial: 'mailbox/folder_view', locals: { is_conversation: false, conversations: @sent }

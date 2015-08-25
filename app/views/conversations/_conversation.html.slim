@@ -1,0 +1,16 @@
+.ui.message
+  .header
+    = truncate conversation.messages.last.body, length: 120
+
+  br
+  = "Тема: #{conversation.subject}"
+  br
+  = conversation.originator.mail_name
+  | &nbsp; - &nbsp;
+  = l conversation.messages.last.created_at
+  br
+  br
+
+  = link_to conversation_path(conversation), class: 'ui button basic green' do
+    i.icon.unhide
+    | Просмотр

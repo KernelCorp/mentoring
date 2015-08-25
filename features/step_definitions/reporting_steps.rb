@@ -38,7 +38,12 @@ Given /^meeting to "(.+)" and user "(.+)" at yesterday on state "report_sent"$/ 
     report.meeting_id = meeting.id
     report.duration = 4
     report.aim = 'something'
+    report.short_description = 'something'
+    report.questions = 'something'
+    report.feelings = 'something'
+    report.next_aim = 'something'
     report.result = 'something'
+    report.other_comments = 'something'
   end
 end
 

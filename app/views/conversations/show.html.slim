@@ -1,0 +1,34 @@
+h1 Просмотр диалога
+
+.ui.segment.orange.grid
+  .row
+    .column.four.wide
+      = render partial: 'mailbox/new_mail_button'
+
+    .column.four.wide
+      - if @conversation.is_trashed?(current_user)
+        = link_to untrash_conversation_path(@conversation), class: 'ui button green', method: :post do
+          i.icon.undo
+          | Восстановить
+      - else
+        = link_to trash_conversation_path(@conversation), class: 'ui button green', method: :post, data: {confirm: 'Вы уверены?'} do
+          i.icon.trash
+          | Удалить этот диалог
+
+
+  .row
+    .four.wide.column
+      = render 'mailbox/folders'
+
+    .column.twelve.wide.stretched
+      .ui.segment
+        = render partial: 'messages'
+
+        = form_for :message, url: reply_conversation_path(@conversation), html: {class: 'ui form large', id: 'new_message'} do |f|
+          .field
+            = f.label :body, 'Ответ'
+            = f.text_area :body, rows: 4
+
+          = f.button class: 'ui button green' do
+            i.icon.reply
+            | Ответить

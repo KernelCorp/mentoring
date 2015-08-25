@@ -20,6 +20,9 @@ Given /^a user with email: "(.+)" and role "curator" for orphanage "(.+)"$/ do |
   curator = User.create! do |user|
     user.email = email
     user.orphanage = Orphanage.find_by_name(orphanage_name)
+    user.first_name = 'any_first_name'
+    user.last_name = 'any_last_name'
+    user.middle_name = 'any_middle_name'
     user.password = 'password'
   end
 
@@ -31,6 +34,9 @@ Given /^a user with email: "(.+)" and role "mentor" for child "(.+)" and curator
   mentor = User.create! do |user|
     user.email = email
     user.orphanage = curator.orphanage
+    user.first_name = 'any_first_name'
+    user.last_name = 'any_last_name'
+    user.middle_name = 'any_middle_name'
     user.curator_id = curator.id
     user.password = 'password'
   end
@@ -51,7 +57,6 @@ end
 
 When /^I go to "(.*)"$/ do |path|
   visit path
-  expect(current_path).to eq(path)
 end
 
 When /^I click to the button "(.+)"$/ do |button_label|
@@ -68,7 +73,11 @@ When /^I select date "tomorrow"$/ do
 end
 
 When /^I click to the submit button$/ do
-  find('input[type=submit]').click
+  if page.has_css?('button[type=submit]')
+    find('button[type=submit]').click
+  else
+    find('input[type=submit]').click
+  end
 end
 
 
@@ -102,6 +111,7 @@ Then /^I should be redirected to list of meetings$/ do
   expect(current_path).to eq(meetings_path)
 end
 
-Then /^I should see only (\d+) meetings to "(.+)", "(.+)"$/ do |count, first, second|
-  expect(page).to have_selector('table tbody tr', count: 2)
+Then /^I should see only 2 meetings to "(.+)", "(.+)"$/ do |first, second|
+  expect(page).to have_selector('table tbody tr', text: first, count: 1)
+  expect(page).to have_selector('table tbody tr', text: second, count: 1)
 end

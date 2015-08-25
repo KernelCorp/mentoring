@@ -1,0 +1,17 @@
+= form_for :conversation, url: :conversations, html: {class: 'ui form large', id: 'new_conversation'} do |f|
+  .field.eight.wide
+    = f.label :recipients, 'Получатели'
+    = f.select(:recipients, @users.map{|u| [u.email, u.id]}, {include_blank: 'Выберите адресатов'}, {class: 'ui fluid search dropdown', multiple: ''})
+
+  .field.ten.wide
+    = f.label :subject, 'Тема'
+    = f.text_field :subject, placeholder: 'Тема'
+
+  .field.twelve.wide
+    = f.label :body, 'Сообщение'
+    = f.text_area :body, placeholder: 'Введите своё сообщение сюда', rows: 4
+
+  .actions
+    = f.button class: 'ui button green' do
+      i.icon.send
+      | Отправить сообщение
