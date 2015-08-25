@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   resources :orphanages
   resources :children
+  resources :books
 
   resources :meetings do
     member do

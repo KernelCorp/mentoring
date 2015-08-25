@@ -1,0 +1,14 @@
+h1 Библиотека
+
+p#notice = notice
+
+.ui.orange.segment
+  table.ui.table.celled
+    thead
+      tr
+        th Название книги
+        th Приоритет
+        th
+
+    tbody
+      - @books.each do |book|

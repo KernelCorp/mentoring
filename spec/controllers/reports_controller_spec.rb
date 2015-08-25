@@ -7,15 +7,45 @@ RSpec.describe ReportsController, :type => :controller do
   let! (:mentor) { create :user, :mentor, curator_id: curator.id, orphanage_id: orphanage.id }
   let! (:child) { create :child, orphanage_id: orphanage.id, mentor_id: mentor.id }
   let! (:meeting) { create :meeting, child_id: child.id, mentor_id: child.mentor.id }
-  let! (:report) { create :report, meeting_id: meeting.id, duration: 2, aim: 'qq', result: 'ww' }
-  let! (:rejected_report) { create :report, meeting_id: meeting.id, duration: 2, aim: 'qq', result: 'ww', state: 'rejected' }
+
+  let! :report do
+    create :report,
+           meeting_id: meeting.id,
+           duration: 2,
+           aim: 'qq',
+           short_description: 'short_description',
+           feelings: 'feelings',
+           questions: 'questions',
+           next_aim: 'next_aim',
+           result: 'ww',
+           other_comments: 'other_comments'
+  end
+
+  let! :rejected_report do
+    create :report,
+           meeting_id: meeting.id,
+           state: 'rejected',
+           duration: 2,
+           aim: 'qq',
+           short_description: 'short_description',
+           feelings: 'feelings',
+           questions: 'questions',
+           next_aim: 'next_aim',
+           result: 'ww',
+           other_comments: 'other_comments'
+  end
 
   let :valid_attributes do
     {
         duration: 3,
         meeting_id: meeting.id,
         aim: 'qwe asd',
-        result: 'asd zxc'
+        short_description: 'short_description',
+        feelings: 'feelings',
+        questions: 'questions',
+        next_aim: 'next_aim',
+        result: 'ww',
+        other_comments: 'other_comments'
     }
   end
 

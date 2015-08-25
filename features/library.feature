@@ -5,9 +5,10 @@ Feature: Meetings
   For every book and article, all users should be able to add a comment. Priority is enum
 
   Background:
-    Given a child with name "Fry"
-    And a user with email: "zoidberg@example.com" and role "curator" for orphanage "Futurama"
-    And a user with email: "bender@rodriguez.com" and role "mentor" for child "Fry" and curator: "zoidberg@example.com"
+    Given a orphanage "Futurama"
+      And a child with name "Fry"
+      And a user with email: "zoidberg@example.com" and role "curator" for orphanage "Futurama"
+      And a user with email: "bender@rodriguez.com" and role "mentor" for child "Fry" and curator: "zoidberg@example.com"
 
 
   Scenario: Curator add a new book

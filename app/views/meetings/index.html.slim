@@ -7,20 +7,16 @@ p#notice = notice
   table.ui.table.celled.selectable
     thead
       tr
-        th
-          | ID
-        th
-          | Дата
-        th
-          | Статус
-        th
-          | Ребенок
+        th ID
+        th Дата
+        th Статус
+        th Ребенок
         th
 
     tbody
       - if @meetings.blank?
         tr
-          td colspan=6
+          td colspan=5
             | Нет данных для отображения
       - else
         - @meetings.each do |meeting|

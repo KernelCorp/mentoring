@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824064910) do
+ActiveRecord::Schema.define(version: 20150825100315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "books", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "priority",          default: 2
+    t.integer  "owner_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "books", ["owner_id"], name: "index_books_on_owner_id", using: :btree
 
   create_table "candidate_children_experiences", force: :cascade do |t|
     t.integer  "candidate_id"
@@ -329,10 +343,10 @@ ActiveRecord::Schema.define(version: 20150824064910) do
     t.string   "middle_name"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+    t.integer  "curator_id"
     t.boolean  "forem_admin",            default: false
     t.string   "forem_state",            default: "pending_review"
     t.boolean  "forem_auto_subscribe",   default: false
-    t.integer  "curator_id"
     t.integer  "orphanage_id"
   end
 
@@ -347,6 +361,7 @@ ActiveRecord::Schema.define(version: 20150824064910) do
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
+  add_foreign_key "books", "users", column: "owner_id"
   add_foreign_key "children", "orphanages"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"

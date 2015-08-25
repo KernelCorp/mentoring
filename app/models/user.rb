@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :children, foreign_key: :mentor_id
   has_many :meetings, foreign_key: :mentor_id
   has_many :subordinates, class_name: 'User', foreign_key: :curator_id
+  has_many :books, foreign_key: :owner_id
   belongs_to :orphanage
   belongs_to :curator, class_name: 'User'
 
