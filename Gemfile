@@ -40,6 +40,7 @@ gem 'aasm'
 gem 'active_link_to'
 
 gem 'mailboxer'
+gem 'rails_admin', '~> 0.7.0'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'jquery-datetimepicker-rails'

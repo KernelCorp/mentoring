@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception
   helper_method :forem_user, :mailbox
 
   def forem_user
@@ -9,8 +10,8 @@ class ApplicationController < ActionController::Base
     current_user.mailbox
   end
 
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-
+  private
+    rescue_from CanCan::AccessDenied do |exception|
+      redirect_to main_app.root_path, :alert => exception.message
+    end
 end
