@@ -1,0 +1,12 @@
+.ui.secondary.vertical.pointing.menu
+  = active_link_to mailbox_inbox_path, class: 'item' do
+    i.icon.inbox
+    | Входящие
+
+  = active_link_to mailbox_sent_path, class: 'item' do
+    i.icon.folder.open.outline
+    | Отправленные
+
+  = active_link_to mailbox_trash_path, class: 'item' do
+    i.icon.trash.outline
+    | Удалённые

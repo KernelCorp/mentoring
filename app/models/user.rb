@@ -5,13 +5,26 @@ class User < ActiveRecord::Base
   belongs_to :orphanage
   belongs_to :curator, class_name: 'User'
 
+  acts_as_messageable
   rolify
-
   devise :database_authenticatable, :recoverable, :registerable,
          :rememberable, :trackable, :validatable
 
+  validates :email,      presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name,  presence: true
+
+
   def name
-    first_name
+    full_name
+  end
+
+  def mail_email object
+    email
+  end
+
+  def mail_name
+    "#{full_name} (#{email})"
   end
 
   def full_name

@@ -1,0 +1,17 @@
+.row
+  .column.four.wide
+    = render partial: 'mailbox/new_mail_button'
+
+.row
+  .four.wide.column
+    = render 'mailbox/folders'
+
+  .column.twelve.wide.stretched
+    .ui.segment
+      - if is_conversation
+        = render 'conversations/form'
+      - else
+        - if conversations.blank?
+          | Нет сообщений
+        - else
+          = render partial: 'conversations/conversation', collection: conversations

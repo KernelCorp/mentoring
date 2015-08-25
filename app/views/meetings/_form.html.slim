@@ -13,16 +13,7 @@
 
   .field.five.wide
     = f.label :child_id, 'Ребёнок'
-
-    .ui.selection.dropdown
-      = f.select :child_id, @children.map{|e| [e.name, e.id]}, {include_blank: true}
-      i.icon.dropdown
-      .default.text
-        | Выберите ребёнка
-      .menu
-        - @children.each do |child|
-          .item data-value="#{child.id}"
-            = child.name
+    = f.select :child_id, @children.map{|e| [e.name, e.id]}, {include_blank: 'Выберите ребёнка'}, {class: 'ui dropdown'}
 
   .actions
     = f.submit class: 'ui green button'

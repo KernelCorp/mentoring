@@ -1,0 +1,11 @@
+- @receipts.each do |receipt|
+  .ui.message
+    .header
+      = receipt.message.body
+    br
+
+    = "Тема:  #{receipt.message.subject}"
+    br
+    = receipt.message.sender.mail_name
+    | &nbsp; - &nbsp;
+    = l receipt.message.created_at

@@ -1,28 +1,5 @@
 Rails.application.routes.draw do
 
-  # This line mounts Forem's routes at /forums by default.
-  # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.
-  # If you would like to change where this extension is mounted, simply change the :at option to something different.
-  #
-  # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
-  mount Forem::Engine, :at => '/forums'
-
-  resources :reports do
-    get 'reject', on: :member
-    get 'approve', on: :member
-  end
-
-  resources :meetings do
-    get 'reject', on: :member
-    get 'reopen', on: :member
-  end
-
-  resources :children
-
-  resources :orphanages
-
-  resources :candidates, only: [:new, :create]
-
   root 'main#index'
 
   devise_for :users, :skip => [:registrations]
@@ -30,4 +7,39 @@ Rails.application.routes.draw do
     get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
     put 'users' => 'devise/registrations#update', :as => 'user_registration'
   end
+
+  mount Forem::Engine, :at => '/forums'
+  
+  resources :candidates, only: [:new, :create]
+
+  get 'mailbox', to: redirect('/mailbox/inbox')
+  get 'mailbox/inbox'
+  get 'mailbox/sent'
+  get 'mailbox/trash'
+
+  resources :conversations do
+    member do
+      post :reply
+      post :trash
+      post :untrash
+    end
+  end
+
+  resources :orphanages
+  resources :children
+
+  resources :meetings do
+    member do
+      get :reject
+      get :reopen
+    end
+  end
+
+  resources :reports do
+    member do
+      get :reject
+      get :approve
+    end
+  end
+
 end

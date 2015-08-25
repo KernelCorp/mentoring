@@ -2,7 +2,7 @@
 ready = ->
   today = new Date
 
-  $('.selection.dropdown').dropdown()
+  $('select.dropdown').dropdown()
   $('.datepicker').datetimepicker
     lang: 'ru'
     inline: true
