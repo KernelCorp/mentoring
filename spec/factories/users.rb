@@ -8,7 +8,7 @@ FactoryGirl.define do
     last_name 'name'
     middle_name 'name'
 
-    orphanage_id 1
+    # orphanage_id 1 # мешает тестам
 
     trait :mentor do
       email 'mentor@example.com'

@@ -71,13 +71,13 @@ ActiveRecord::Schema.define(version: 20150824064910) do
     t.string   "organization_name"
     t.string   "work_contacts"
     t.string   "work_position"
-    t.string   "work_functions"
+    t.text     "work_functions"
     t.string   "work_schedule"
-    t.string   "hobby"
+    t.text     "hobby"
     t.string   "martial_status"
     t.string   "house_type"
-    t.integer  "number_of_rooms"
-    t.integer  "peoples_for_room"
+    t.string   "number_of_rooms"
+    t.string   "peoples_for_room"
     t.text     "peoples"
     t.string   "pets"
     t.string   "program_role"
@@ -85,13 +85,13 @@ ActiveRecord::Schema.define(version: 20150824064910) do
     t.text     "person_character"
     t.text     "person_information"
     t.text     "help_reason"
-    t.integer  "child_age"
+    t.string   "child_age"
     t.string   "child_gender"
     t.text     "child_character"
     t.string   "visit_frequency"
     t.boolean  "invalid_child"
     t.string   "alcohol"
-    t.boolean  "tobacco"
+    t.string   "tobacco"
     t.string   "psychoactive"
     t.string   "drugs"
     t.string   "child_crime"
@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 20150824064910) do
     t.boolean  "reports"
     t.boolean  "photo_rights"
     t.string   "info_about_program"
-    t.boolean  "agreement"
     t.string   "state"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -277,10 +276,10 @@ ActiveRecord::Schema.define(version: 20150824064910) do
     t.string   "middle_name"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.integer  "curator_id"
     t.boolean  "forem_admin",            default: false
     t.string   "forem_state",            default: "pending_review"
     t.boolean  "forem_auto_subscribe",   default: false
+    t.integer  "curator_id"
     t.integer  "orphanage_id"
   end
 

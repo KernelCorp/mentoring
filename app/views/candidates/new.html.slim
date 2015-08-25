@@ -217,7 +217,7 @@
     .field.required
       label
         | Согласны ли вы взаимодействовать с ребёнком имеющим функциональные ограничения или особенные потребности?
-      .fields
+      .fields.radio_button
         .inline.field.radio.checkbox
           = f.label :invalid_child_true, 'Да'
           = f.radio_button :invalid_child, true
@@ -248,7 +248,7 @@
     .field.required
       label
         | Согласны ли вы по необходимости заполнять отчёты о проделанной совместно с ребёнком  деятельности ( 1 раз/ месяц)?
-      .fields
+      .fields.radio_button
         .inline.field.radio.checkbox
           = f.label :reports_true, 'Да'
           = f.radio_button :reports, true
@@ -258,7 +258,7 @@
     .field.required
       label
         | Разрешаете ли вы использовать ваши фотографии и комментарии, сделанные в процессе вашего участия в Программе, на информационных носителях Проекта, с целью популяризации идеи Наставничества?
-      .fields
+      .fields.radio_button
         .inline.field.radio.checkbox
           = f.label :photo_rights_true, 'Да'
           = f.radio_button :photo_rights, true
@@ -276,8 +276,11 @@
   .ui.orange.segment
     h3.ui.header
       | Личное заявление:
-    p
-      | Я понимаю цели Программы Наставничества и обязуюсь следовать разработанным индивидуальным планам, предложенным мне координатором (с учётом оценки потребностей детей-сирот), а также соблюдать конфиденциальность по любой личной информации о ребёнке, которая может стать мне известной.
+    p.field
+      .ui.checkbox.check_box
+        = check_box_tag 'agreement', 1, false, id: 'agreement'
+        label for='agreement'
+          | Я понимаю цели Программы Наставничества и обязуюсь следовать разработанным индивидуальным планам, предложенным мне координатором (с учётом оценки потребностей детей-сирот), а также соблюдать конфиденциальность по любой личной информации о ребёнке, которая может стать мне известной.
     ul.ui.list
       li
         | я обязуюсь сообщать координатору Программы об изменениях в моём графике (при невозможности присутствовать на запланированных ранее мероприятиях), или состоянии моего здоровья.
@@ -290,4 +293,18 @@
     p
       em
         | Проект Наставничество обязуется соблюдать конфиденциальность предоставленной волонтёром информации.
-    = f.submit 'Отправить анкету', class: 'ui green button'
+    = f.submit 'Отправить анкету', class: 'ui green button', id: 'submit_button', disabled: true
+
+
+
+    script
+      | $(document).ready(function(){
+      |   $('#agreement').on('change', function(){
+      |     if($(this)[0].checked){
+      |       $('#submit_button')[0].disabled = false;
+      |     }
+      |     else{
+      |       $('#submit_button')[0].disabled = true;
+      |     }
+      |   });
+      | });
