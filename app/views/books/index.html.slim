@@ -1,0 +1,18 @@
+h1 Библиотека
+
+p#notice = notice
+
+.ui.orange.segment
+  h3 Срочно прочесть
+  = render partial: 'listing', locals: {books: @top_priority}
+  br
+  h3 Обязательно к прочтению
+  = render partial: 'listing', locals: {books: @high_priority}
+  br
+  h3 Это интересно
+  = render partial: 'listing', locals: {books: @medium_priority}
+
+- if can? :new, Book
+  = link_to new_book_path, class: 'ui button green' do
+    i.icon.plus
+    | Добавить новую книгу

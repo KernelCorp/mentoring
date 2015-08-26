@@ -1,0 +1,11 @@
+- @comments.each do |comment|
+  .comment
+    .content
+      a.author
+        = comment.user.mail_name
+      .metadata
+        span
+          = l comment.created_at
+
+      .text
+        = comment.text

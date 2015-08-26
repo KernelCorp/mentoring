@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'comments/create'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'main#index'
 
@@ -28,6 +30,10 @@ Rails.application.routes.draw do
 
   resources :orphanages
   resources :children
+
+  resources :books do
+    resources :comments
+  end
 
   resources :meetings do
     member do

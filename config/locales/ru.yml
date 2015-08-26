@@ -197,6 +197,9 @@ ru:
       report:
         create: Отправить отчёт
         update: Сохранить отчёт
+      book:
+        create: Добавить книгу
+        update: Сохранить изменения
   number:
     currency:
       format:

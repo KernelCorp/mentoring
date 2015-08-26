@@ -1,0 +1,24 @@
+= form_for @book, html: { class: 'ui form large'} do |f|
+  - if @book.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@book.errors.count, "error")} prohibited this book from being saved:"
+      ul
+        - @book.errors.full_messages.each do |message|
+          li = message
+
+  = f.hidden_field :owner_id, value: current_user.id
+
+  .field.eight.wide
+    = f.label :name, 'Название'
+    = f.text_field :name
+
+  .field.five.wide
+    = f.label :priority, 'Приоритет'
+    = f.select :priority, Book.priorities.keys, {include_blank: 'Назначьте приоритет'}, {class: 'ui dropdown'}
+
+  .field.five.wide
+    = f.label :file, 'Файл'
+    = f.file_field :file, class: 'ui button'
+
+  .actions
+    = f.submit class: 'ui green button'

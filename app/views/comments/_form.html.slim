@@ -1,0 +1,10 @@
+= form_for [commentable, comment], html: {class: 'ui form', id: 'new_comment'} do |f|
+  = f.hidden_field :user_id, value: current_user.id
+
+  = f.hidden_field :commentable_id
+  = f.hidden_field :commentable_type
+
+  .field
+    = f.text_area :text, rows: 2, maxlength: 140
+
+  = f.submit 'Опубликовать комментарий', class: 'ui button green'
