@@ -14,20 +14,25 @@ html
         .ui.inverted.header
           | Наставничество
 
-      - if user_signed_in? and can? :read, Meeting
+      - if user_signed_in? && can?(:read, Meeting)
         = link_to meetings_path, class: 'item' do
-          i.home.icon
+          i.icon.home
           | Мои встречи
 
-      - if user_signed_in? and can? :read, Report
+      - if user_signed_in? && can?(:read, Report)
         = link_to reports_path, class: 'item' do
           i.icon.folder.open
           | Отчёты
 
-      - if user_signed_in? and can? :read, Report
+      - if user_signed_in?
         = link_to mailbox_path, class: 'item' do
-          i.mail.icon
+          i.icon.mail
           | Сообщения
+
+      - if user_signed_in? && can?(:read, Book)
+        = link_to books_path, class: 'item' do
+          i.icon.book
+          | Библиотека
 
 
     #page-wrapp

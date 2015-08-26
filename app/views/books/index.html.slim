@@ -3,17 +3,16 @@ h1 Библиотека
 p#notice = notice
 
 .ui.orange.segment
-  table.ui.table.celled
-    thead
-      tr
-        th Название книги
-        th Приоритет
-        th Опубликовал
-        th
+  h3 Срочно прочесть
+  = render partial: 'listing', locals: {books: @top_priority}
+  br
+  h3 Обязательно к прочтению
+  = render partial: 'listing', locals: {books: @high_priority}
+  br
+  h3 Это интересно
+  = render partial: 'listing', locals: {books: @medium_priority}
 
-    tbody
-      - @books.each do |book|
-        tr
-          td = book.name
-          td = book.priority
-          td = book.priority
+- if can? :new, Book
+  = link_to new_book_path, class: 'ui button green' do
+    i.icon.plus
+    | Добавить новую книгу

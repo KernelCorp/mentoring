@@ -3,10 +3,14 @@ class BooksController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @books = @books.order :priority
+    @top_priority = @books.immediately_read
+    @high_priority = @books.must_read
+    @medium_priority = @books.interesting
   end
 
   def show
+    @commentable = @book
+    @comments = @book.comments
   end
 
   def new
@@ -14,7 +18,7 @@ class BooksController < ApplicationController
 
   def create
     if @book.save
-      redirect_to @book, notice: 'Новая книга добавленна.'
+      redirect_to books_path, notice: 'Новая книга добавленна.'
     else
       render :new, notice: 'Не удалось добавить книгу.', error: @book.errors[:name].first
     end
@@ -22,6 +26,6 @@ class BooksController < ApplicationController
 
   private
     def book_params
-      params.require(:book).permit(:name, :priority, :file)
+      params.require(:book).permit(:name, :priority, :file, :owner_id)
     end
 end

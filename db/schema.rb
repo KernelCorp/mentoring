@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825100315) do
+ActiveRecord::Schema.define(version: 20150826055625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,18 @@ ActiveRecord::Schema.define(version: 20150825100315) do
   end
 
   add_index "children", ["orphanage_id"], name: "index_children_on_orphanage_id", using: :btree
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "text"
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "forem_categories", force: :cascade do |t|
     t.string   "name",                   null: false
@@ -363,6 +375,7 @@ ActiveRecord::Schema.define(version: 20150825100315) do
 
   add_foreign_key "books", "users", column: "owner_id"
   add_foreign_key "children", "orphanages"
+  add_foreign_key "comments", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"

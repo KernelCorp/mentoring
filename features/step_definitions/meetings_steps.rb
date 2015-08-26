@@ -1,4 +1,3 @@
-
 Given /^a orphanage "(.+)"$/ do |name|
   @orphanage = Orphanage.new do |orphanage|
     orphanage.name = name
@@ -64,7 +63,6 @@ When /^I click to the button "(.+)"$/ do |button_label|
 end
 
 When /^I select child "(.+)"$/ do |child_name|
-  expect(current_path).to eq(new_meeting_path)
   select child_name, from: 'Ребёнок'
 end
 
@@ -73,10 +71,10 @@ When /^I select date "tomorrow"$/ do
 end
 
 When /^I click to the submit button$/ do
-  if page.has_css?('button[type=submit]')
-    find('button[type=submit]').click
-  else
+  if page.has_css?('input[type=submit]')
     find('input[type=submit]').click
+  else
+    find('button[type=submit]').click
   end
 end
 
@@ -112,6 +110,6 @@ Then /^I should be redirected to list of meetings$/ do
 end
 
 Then /^I should see only 2 meetings to "(.+)", "(.+)"$/ do |first, second|
-  expect(page).to have_selector('table tbody tr', text: first, count: 1)
-  expect(page).to have_selector('table tbody tr', text: second, count: 1)
+  expect(page).to have_selector('tbody tr', text: first, count: 1)
+  expect(page).to have_selector('tbody tr', text: second, count: 1)
 end

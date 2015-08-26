@@ -1,2 +1,8 @@
 h1 Добавление книги
-p Find me in app/views/books/new.html.slim
+
+p#notice = notice
+
+.ui.orange.segment
+  == render 'form'
+
+== render 'back'

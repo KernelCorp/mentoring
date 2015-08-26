@@ -1,0 +1,16 @@
+table.ui.table.celled.selectable
+  thead
+    tr
+      th Название книги
+      th Опубликовал
+
+  tbody
+    - if books.blank?
+      tr
+        td.disabled colspan=2
+          | Нет данных для отображения
+    - else
+      - books.each do |book|
+        tr data-link="#{book_path(book)}"
+          td = book.name
+          td = book.owner.email

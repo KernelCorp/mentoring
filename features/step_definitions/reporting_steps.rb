@@ -1,4 +1,3 @@
-
 Given /^a meeting to "(.+)" and user "(.+)" at yesterday$/ do |child_name, email|
   Meeting.create! do |meeting|
     meeting.date = DateTime.yesterday
@@ -19,7 +18,7 @@ end
 
 Then /^I fill in an input "(.+)" as "(.+)" in the form "(.+)"$/ do |input, value, form_id|
   within "form##{form_id}" do
-    fill_in input, :with => value
+    fill_in input, with: value
   end
 end
 

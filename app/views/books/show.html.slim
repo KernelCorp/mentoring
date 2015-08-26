@@ -1,2 +1,33 @@
-h1 Books#show
-p Find me in app/views/books/show.html.slim
+h1 Книга
+
+p#notice = notice
+
+.ui.orange.segment.grid
+  .row
+    .column
+      p
+        strong Название:
+        br
+        = @book.name
+
+      p
+        strong Приоритет:
+        br
+        = @book.priority
+
+      p
+        strong Владелец:
+        br
+        = @book.owner.mail_name
+
+      p
+        strong
+          = link_to 'Загрузить', @book.file.url(:original, false)
+
+  .row
+    .column.twelve.wide
+      .ui.comments
+        h3.ui.dividing.header Комментарии
+        = render partial: 'comments/comments'
+        = render partial: 'comments/form', locals: { commentable: @book, comment: @book.comments.new }
+
