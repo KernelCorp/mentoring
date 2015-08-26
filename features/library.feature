@@ -32,7 +32,6 @@ Feature: Meetings
     But I should not see book with title: "Mutants. Right-hand rule"
     And I should not see button "Добавить новую книгу"
 
-  @javascript
   Scenario: Mentor send comment
     Given I signed in as user with email: "bender@rodriguez.com"
     And a book with title: "Wikipedia. Premium Edition", owner: "zoidberg@example.com"
@@ -42,7 +41,6 @@ Feature: Meetings
     And I click to the submit button
     Then I should see a new comment
 
-  @javascript
   Scenario: Curator send comment
     Given I signed in as user with email: "zoidberg@example.com"
     And a book with title: "Wikipedia. Premium Edition", owner: "zoidberg@example.com"

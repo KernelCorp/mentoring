@@ -21,7 +21,7 @@ p#alert = flash[:error]
     tbody
       - if @reports.blank?
         tr
-          td colspan=6
+          td.disabled colspan=6
             | Нет данных для отображения
       - else
         - @reports.each do |report|

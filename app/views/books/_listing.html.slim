@@ -1,4 +1,4 @@
-table.ui.table.celled.selectable
+table.ui.table.celled
   thead
     tr
       th Название книги
@@ -11,6 +11,6 @@ table.ui.table.celled.selectable
           | Нет данных для отображения
     - else
       - books.each do |book|
-        tr data-link="#{book_path(book)}"
-          td = book.name
+        tr
+          td = link_to book.name, book_path(book), class: 'block'
           td = book.owner.email

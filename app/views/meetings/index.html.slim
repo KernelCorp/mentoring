@@ -16,7 +16,7 @@ p#notice = notice
     tbody
       - if @meetings.blank?
         tr
-          td colspan=5
+          td.disabled colspan=5
             | Нет данных для отображения
       - else
         - @meetings.each do |meeting|

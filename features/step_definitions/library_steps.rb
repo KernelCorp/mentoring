@@ -36,7 +36,7 @@ Then /^I should not see button "(.+)"$/ do |name|
 end
 
 When /^I click on book with title: "(.+)"$/ do |name|
-  page.find('tbody tr', text: name).click
+  page.find('td a', text: name).click
 end
 
 Then /^I should see a new comment$/ do
