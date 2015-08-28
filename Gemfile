@@ -62,6 +62,15 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'quiet_assets'
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'net-ssh'
+  gem 'capistrano3-unicorn', :require => false
+  gem 'capistrano-sidekiq'
 end
 
 group :test, :development do
