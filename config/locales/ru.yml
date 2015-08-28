@@ -200,6 +200,9 @@ ru:
       book:
         create: Добавить книгу
         update: Сохранить изменения
+      album:
+        create: Создать альбом
+        update: Сохранить изменения
   number:
     currency:
       format:
@@ -287,6 +290,12 @@ ru:
   activerecord:
     models:
       user: Пользователь
+      meeting: Встреча
+      report: Отчёт
+      book: Книга
+      comment: Комментарий
+      album: Альбом
+      photo: Фотография
     attributes:
       user:
         password: Пароль

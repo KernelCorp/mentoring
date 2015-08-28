@@ -77,4 +77,17 @@ RSpec.describe BooksController, :type => :controller do
     end
   end
 
+  describe '#destroy' do
+    context 'when logged in' do
+      subject { delete :destroy, id: book.to_param }
+
+      it { expect{subject}.to change(Book, :count).by(-1) }
+
+      it do
+        subject
+        expect(response).to redirect_to(books_url)
+      end
+    end
+  end
+
 end

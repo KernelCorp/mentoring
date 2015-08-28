@@ -1,0 +1,4 @@
+- if can? :read, @photo.album
+  = link_to album_path(@photo.album), class: 'ui button green' do
+    i.icon.chevron.left
+    | Вернуться к альбому

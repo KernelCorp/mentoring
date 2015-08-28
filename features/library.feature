@@ -6,7 +6,7 @@ Feature: Meetings
 
   Background:
     Given a orphanage "Futurama"
-      And a child with name "Fry"
+      And a child with name "Fry" in orphanage "#13"
       And a user with email: "zoidberg@example.com" and role "curator" for orphanage "Futurama"
       And a user with email: "bender@rodriguez.com" and role "mentor" for child "Fry" and curator: "zoidberg@example.com"
 

@@ -1,0 +1,56 @@
+h2 = @user.full_name
+
+p#notice = notice
+p#alert = alert
+
+
+.ui.grid.two.column
+  .row.two.column
+    .four.wide.column
+      = image_tag('image.png')
+
+      .ui.header Альбомы
+      .ui.list
+        - if @user.albums.blank?
+          a.item
+            .content
+              .description Пока нет альбомов
+        - else
+          - @user.albums.each do |album|
+            = link_to album, class: 'item' do
+              i.icon.photo.middle.aligned
+              .content
+                .header = album.title
+                .description = truncate(album.description, length: 80)
+
+
+    .ten.wide.column
+      .ui.two.column.grid
+        .row
+          .four.wide.column Фамилия:
+          .twelve.wide.column = @user.last_name
+        .row
+          .four.wide.column Имя:
+          .twelve.wide.column = @user.first_name
+        .row
+          .four.wide.column Отчество:
+          .twelve.wide.column = @user.middle_name
+        .row
+          .four.wide.column E-mail:
+          .twelve.wide.column = @user.email
+
+
+        - if @user.roles.present?
+          .row
+            .four.wide.column Роли:
+            .twelve.wide.column = @user.roles.map(&:name).join(', ')
+
+        - if @user.orphanage.present?
+          .row
+            .four.wide.column Учреждение:
+            .twelve.wide.column = @user.orphanage.name
+        - if @user.curator.present?
+          .row
+            .four.wide.column Руководитель:
+            .twelve.wide.column = @user.curator.mail_name
+

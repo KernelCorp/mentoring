@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~>4.2.0'
 # Use postgresql as the database for Active Record
@@ -42,6 +41,7 @@ gem 'active_link_to'
 gem 'mailboxer'
 gem 'rails_admin', '~> 0.7.0'
 gem 'paperclip', '~> 4.3.0'
+gem 'dropzonejs-rails'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'jquery-datetimepicker-rails'

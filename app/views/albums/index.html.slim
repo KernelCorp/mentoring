@@ -1,0 +1,34 @@
+h1 Фотографии
+
+p#notice = notice
+p#alert = alert
+
+.ui.segment.orange.grid
+  .row
+    .column.four.wide
+      = link_to new_album_path, class: 'ui button green' do
+        i.icon.add
+        | Добавить новый альбом
+
+  .row
+    .ui.items
+      - if @albums.blank?
+        .item
+          .image
+          .content
+            .meta
+              | Нет данных для отображения
+      - else
+        - @albums.each do |album|
+          .item
+            .image
+              - if album.photos.blank?
+                = image_tag 'image.png', class: 'ui image small'
+              - else
+                = image_tag album.photos.last.image.url(:original, false), class: 'ui image small'
+            .content
+              = link_to album.title, album, class: 'header'
+              .description
+                = album.description
+              .extra
+                = album.user.email

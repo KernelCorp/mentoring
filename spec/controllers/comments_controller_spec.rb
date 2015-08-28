@@ -26,7 +26,7 @@ RSpec.describe CommentsController, :type => :controller do
 
   describe '#create' do
     context 'with valid params' do
-      subject { post :create, comment: valid_attributes }
+      subject { post :create, {book_id: valid_attributes[:commentable_id], comment: valid_attributes}  }
       it { expect {subject}.to change(Comment, :count).by(1) }
 
       it do
@@ -37,7 +37,7 @@ RSpec.describe CommentsController, :type => :controller do
 
     context 'with invalid params' do
       before do
-        post :create, comment: invalid_attributes
+        post :create, {book_id: valid_attributes[:commentable_id], comment: invalid_attributes}
       end
 
       it { expect(assigns(:comment)).to be_a_new(Comment) }

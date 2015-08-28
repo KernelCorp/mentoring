@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
 
-  get 'comments/create'
-
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'main#index'
 
-  devise_for :users, :skip => [:registrations]
-  as :user do
-    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-    put 'users' => 'devise/registrations#update', :as => 'user_registration'
+  devise_for :users, skip: [:registrations]
+  devise_scope :user do
+    get 'users/registration/edit' => 'devise/registrations#edit', as: 'edit_user_registration'
+    put 'users/registration' => 'devise/registrations#update', as: 'user_registration'
   end
 
-  mount Forem::Engine, :at => '/forums'
+  get 'users/:id' => 'users#show', as: :user
+
+  mount Forem::Engine, at: '/forums'
   
   resources :candidates, only: [:new, :create]
 
@@ -32,6 +32,12 @@ Rails.application.routes.draw do
   resources :children
 
   resources :books do
+    resources :comments
+  end
+
+  resources :albums
+
+  resources :photos, only: [:show, :create, :destroy] do
     resources :comments
   end
 

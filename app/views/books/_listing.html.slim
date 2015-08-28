@@ -3,14 +3,16 @@ table.ui.table.celled
     tr
       th Название книги
       th Опубликовал
+      th Дата публикации
 
   tbody
     - if books.blank?
       tr
-        td.disabled colspan=2
+        td.disabled colspan=3
           | Нет данных для отображения
     - else
       - books.each do |book|
         tr
           td = link_to book.name, book_path(book), class: 'block'
           td = book.owner.email
+          td = book.created_at.to_date

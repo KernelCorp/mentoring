@@ -1,0 +1,6 @@
+= form_for photo, html: {class: 'dropzone', id: 'new_photo'} do |f|
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :album_id, value: album.id
+
+  .fallback
+    = f.file_field :image, multiple: true

@@ -24,9 +24,9 @@ html
           | КОНТАКТЫ
         .menu_item
           - if user_signed_in?
-            = link_to('ВЫЙТИ', '/users/sign_out', :method => :delete, class: 'item')
+            = link_to('МОЙ КАБИНЕТ', user_path(current_user), class: 'item')
           - else
-            = link_to('ВХОД', '/users/sign_in', class: 'item')
+            = link_to('ВХОД', new_user_session_path, class: 'item')
       .first_image_block
         .image_content_block
           p.title
