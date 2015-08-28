@@ -88,3 +88,7 @@ group :test, :development do
   gem 'delorean'
   gem 'mailcatcher'
 end
+
+group :production do
+  gem 'unicorn'
+end
