@@ -39,17 +39,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'pids', 'tmp/cache', 'vend
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
 after 'deploy:publishing', 'deploy:restart'
-before 'deploy:assets:precompile', 'bower:install'
-
-
-namespace :bower do
-  desc 'Install bower components'
-  task :install do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      execute "cd #{release_path}/frontend && bower install"
-    end
-  end
-end
 
 namespace :deploy do
   task :restart do
@@ -57,12 +46,3 @@ namespace :deploy do
   end
 
 end
-
-#
-# namespace :deploy do
-#   namespace :elastic do
-#     task :import do
-#       run("cd #{deploy_to}/current && rake `ta:index_locations` RAILS_ENV=#{rails_env}")
-#     end
-#   end
-# end
