@@ -5,20 +5,19 @@ Feature: Photos
   curator, employee of the children's home, as well as open the possibility commenting photos.
 
   Background:
-    Given a child with name "Fry"
+    Given a orphanage "Futurama"
+    And a child with name "Fry" in orphanage "Futurama"
     And a user with email: "zoidberg@example.com" and role "curator" for orphanage "Futurama"
     And a user with email: "bender@rodriguez.com" and role "mentor" for child "Fry" and curator: "zoidberg@example.com"
 
   Scenario:  Create new album
     Given I signed in as user with email: "bender@rodriguez.com"
-    When I click to the link "Мои Фотографии"
+    When I click to the link "Мои фотографии"
     And I click to the button "Добавить новый альбом"
-    And I fill in an input "name" as "Planet Express" in the form "new_album"
+    And I fill in an input "Название" as "Planet Express" in the form "new_album"
     And I click to the submit button
     Then a new album should be created
     And I should be redirected to the album's page
-
-
 
   Scenario: Show photos on user's page
     Given I signed in as user with email: "zoidberg@example.com"

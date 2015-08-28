@@ -29,10 +29,20 @@ html
           i.icon.mail
           | Сообщения
 
+      - if user_signed_in?
+        = link_to forem_path, class: 'item' do
+          i.icon.users
+          | Форум
+
       - if user_signed_in? && can?(:read, Book)
         = link_to books_path, class: 'item' do
           i.icon.book
           | Библиотека
+
+      - if user_signed_in? && can?(:read, Album)
+        = link_to albums_path, class: 'item' do
+          i.icon.photo
+          | Мои фотографии
 
 
     #page-wrapp

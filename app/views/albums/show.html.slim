@@ -1,0 +1,39 @@
+h1 Просмотр альбома
+
+p#notice = notice
+p#alert = alert
+
+.ui.segment.orange.grid
+
+  .row
+    .column.ten.wide
+      h2 = @album.title
+      p = @album.description
+
+    .column.six.wide
+      - if can? :edit, @album
+        = render partial: 'photos/dropzone', locals: {album: @album, photo: @album.photos.new}
+
+  .row
+    = link_to edit_album_path(@album), class: 'ui button green' do
+      i.icon.edit
+      | Редактировать альбом
+
+  .row
+    - if @photos.blank?
+      .item
+        .image
+        .content
+          .meta
+            | В этом альбоме пока нет фотографий
+
+    - else
+      .ui.segment
+        .ui.small.images
+          - @photos.each do |photo|
+            = link_to photo do
+              = image_tag photo.image.url(:original, false), class: 'ui image'
+
+== render 'back'
+
+= javascript_include_tag 'albums', 'data-turbolinks-track' => true

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :subordinates, class_name: 'User', foreign_key: :curator_id
   has_many :books, foreign_key: :owner_id
   has_many :comments
+  has_many :albums
+  has_many :photos
   belongs_to :orphanage
   belongs_to :curator, class_name: 'User'
 
@@ -26,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def mail_name
-    "#{full_name} (#{email})"
+    "#{full_name}  (#{email})"
   end
 
   def full_name

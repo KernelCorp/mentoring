@@ -7,4 +7,6 @@
   .field
     = f.text_area :text, rows: 2, maxlength: 140
 
-  = f.submit 'Опубликовать комментарий', class: 'ui button green'
+  = f.button class: 'ui button green' do
+    i.icon.comments
+    | Добавить комментарий

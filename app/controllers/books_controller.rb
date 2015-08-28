@@ -3,9 +3,9 @@ class BooksController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @top_priority = @books.immediately_read
-    @high_priority = @books.must_read
-    @medium_priority = @books.interesting
+    @top_priority = @books.immediately_read.order(created_at: :desc)
+    @high_priority = @books.must_read.order(created_at: :desc)
+    @medium_priority = @books.interesting.order(created_at: :desc)
   end
 
   def show
@@ -22,6 +22,17 @@ class BooksController < ApplicationController
     else
       render :new, notice: 'Не удалось добавить книгу.', error: @book.errors[:name].first
     end
+  end
+
+  def destroy
+    if @book.destroy
+      flash[:notice] = 'Книга была успешно удалёна.'
+    else
+      flash[:notice] = 'Книгу не удалось удалить.'
+      flash[:error] = @book.errors[:name].first
+    end
+
+    redirect_to books_url
   end
 
   private

@@ -49,4 +49,8 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
+
+  config.after(:suite) do
+    FileUtils.rm_rf(Dir.glob("#{Rails.root}/public/system/test/*"))
+  end
 end

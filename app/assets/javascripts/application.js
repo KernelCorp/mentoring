@@ -3,4 +3,6 @@
 //= require turbolinks
 //= require semantic-ui
 //= require jquery.datetimepicker
-//= require_tree .
+//= require dropzone
+
+//= require meetings

@@ -1,0 +1,20 @@
+= form_for @album, html: { class: 'ui form large'} do |f|
+  - if @album.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@album.errors.count, "error")} prohibited this album from being saved:"
+      ul
+        - @album.errors.full_messages.each do |message|
+          li = message
+
+  = f.hidden_field :user_id, value: current_user.id
+
+  .field.eight.wide
+    = f.label :title, 'Название'
+    = f.text_field :title
+
+  .field.eight.wide
+    = f.label :description, 'Описание'
+    = f.text_area :description, rows: 2, maxlength: 160
+
+  .actions
+    = f.submit class: 'ui green button'

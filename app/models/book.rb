@@ -7,6 +7,8 @@ class Book < ActiveRecord::Base
   has_attached_file :file
   validates_attachment_size :file, less_than: 40.megabytes
   do_not_validate_attachment_file_type :file
+
   validates :name, presence: true
+  validates :owner, presence: true
 
 end

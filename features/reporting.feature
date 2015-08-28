@@ -5,7 +5,7 @@ Feature: Reporting
 
   Background:
     Given a orphanage "#13"
-    And a child with name "Stalin"
+    And a child with name "Stalin" in orphanage "#13"
     And a user with email: "psych@example.com" and role "curator" for orphanage "#13"
     And a user with email: "mentor@example.com" and role "mentor" for child "Stalin" and curator: "psych@example.com"
 

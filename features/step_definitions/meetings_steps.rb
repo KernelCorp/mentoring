@@ -1,17 +1,17 @@
 Given /^a orphanage "(.+)"$/ do |name|
-  @orphanage = Orphanage.new do |orphanage|
+  Orphanage.new do |orphanage|
     orphanage.name = name
     orphanage.address = 'any address'
   end
 end
 
-Given /^a child with name "(.+)"$/ do |name|
+Given /^a child with name "(.+)" in orphanage "(.+)"$/ do |name, orphanage|
   Child.create! do |child|
     child.first_name = name
     child.last_name = 'any_last_name'
     child.middle_name = 'any_middle_name'
     child.birthdate = 12.years.ago
-    child.orphanage = @orphanage
+    child.orphanage = Orphanage.find_by_name(orphanage)
   end
 end
 
