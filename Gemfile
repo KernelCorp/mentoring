@@ -52,6 +52,7 @@ gem 'react-rails'
 # forum
 gem 'forem', :github => "radar/forem", :branch => "rails4"
 gem 'kaminari', '0.15.1'
+gem 'celluloid', '0.16.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
