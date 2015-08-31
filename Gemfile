@@ -87,6 +87,7 @@ group :test, :development do
   gem 'email_spec'
   gem 'delorean'
   gem 'mailcatcher'
+  gem 'tzinfo-data', platforms: [:mingw, :mswin]
 end
 
 group :production do
