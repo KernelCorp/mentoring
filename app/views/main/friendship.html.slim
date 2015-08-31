@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    title Mentoring
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body
+    .main_page_wrapper
+      = render 'header'
+      br
+      .slider_block
+        .dat_slider
+          ul.bxslider
+            - @children.each do |child|
+              li
+                .ui.items.bxslide
+                  .item
+                    .ui.image.medium
+                      - if child.photo.blank?
+                        = image_tag 'image.png'
+                      - else
+                        = image_tag child.photo.image.url(:original, false)
+                    .content
+                      .header = child.name
+                      .description
+                        = child.description
+                      .extra
+                        = "Год рождения: #{child.birthdate.year}"
+                br
+                br
+
+      br
+      = render 'footer'
+
+    = javascript_include_tag 'main_page', 'data-turbolinks-track' => true

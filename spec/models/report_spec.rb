@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: reports
+#
+#  id                :integer          not null, primary key
+#  aim               :text
+#  state             :string
+#  meeting_id        :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  duration          :integer
+#  short_description :text
+#  result            :text
+#  feelings          :text
+#  questions         :text
+#  next_aim          :text
+#  other_comments    :text
+#
+
 require 'rails_helper'
 
 RSpec.describe Report, :type => :model do

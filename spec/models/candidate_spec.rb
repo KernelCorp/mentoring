@@ -1,3 +1,58 @@
+# == Schema Information
+#
+# Table name: candidates
+#
+#  id                       :integer          not null, primary key
+#  last_name                :string
+#  first_name               :string
+#  middle_name              :string
+#  registration_address     :string
+#  home_address             :string
+#  phone_number             :string
+#  email                    :string
+#  birth_date               :date
+#  nationality              :string
+#  confession               :string
+#  health_status            :string
+#  serious_diseases         :string
+#  work_start_date          :date
+#  work_end_date            :date
+#  organization_name        :string
+#  work_contacts            :string
+#  work_position            :string
+#  work_functions           :text
+#  work_schedule            :string
+#  hobby                    :text
+#  martial_status           :string
+#  house_type               :string
+#  number_of_rooms          :string
+#  peoples_for_room         :string
+#  peoples                  :text
+#  pets                     :string
+#  program_role             :string
+#  program_reason           :text
+#  person_character         :text
+#  person_information       :text
+#  help_reason              :text
+#  child_age                :string
+#  child_gender             :string
+#  child_character          :text
+#  visit_frequency          :string
+#  invalid_child            :boolean
+#  alcohol                  :string
+#  tobacco                  :string
+#  psychoactive             :string
+#  drugs                    :string
+#  child_crime              :string
+#  disabled_parental_rights :string
+#  reports                  :boolean
+#  photo_rights             :boolean
+#  info_about_program       :string
+#  state                    :string
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe Candidate, :type => :model do

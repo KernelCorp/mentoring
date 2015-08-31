@@ -8,6 +8,8 @@ class ChildrenController < ApplicationController
 
   # GET /children/1
   def show
+    @next_child = children_for_friendship.where('id > ?', @child.id).first
+    @previous_child = children_for_friendship.where('id < ?', @child.id).last
   end
 
   # GET /children/new

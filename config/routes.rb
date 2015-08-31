@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'main#index'
+  get 'friendship' => 'main#friendship'
 
   devise_for :users, skip: [:registrations]
   devise_scope :user do
