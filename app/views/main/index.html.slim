@@ -22,8 +22,10 @@ html
           | Поэтому только 10% из числа выпускников детского дома находят своё место во взрослой жизни,
           br
           | ведь откуда им о ней узнать?
-        .button_block.green.big_text
-          | Я ХОЧУ ПОМОЧЬ
+
+        = link_to new_candidate_path do
+          .button_block.green.big_text
+            | Я ХОЧУ ПОМОЧЬ
       .image_bottom_attached_block.orange.big_text
         | Что такое проект &laquo;Наставничество&raquo;?
       .first_content_block
@@ -124,8 +126,10 @@ html
               | рекомендации, корректируют
               br
               | маршрутные листы детей
-        .button_block.orange.big_text
-          | ХОЧУ УЧАСТВОВАТЬ
+
+        = link_to new_candidate_path do
+          .button_block.orange.big_text
+            | ХОЧУ УЧАСТВОВАТЬ
       .second_image_block
         .image_content_block
           | Результаты регулярных тестирований показывают,
@@ -163,8 +167,10 @@ html
             span.number.orange_text.middle_text.bold_text
               | 5.
             | Подопечный закрепляется за наставником
-        .button_block.green.big_text
-          | ЗАПОЛНИТЬ АНКЕТУ
+
+        = link_to new_candidate_path do
+          .button_block.green.big_text
+            | ЗАПОЛНИТЬ АНКЕТУ
       .third_image_block
         .image_content_block
           | Ребёнок в детском доме живет в искусственных условиях.
