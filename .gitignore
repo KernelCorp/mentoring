@@ -8,7 +8,10 @@
 /public/system/*
 
 /config/database.yml
+/config/secrets.yml
+
 .idea
 /coverage/*
 
 /db/schema.rb
+
