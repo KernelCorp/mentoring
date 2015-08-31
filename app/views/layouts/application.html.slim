@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Mentoring
+    title Наставничество
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -10,9 +10,8 @@ html
     = render partial: '/layouts/header'
 
     .ui.visible.inverted.left.vertical.sidebar.labeled.icon.menu.green
-      .item
-        .ui.inverted.header
-          | Наставничество
+      .ui.inverted.header
+        = link_to 'Наставничество', root_path, class: 'item'
 
       - if user_signed_in? && can?(:read, Meeting)
         = link_to meetings_path, class: 'item' do
