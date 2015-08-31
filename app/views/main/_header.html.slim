@@ -1,0 +1,19 @@
+header
+  .title
+    span.middle_text.bold_text
+      | НАСТАВНИЧЕСТВО
+    br
+    | благотворительный проект
+  .menu_item
+    | О ПРОЕКТЕ
+  .menu_item
+    | ПРИСОЕДИНИТЬСЯ
+  .menu_item
+    = link_to 'ХОЧУ ДРУЖИТЬ', friendship_path, class: 'item'
+  .menu_item
+    | КОНТАКТЫ
+  .menu_item
+    - if user_signed_in?
+      = link_to 'МОЙ КАБИНЕТ', user_path(current_user), class: 'item'
+    - else
+      = link_to 'ВХОД', new_user_session_path, class: 'item'

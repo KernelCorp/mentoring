@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :forem_user, :mailbox
+  helper_method :forem_user, :mailbox, :children_for_friendship
 
   def forem_user
     current_user
@@ -8,6 +8,14 @@ class ApplicationController < ActionController::Base
 
   def mailbox
     current_user.mailbox
+  end
+
+  def children_for_friendship
+    if user_signed_in?
+      Child.accessible_by(current_ability).want_to_be_friends.order(id: :asc)
+    else
+      []
+    end
   end
 
   def after_sign_in_path_for resource

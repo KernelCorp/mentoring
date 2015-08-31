@@ -1,6 +1,7 @@
 h1 = @photo.album.title
 
 p#notice = notice
+p#alert = alert
 
 .ui.segment.orange
   .ui.three.column.centered.grid
@@ -9,22 +10,22 @@ p#notice = notice
         - if @previous_photo.present?
           .ui.list
             = link_to @previous_photo, class: 'item' do
-              i.icon.chevron.left.huge
+              i.icon.angle.left.huge
         - else
           a
-            i.icon.chevron.left.huge.grey.disabled
+            i.icon.angle.left.huge.grey.disabled
 
       .center.aligned.ten.wide.column
         = image_tag @photo.image.url(:original, false), class: 'ui image big centered'
 
-      .left.aligned.three.wide.column.middle.aligned.list
+      .left.aligned.three.wide.column.middle.aligned
         - if @next_photo.present?
           .ui.list
             = link_to photo_path(@next_photo), class: 'item' do
-              i.icon.chevron.right.huge
+              i.icon.angle.right.huge
         - else
           a
-            i.icon.chevron.right.huge.grey.disabled
+            i.icon.angle.right.huge.grey.disabled
 
     .row
       .ten.wide.column

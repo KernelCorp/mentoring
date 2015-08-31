@@ -45,6 +45,7 @@ gem 'dropzonejs-rails'
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'jquery-datetimepicker-rails'
+gem 'bxslider-rails'
 
 gem 'slim-rails'
 gem 'react-rails'
