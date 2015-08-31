@@ -3,6 +3,12 @@
 
   .ui.orange.segment.middle.aligned
     = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'ui large form' } do |f|
+
+      ul
+        - flash.each do |name, msg|
+          = content_tag :li, msg, id: "flash_#{name}"
+
+
       .field
         .ui.left.icon.input
           i.user.icon
