@@ -36,4 +36,5 @@ p#alert = alert
 
 == render 'back'
 
-= javascript_include_tag 'albums', 'data-turbolinks-track' => true
+coffee:
+  new @Filedropzone('.dropzone')
