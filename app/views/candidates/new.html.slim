@@ -44,6 +44,7 @@
             option value='Иудаизм'
             option value='Буддизм'
             option value='Ислам'
+            option value='Атеизм'
     .ui.orange.segment
       h3.ui.header
         | 2. Состояние здоровья:
@@ -127,7 +128,7 @@
               = fam.collection_select(:gender, Candidate::GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
             .field
               = fam.label :age, 'Возраст'
-              = fam.number_field :age
+              = fam.number_field :age, min: '1'
             .field
               = fam.label :relation, 'Кем приходится?'
               = fam.text_field :relation
@@ -143,10 +144,10 @@
           = f.collection_select(:house_type, Candidate::HOUSE_TYPES, :to_s, :to_s, { prompt: 'Выбрать...' })
         .field.required class=('error' if @candidate.errors.messages[:number_of_rooms])
           = f.label :number_of_rooms, 'Количество комнат'
-          = f.number_field :number_of_rooms
+          = f.number_field :number_of_rooms, min: '1'
         .field.required class=('error' if @candidate.errors.messages[:peoples_for_room])
           = f.label :peoples_for_room, 'Проживает в одной комнате:'
-          = f.number_field :peoples_for_room
+          = f.number_field :peoples_for_room, min: '0'
       .field.required class=('error' if @candidate.errors.messages[:peoples])
         = f.label :peoples, 'Информация о других членах семьи, проживающих вместе с вами (ФИО, возраст, семейные отношения)'
         = f.text_area :peoples
@@ -201,7 +202,7 @@
         .two.fields
           .field.required class=('error' if @candidate.errors.messages[:child_age])
             = f.label :child_age, 'Возраст'
-            = f.number_field :child_age
+            = f.number_field :child_age, min: '1'
           .field.required class=('error' if @candidate.errors.messages[:child_gender])
             = f.label :child_gender, 'Пол'
             = f.collection_select(:child_gender, Candidate::GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
@@ -209,7 +210,7 @@
         = f.label :child_character, 'Насколько важным для вас является характер ребёнка (внешний вид, поведенческие особенности)?'
         = f.text_area :child_character
       .field.required class=('error' if @candidate.errors.messages[:visit_frequency])
-        = f.label :visit_frequency, 'Как часто вы сможете посещать детей в учреждении?'
+        = f.label :visit_frequency, 'Как часто вы сможете навещать ребенка в учреждении?'
         = f.text_field :visit_frequency, list: 'visit_frequency'
         datalist#visit_frequency
           option value='1 раз в неделю'
@@ -283,11 +284,11 @@
           label for='agreement'
             | Я понимаю цели Программы Наставничества и обязуюсь следовать разработанным индивидуальным планам, предложенным мне координатором (с учётом оценки потребностей детей-сирот), а также соблюдать конфиденциальность по любой личной информации о ребёнке, которая может стать мне известной.
       ul.ui.list
-        li
+        li.list.item
           | я обязуюсь сообщать координатору Программы об изменениях в моём графике (при невозможности присутствовать на запланированных ранее мероприятиях), или состоянии моего здоровья.
-        li
+        li.list.item
           | я обязуюсь не покидать территорию учреждения вместе с ребёнком, без ведома и разрешения дирекции и координатора.
-        li
+        li.list.item
           | я обязуюсь действовать исключительно в интересах ребёнка, способствуя его всестороннему развитию, получению образования  и подготовке к самостоятельной жизни.
       p
         | Я подтверждаю, что вышеуказанная  информация является правдивой и полной. Также, даю согласие на проверку данных, указанных в данной анкете.

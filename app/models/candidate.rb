@@ -74,6 +74,8 @@ class Candidate < ActiveRecord::Base
 
   validates_uniqueness_of :email
   validates_format_of     :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
+  validates :number_of_rooms, numericality: { greater_than_or_equal_to: 1 }
+
 
   GENDERS = ['Мужской', 'Женский']
   EDUCATION_TYPES = ['Общеобразовательная школа', 'Университет, Институт, техникум', 'Дополнительные курсы, тренинги, семинары']
