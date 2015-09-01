@@ -4,5 +4,6 @@
 //= require semantic-ui
 //= require jquery.datetimepicker
 //= require dropzone
+//= require bxslider
 
-//= require meetings
+//= require_tree .

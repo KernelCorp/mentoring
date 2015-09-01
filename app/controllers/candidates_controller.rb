@@ -4,7 +4,7 @@ class CandidatesController < ApplicationController
     3.times { @candidate.candidate_educations.build }
     6.times { @candidate.candidate_family_members.build }
     2.times { @candidate.candidate_children_experiences.build }
-    render layout: 'candidate'
+    render layout: 'main'
   end
 
   def create
@@ -12,7 +12,7 @@ class CandidatesController < ApplicationController
     if @candidate.save
       render template: 'candidates/success', layout: 'candidate'
     else
-      render :new, layout: 'candidate'
+      render :new, layout: 'main'
     end
   end
 

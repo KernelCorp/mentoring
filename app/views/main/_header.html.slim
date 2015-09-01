@@ -1,19 +1,19 @@
-header
-  .title
-    span.middle_text.bold_text
-      | НАСТАВНИЧЕСТВО
-    br
-    | благотворительный проект
-  .menu_item
-    | О ПРОЕКТЕ
-  .menu_item
-    | ПРИСОЕДИНИТЬСЯ
-  .menu_item
-    = link_to 'ХОЧУ ДРУЖИТЬ', friendship_path, class: 'item'
-  .menu_item
+.title
+  span.middle_text.bold_text
+    = link_to 'НАСТАВНИЧЕСТВО', root_path, class: 'white_text'
+  br
+  | благотворительный проект
+.menu_item
+  = active_link_to 'О ПРОЕКТЕ', about_path
+.menu_item
+  = active_link_to 'ПРИСОЕДИНИТЬСЯ', new_candidate_path
+.menu_item
+  = active_link_to 'ХОЧУ ДРУЖИТЬ', friendship_path
+.menu_item
+  a
     | КОНТАКТЫ
-  .menu_item
-    - if user_signed_in?
-      = link_to 'МОЙ КАБИНЕТ', user_path(current_user), class: 'item'
-    - else
-      = link_to 'ВХОД', new_user_session_path, class: 'item'
+.menu_item
+  - if user_signed_in?
+    = active_link_to 'МОЙ КАБИНЕТ', user_path(current_user)
+  - else
+    = active_link_to 'ВХОД', new_user_session_path

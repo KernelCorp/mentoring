@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Наставничество | благотворительный проект
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  body
+    .main_page_wrapper
+      .main_page_header
+        = render 'main/header'
+      .main_page_content
+        = yield
+      .main_page_footer
+        = render 'main/footer'

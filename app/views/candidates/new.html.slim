@@ -1,310 +1,311 @@
-= form_for @candidate, html: { class: 'ui form' } do |f|
-  .ui.orange.segment
-    h3.ui.header
-      | 1. Общие сведения:
-    .three.fields
-      .field.required class=('error' if @candidate.errors.messages[:last_name])
-        = f.label :last_name, 'Фамилия'
-        = f.text_field :last_name
-      .field.required class=('error' if @candidate.errors.messages[:first_name])
-        = f.label :first_name, 'Имя'
-        = f.text_field :first_name
-      .field.required class=('error' if @candidate.errors.messages[:middle_name])
-        = f.label :middle_name, 'Отчество'
-        = f.text_field :middle_name
-    .field.required class=('error' if @candidate.errors.messages[:registration_address])
-      = f.label :registration_address, 'Адрес регистрации'
-      = f.text_field :registration_address
-    .field.required class=('error' if @candidate.errors.messages[:home_address])
-      = f.label :home_address, 'Адрес фактического проживания'
-      = f.text_field :home_address
-    .three.fields
-      .field.required class=('error' if @candidate.errors.messages[:phone_number])
-        = f.label :phone_number, 'Контактный телефон'
-        = f.text_field :phone_number
-      .field.required class=('error' if @candidate.errors.messages[:email])
-        = f.label :email, 'Электронный адрес'
-        = f.email_field :email
-      .field.required class=('error' if @candidate.errors.messages[:birth_date])
-        = f.label :birth_date, 'Дата рождения'
-        .three.fields
-          = f.date_select :birth_date, { start_year: 1900, end_year: Date.today.year, date_separator: '<div class="big_date_separator"></div>' }
-    .two.fields
-      .field.required class=('error' if @candidate.errors.messages[:nationality])
-        = f.label :nationality, 'Национальность/Гражданство'
-        = f.text_field :nationality
-      .field.required  class=('error' if @candidate.errors.messages[:confession])
-        = f.label :confession, 'Вероисповедание'
-        = f.text_field :confession, list: 'confessions'
-        datalist#confessions
-          option value='Православие'
-          option value='Католицизм'
-          option value='Протестанизм'
-          option value='Иудаизм'
-          option value='Буддизм'
-          option value='Ислам'
-  .ui.orange.segment
-    h3.ui.header
-      | 2. Состояние здоровья:
-    .field.required class=('error' if @candidate.errors.messages[:health_status])
-      = f.label :health_status, 'Как вы оцениваете своё состояние здоровья?'
-      = f.text_field :health_status
-    .field.required class=('error' if @candidate.errors.messages[:serious_diseases])
-      = f.label :serious_diseases, 'Имеете ли вы серьёзные заболевания? Если да, укажите, какие.'
-      = f.text_field :serious_diseases
-  .ui.orange.segment
-    h3.ui.header
-      | 3. Образование:
-    = f.fields_for :candidate_educations do |e|
-      .field
-        = e.label :education, 'Образование'
-        = e.collection_select(:education, Candidate::EDUCATION_TYPES, :to_s, :to_s, { prompt: 'Выбрать...' })
+.ui.basic.very.padded.container.segment
+  = form_for @candidate, html: { class: 'ui form' } do |f|
+    .ui.orange.segment
+      h3.ui.header
+        | 1. Общие сведения:
+      .three.fields
+        .field.required class=('error' if @candidate.errors.messages[:last_name])
+          = f.label :last_name, 'Фамилия'
+          = f.text_field :last_name
+        .field.required class=('error' if @candidate.errors.messages[:first_name])
+          = f.label :first_name, 'Имя'
+          = f.text_field :first_name
+        .field.required class=('error' if @candidate.errors.messages[:middle_name])
+          = f.label :middle_name, 'Отчество'
+          = f.text_field :middle_name
+      .field.required class=('error' if @candidate.errors.messages[:registration_address])
+        = f.label :registration_address, 'Адрес регистрации'
+        = f.text_field :registration_address
+      .field.required class=('error' if @candidate.errors.messages[:home_address])
+        = f.label :home_address, 'Адрес фактического проживания'
+        = f.text_field :home_address
+      .three.fields
+        .field.required class=('error' if @candidate.errors.messages[:phone_number])
+          = f.label :phone_number, 'Контактный телефон'
+          = f.text_field :phone_number
+        .field.required class=('error' if @candidate.errors.messages[:email])
+          = f.label :email, 'Электронный адрес'
+          = f.email_field :email
+        .field.required class=('error' if @candidate.errors.messages[:birth_date])
+          = f.label :birth_date, 'Дата рождения'
+          .three.fields
+            = f.date_select :birth_date, { start_year: 1900, end_year: Date.today.year, date_separator: '<div class="big_date_separator"></div>' }
       .two.fields
+        .field.required class=('error' if @candidate.errors.messages[:nationality])
+          = f.label :nationality, 'Национальность/Гражданство'
+          = f.text_field :nationality
+        .field.required  class=('error' if @candidate.errors.messages[:confession])
+          = f.label :confession, 'Вероисповедание'
+          = f.text_field :confession, list: 'confessions'
+          datalist#confessions
+            option value='Православие'
+            option value='Католицизм'
+            option value='Протестанизм'
+            option value='Иудаизм'
+            option value='Буддизм'
+            option value='Ислам'
+    .ui.orange.segment
+      h3.ui.header
+        | 2. Состояние здоровья:
+      .field.required class=('error' if @candidate.errors.messages[:health_status])
+        = f.label :health_status, 'Как вы оцениваете своё состояние здоровья?'
+        = f.text_field :health_status
+      .field.required class=('error' if @candidate.errors.messages[:serious_diseases])
+        = f.label :serious_diseases, 'Имеете ли вы серьёзные заболевания? Если да, укажите, какие.'
+        = f.text_field :serious_diseases
+    .ui.orange.segment
+      h3.ui.header
+        | 3. Образование:
+      = f.fields_for :candidate_educations do |e|
         .field
-          = e.label :start_date, 'С'
-          .two.fields
-            = e.date_select :start_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
+          = e.label :education, 'Образование'
+          = e.collection_select(:education, Candidate::EDUCATION_TYPES, :to_s, :to_s, { prompt: 'Выбрать...' })
+        .two.fields
+          .field
+            = e.label :start_date, 'С'
+            .two.fields
+              = e.date_select :start_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
+          .field
+            = e.label :end_date, 'До'
+            .two.fields
+              = e.date_select :end_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
         .field
-          = e.label :end_date, 'До'
-          .two.fields
-            = e.date_select :end_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
-      .field
-        = e.label :specialty, 'Полученная специальность, степени или другие квалификации'
-        = e.text_field :specialty
-      .ui.divider
-  .ui.orange.segment
-    h3.ui.header
-      | 4. Трудоустройство :
-    p
-      | Укажите место вашей работы на данный момент:
-    .two.fields
-      .field.required class=('error' if @candidate.errors.messages[:work_start_date])
-        = f.label :work_start_date, 'С'
-        .two.fields
-          = f.date_select :work_start_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
-      .field
-        = f.label :work_end_date, 'До'
-        .two.fields
-          = f.date_select :work_end_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, include_blank: true, date_separator: '<div class="small_date_separator"></div>'}
-    .field.required class=('error' if @candidate.errors.messages[:organization_name])
-      = f.label :organization_name, 'Название организации'
-      = f.text_field :organization_name
-    .field.required class=('error' if @candidate.errors.messages[:work_contacts])
-      = f.label :work_contacts, 'Контактная информация (телефон, адрес)'
-      = f.text_field :work_contacts
-    .field.required class=('error' if @candidate.errors.messages[:work_position])
-      = f.label :work_position, 'Должность'
-      = f.text_field :work_position
-    .field.required class=('error' if @candidate.errors.messages[:work_functions])
-      = f.label :work_functions, 'Исполняемые обязанности'
-      = f.text_area :work_functions
-    .field.required class=('error' if @candidate.errors.messages[:work_schedule])
-      = f.label :work_schedule, 'Укажите ваш текущий рабочий график'
-      = f.text_field :work_schedule
-  .ui.orange.segment
-    h3.ui.header
-      | 5. Интересы, хобби:
-    .field.required class=('error' if @candidate.errors.messages[:hobby])
-      = f.label :hobby, 'Чем вы любите заниматься в свободное время?'
-      = f.text_area :hobby
-  .ui.orange.segment
-    h3.ui.header
-      | 6. Семейное положение:
-    .field.required class=('error' if @candidate.errors.messages[:martial_status])
-      = f.label :martial_status, 'Семейное положение'
-      = f.collection_select(:martial_status, Candidate::MARTIAL_STATUSES, :to_s, :to_s, { prompt: 'Выбрать...' })
-    .field
-      label
-        | Пожалуйста, укажите членов вашей семьи:
-      = f.fields_for :candidate_family_members do |fam|
-        .four.fields
-          .field
-            = fam.label :name, 'Имя'
-            = fam.text_field :name
-          .field
-            = fam.label :gender, 'Пол'
-            = fam.collection_select(:gender, Candidate::GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
-          .field
-            = fam.label :age, 'Возраст'
-            = fam.number_field :age
-          .field
-            = fam.label :relation, 'Кем приходится?'
-            = fam.text_field :relation
+          = e.label :specialty, 'Полученная специальность, степени или другие квалификации'
+          = e.text_field :specialty
         .ui.divider
-  .ui.orange.segment
-    h3.ui.header
-      | 7. Жилищно-бытовые условия:
-    p
-      | Заполните  пункт 7, если Вами предусматривается в рамках программы Наставничество, посещение воспитанниками вашего дома
-    .three.fields
-      .field.required class=('error' if @candidate.errors.messages[:house_type])
-        = f.label :house_type, 'Где вы проживаете на данный момент?'
-        = f.collection_select(:house_type, Candidate::HOUSE_TYPES, :to_s, :to_s, { prompt: 'Выбрать...' })
-      .field.required class=('error' if @candidate.errors.messages[:number_of_rooms])
-        = f.label :number_of_rooms, 'Количество комнат'
-        = f.number_field :number_of_rooms
-      .field.required class=('error' if @candidate.errors.messages[:peoples_for_room])
-        = f.label :peoples_for_room, 'Проживает в одной комнате:'
-        = f.number_field :peoples_for_room
-    .field.required class=('error' if @candidate.errors.messages[:peoples])
-      = f.label :peoples, 'Информация о других членах семьи, проживающих вместе с вами (ФИО, возраст, семейные отношения)'
-      = f.text_area :peoples
-    .field.required class=('error' if @candidate.errors.messages[:pets])
-      = f.label :pets, 'Есть ли у вас домашние животные? (если да, то какие именно?)'
-      = f.text_field :pets
-  .ui.orange.segment
-    h3.ui.header
-      | 8. Опыт работы с детьми:
-    p
-      | Пожалуйста, укажите ваш текущий и предыдущий опыт работы с детьми (оплачиваемая работа, волонтёрская деятельность и т.д.)
-    = f.fields_for :candidate_children_experiences do |child|
-      .field
-        = child.label :organization_name, 'Название организации'
-        = child.text_field :organization_name
-      .field
-        = child.label :organization_contacts, 'Контактная информация (телефон, адрес)'
-        = child.text_field :organization_contacts
-      .field
-        = child.label :position, 'Должность'
-        = child.text_field :position
-      .field
-        = child.label :functions, 'Исполняемые обязанности'
-        = child.text_area :functions
-      .field
-        = child.label :children_age, 'Возрастная группа детей'
-        = child.text_field :children_age
-      .ui.divider
-  .ui.orange.segment
-    h3.ui.header
-      | 9. Пожалуйста, как можно подробнее ответьте на следующие вопросы:
-    p
-      | Используя данную вами информацию, мы сможем предложить вам наиболее подходящую программу взаимодействия с Воспитанником.
-    .field.required class=('error' if @candidate.errors.messages[:program_role])
-      = f.label :program_role, 'Вы хотите участвовать в Программе Наставничества в качестве:'
-      = f.collection_select(:program_role, Candidate::PROGRAM_ROLES, :to_s, :to_s, { prompt: 'Выбрать...' })
-    .field.required class=('error' if @candidate.errors.messages[:program_reason])
-      = f.label :program_reason, 'Почему вы хотите стать наставником (волонтером/партнёром)? '
-      = f.text_area :program_reason
-    .field.required class=('error' if @candidate.errors.messages[:person_character])
-      = f.label :person_character, 'Какие качества вашего характера, особенные знания, навыки и т.д., могут , по вашему мнению, помочь становлению и развитию ребёнка-сироты?'
-      = f.text_area :person_character
-    .field.required class=('error' if @candidate.errors.messages[:person_information])
-      = f.label :person_information, 'Как бы вы описали (охарактеризовали) сами себя?'
-      = f.text_area :person_information
-    .field.required class=('error' if @candidate.errors.messages[:help_reason])
-      = f.label :help_reason, 'Почему вы хотите помогать ребёнку-сироте?'
-      = f.text_area :help_reason
-    .field
-      label
-        | Какие ваши ожидания от ребёнка, с которым вы хотите взаимодействовать?
+    .ui.orange.segment
+      h3.ui.header
+        | 4. Трудоустройство :
+      p
+        | Укажите место вашей работы на данный момент:
       .two.fields
-        .field.required class=('error' if @candidate.errors.messages[:child_age])
-          = f.label :child_age, 'Возраст'
-          = f.number_field :child_age
-        .field.required class=('error' if @candidate.errors.messages[:child_gender])
-          = f.label :child_gender, 'Пол'
-          = f.collection_select(:child_gender, Candidate::GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
-    .field.required class=('error' if @candidate.errors.messages[:child_character])
-      = f.label :child_character, 'Насколько важным для вас является характер ребёнка (внешний вид, поведенческие особенности)?'
-      = f.text_area :child_character
-    .field.required class=('error' if @candidate.errors.messages[:visit_frequency])
-      = f.label :visit_frequency, 'Как часто вы сможете посещать детей в учреждении?'
-      = f.text_field :visit_frequency, list: 'visit_frequency'
-      datalist#visit_frequency
-        option value='1 раз в неделю'
-        option value='1 раз в месяц'
-        option value='Как будет необходимо по Программе'
-    .field.required
-      label
-        | Согласны ли вы взаимодействовать с ребёнком имеющим функциональные ограничения или особенные потребности?
-      .fields.radio_button
-        .inline.field.radio.checkbox
-          = f.label :invalid_child_true, 'Да'
-          = f.radio_button :invalid_child, true
-        .inline.field.radio.checkbox
-          = f.label :invalid_child_false, 'Нет'
-          = f.radio_button :invalid_child, false
-  .ui.orange.segment
-    h3.ui.header
-      | 10. В целях соблюдения прав и  интересов ребёнка (в том числе его  безопасности и здорового развития), мы просим вас сообщить нам следующее:
-    .field.required class=('error' if @candidate.errors.messages[:alcohol])
-      = f.label :alcohol, 'Употребляете ли вы алкоголь? Если да, то как часто?'
-      = f.text_field :alcohol
-    .field.required class=('error' if @candidate.errors.messages[:tobacco])
-      = f.label :tobacco, 'Употребляете ли вы табачные изделия?'
-      = f.text_field :tobacco
-    .field.required class=('error' if @candidate.errors.messages[:psychoactive])
-      = f.label :psychoactive, 'Употребляете ли вы психотропные вещества? Если да, укажите какие.'
-      = f.text_field :psychoactive
-    .field.required class=('error' if @candidate.errors.messages[:drugs])
-      = f.label :drugs, 'Употребляли ли вы наркотики? Если да, укажите, какие, и как давно.'
-      = f.text_field :drugs
-    .field.required class=('error' if @candidate.errors.messages[:child_crime])
-      = f.label :child_crime, 'Были ли вы осуждены за преступления, связанные с унижением человеческого достоинства, вовлечением детей в незаконную деятельность, жестоким обращением с детьми, сексуальными посягательствами любого рода, пренебрежением ребёнка и т.д.? Если да, пожалуйста, объясните.'
-      = f.text_field :child_crime
-    .field.required class=('error' if @candidate.errors.messages[:disabled_parental_rights])
-      = f.label :disabled_parental_rights, 'Были ли вы ранее лишены родительских или опекунских прав? Если да, пожалуйста, конкретизируйте.'
-      = f.text_field :disabled_parental_rights
-    .field.required
-      label
-        | Согласны ли вы по необходимости заполнять отчёты о проделанной совместно с ребёнком  деятельности ( 1 раз/ месяц)?
-      .fields.radio_button
-        .inline.field.radio.checkbox
-          = f.label :reports_true, 'Да'
-          = f.radio_button :reports, true
-        .inline.field.radio.checkbox
-          = f.label :reports_false, 'Нет'
-          = f.radio_button :reports, false
-    .field.required
-      label
-        | Разрешаете ли вы использовать ваши фотографии и комментарии, сделанные в процессе вашего участия в Программе, на информационных носителях Проекта, с целью популяризации идеи Наставничества?
-      .fields.radio_button
-        .inline.field.radio.checkbox
-          = f.label :photo_rights_true, 'Да'
-          = f.radio_button :photo_rights, true
-        .inline.field.radio.checkbox
-          = f.label :photo_rights_false, 'Нет'
-          = f.radio_button :photo_rights, false
-    .field.required class=('error' if @candidate.errors.messages[:info_about_program])
-      = f.label :info_about_program, 'Откуда вы получили информацию о Программе Наставничества и необходимости помощи детям – сиротам?'
-      = f.text_field :info_about_program, list: 'info_sources'
-      datalist#info_sources
-        option value='СМИ'
-        option value='Друзья, родные, знакомые'
-        option value='Служба по делам детей'
+        .field.required class=('error' if @candidate.errors.messages[:work_start_date])
+          = f.label :work_start_date, 'С'
+          .two.fields
+            = f.date_select :work_start_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
+        .field
+          = f.label :work_end_date, 'До'
+          .two.fields
+            = f.date_select :work_end_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, include_blank: true, date_separator: '<div class="small_date_separator"></div>'}
+      .field.required class=('error' if @candidate.errors.messages[:organization_name])
+        = f.label :organization_name, 'Название организации'
+        = f.text_field :organization_name
+      .field.required class=('error' if @candidate.errors.messages[:work_contacts])
+        = f.label :work_contacts, 'Контактная информация (телефон, адрес)'
+        = f.text_field :work_contacts
+      .field.required class=('error' if @candidate.errors.messages[:work_position])
+        = f.label :work_position, 'Должность'
+        = f.text_field :work_position
+      .field.required class=('error' if @candidate.errors.messages[:work_functions])
+        = f.label :work_functions, 'Исполняемые обязанности'
+        = f.text_area :work_functions
+      .field.required class=('error' if @candidate.errors.messages[:work_schedule])
+        = f.label :work_schedule, 'Укажите ваш текущий рабочий график'
+        = f.text_field :work_schedule
+    .ui.orange.segment
+      h3.ui.header
+        | 5. Интересы, хобби:
+      .field.required class=('error' if @candidate.errors.messages[:hobby])
+        = f.label :hobby, 'Чем вы любите заниматься в свободное время?'
+        = f.text_area :hobby
+    .ui.orange.segment
+      h3.ui.header
+        | 6. Семейное положение:
+      .field.required class=('error' if @candidate.errors.messages[:martial_status])
+        = f.label :martial_status, 'Семейное положение'
+        = f.collection_select(:martial_status, Candidate::MARTIAL_STATUSES, :to_s, :to_s, { prompt: 'Выбрать...' })
+      .field
+        label
+          | Пожалуйста, укажите членов вашей семьи:
+        = f.fields_for :candidate_family_members do |fam|
+          .four.fields
+            .field
+              = fam.label :name, 'Имя'
+              = fam.text_field :name
+            .field
+              = fam.label :gender, 'Пол'
+              = fam.collection_select(:gender, Candidate::GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
+            .field
+              = fam.label :age, 'Возраст'
+              = fam.number_field :age
+            .field
+              = fam.label :relation, 'Кем приходится?'
+              = fam.text_field :relation
+          .ui.divider
+    .ui.orange.segment
+      h3.ui.header
+        | 7. Жилищно-бытовые условия:
+      p
+        | Заполните  пункт 7, если Вами предусматривается в рамках программы Наставничество, посещение воспитанниками вашего дома
+      .three.fields
+        .field.required class=('error' if @candidate.errors.messages[:house_type])
+          = f.label :house_type, 'Где вы проживаете на данный момент?'
+          = f.collection_select(:house_type, Candidate::HOUSE_TYPES, :to_s, :to_s, { prompt: 'Выбрать...' })
+        .field.required class=('error' if @candidate.errors.messages[:number_of_rooms])
+          = f.label :number_of_rooms, 'Количество комнат'
+          = f.number_field :number_of_rooms
+        .field.required class=('error' if @candidate.errors.messages[:peoples_for_room])
+          = f.label :peoples_for_room, 'Проживает в одной комнате:'
+          = f.number_field :peoples_for_room
+      .field.required class=('error' if @candidate.errors.messages[:peoples])
+        = f.label :peoples, 'Информация о других членах семьи, проживающих вместе с вами (ФИО, возраст, семейные отношения)'
+        = f.text_area :peoples
+      .field.required class=('error' if @candidate.errors.messages[:pets])
+        = f.label :pets, 'Есть ли у вас домашние животные? (если да, то какие именно?)'
+        = f.text_field :pets
+    .ui.orange.segment
+      h3.ui.header
+        | 8. Опыт работы с детьми:
+      p
+        | Пожалуйста, укажите ваш текущий и предыдущий опыт работы с детьми (оплачиваемая работа, волонтёрская деятельность и т.д.)
+      = f.fields_for :candidate_children_experiences do |child|
+        .field
+          = child.label :organization_name, 'Название организации'
+          = child.text_field :organization_name
+        .field
+          = child.label :organization_contacts, 'Контактная информация (телефон, адрес)'
+          = child.text_field :organization_contacts
+        .field
+          = child.label :position, 'Должность'
+          = child.text_field :position
+        .field
+          = child.label :functions, 'Исполняемые обязанности'
+          = child.text_area :functions
+        .field
+          = child.label :children_age, 'Возрастная группа детей'
+          = child.text_field :children_age
+        .ui.divider
+    .ui.orange.segment
+      h3.ui.header
+        | 9. Пожалуйста, как можно подробнее ответьте на следующие вопросы:
+      p
+        | Используя данную вами информацию, мы сможем предложить вам наиболее подходящую программу взаимодействия с Воспитанником.
+      .field.required class=('error' if @candidate.errors.messages[:program_role])
+        = f.label :program_role, 'Вы хотите участвовать в Программе Наставничества в качестве:'
+        = f.collection_select(:program_role, Candidate::PROGRAM_ROLES, :to_s, :to_s, { prompt: 'Выбрать...' })
+      .field.required class=('error' if @candidate.errors.messages[:program_reason])
+        = f.label :program_reason, 'Почему вы хотите стать наставником (волонтером/партнёром)? '
+        = f.text_area :program_reason
+      .field.required class=('error' if @candidate.errors.messages[:person_character])
+        = f.label :person_character, 'Какие качества вашего характера, особенные знания, навыки и т.д., могут , по вашему мнению, помочь становлению и развитию ребёнка-сироты?'
+        = f.text_area :person_character
+      .field.required class=('error' if @candidate.errors.messages[:person_information])
+        = f.label :person_information, 'Как бы вы описали (охарактеризовали) сами себя?'
+        = f.text_area :person_information
+      .field.required class=('error' if @candidate.errors.messages[:help_reason])
+        = f.label :help_reason, 'Почему вы хотите помогать ребёнку-сироте?'
+        = f.text_area :help_reason
+      .field
+        label
+          | Какие ваши ожидания от ребёнка, с которым вы хотите взаимодействовать?
+        .two.fields
+          .field.required class=('error' if @candidate.errors.messages[:child_age])
+            = f.label :child_age, 'Возраст'
+            = f.number_field :child_age
+          .field.required class=('error' if @candidate.errors.messages[:child_gender])
+            = f.label :child_gender, 'Пол'
+            = f.collection_select(:child_gender, Candidate::GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
+      .field.required class=('error' if @candidate.errors.messages[:child_character])
+        = f.label :child_character, 'Насколько важным для вас является характер ребёнка (внешний вид, поведенческие особенности)?'
+        = f.text_area :child_character
+      .field.required class=('error' if @candidate.errors.messages[:visit_frequency])
+        = f.label :visit_frequency, 'Как часто вы сможете посещать детей в учреждении?'
+        = f.text_field :visit_frequency, list: 'visit_frequency'
+        datalist#visit_frequency
+          option value='1 раз в неделю'
+          option value='1 раз в месяц'
+          option value='Как будет необходимо по Программе'
+      .field.required
+        label
+          | Согласны ли вы взаимодействовать с ребёнком имеющим функциональные ограничения или особенные потребности?
+        .fields.radio_button
+          .inline.field.radio.checkbox
+            = f.label :invalid_child_true, 'Да'
+            = f.radio_button :invalid_child, true
+          .inline.field.radio.checkbox
+            = f.label :invalid_child_false, 'Нет'
+            = f.radio_button :invalid_child, false
+    .ui.orange.segment
+      h3.ui.header
+        | 10. В целях соблюдения прав и  интересов ребёнка (в том числе его  безопасности и здорового развития), мы просим вас сообщить нам следующее:
+      .field.required class=('error' if @candidate.errors.messages[:alcohol])
+        = f.label :alcohol, 'Употребляете ли вы алкоголь? Если да, то как часто?'
+        = f.text_field :alcohol
+      .field.required class=('error' if @candidate.errors.messages[:tobacco])
+        = f.label :tobacco, 'Употребляете ли вы табачные изделия?'
+        = f.text_field :tobacco
+      .field.required class=('error' if @candidate.errors.messages[:psychoactive])
+        = f.label :psychoactive, 'Употребляете ли вы психотропные вещества? Если да, укажите какие.'
+        = f.text_field :psychoactive
+      .field.required class=('error' if @candidate.errors.messages[:drugs])
+        = f.label :drugs, 'Употребляли ли вы наркотики? Если да, укажите, какие, и как давно.'
+        = f.text_field :drugs
+      .field.required class=('error' if @candidate.errors.messages[:child_crime])
+        = f.label :child_crime, 'Были ли вы осуждены за преступления, связанные с унижением человеческого достоинства, вовлечением детей в незаконную деятельность, жестоким обращением с детьми, сексуальными посягательствами любого рода, пренебрежением ребёнка и т.д.? Если да, пожалуйста, объясните.'
+        = f.text_field :child_crime
+      .field.required class=('error' if @candidate.errors.messages[:disabled_parental_rights])
+        = f.label :disabled_parental_rights, 'Были ли вы ранее лишены родительских или опекунских прав? Если да, пожалуйста, конкретизируйте.'
+        = f.text_field :disabled_parental_rights
+      .field.required
+        label
+          | Согласны ли вы по необходимости заполнять отчёты о проделанной совместно с ребёнком  деятельности ( 1 раз/ месяц)?
+        .fields.radio_button
+          .inline.field.radio.checkbox
+            = f.label :reports_true, 'Да'
+            = f.radio_button :reports, true
+          .inline.field.radio.checkbox
+            = f.label :reports_false, 'Нет'
+            = f.radio_button :reports, false
+      .field.required
+        label
+          | Разрешаете ли вы использовать ваши фотографии и комментарии, сделанные в процессе вашего участия в Программе, на информационных носителях Проекта, с целью популяризации идеи Наставничества?
+        .fields.radio_button
+          .inline.field.radio.checkbox
+            = f.label :photo_rights_true, 'Да'
+            = f.radio_button :photo_rights, true
+          .inline.field.radio.checkbox
+            = f.label :photo_rights_false, 'Нет'
+            = f.radio_button :photo_rights, false
+      .field.required class=('error' if @candidate.errors.messages[:info_about_program])
+        = f.label :info_about_program, 'Откуда вы получили информацию о Программе Наставничества и необходимости помощи детям – сиротам?'
+        = f.text_field :info_about_program, list: 'info_sources'
+        datalist#info_sources
+          option value='СМИ'
+          option value='Друзья, родные, знакомые'
+          option value='Служба по делам детей'
 
-  .ui.orange.segment
-    h3.ui.header
-      | Личное заявление:
-    p.field
-      .ui.checkbox.check_box
-        = check_box_tag 'agreement', 1, false, id: 'agreement'
-        label for='agreement'
-          | Я понимаю цели Программы Наставничества и обязуюсь следовать разработанным индивидуальным планам, предложенным мне координатором (с учётом оценки потребностей детей-сирот), а также соблюдать конфиденциальность по любой личной информации о ребёнке, которая может стать мне известной.
-    ul.ui.list
-      li
-        | я обязуюсь сообщать координатору Программы об изменениях в моём графике (при невозможности присутствовать на запланированных ранее мероприятиях), или состоянии моего здоровья.
-      li
-        | я обязуюсь не покидать территорию учреждения вместе с ребёнком, без ведома и разрешения дирекции и координатора.
-      li
-        | я обязуюсь действовать исключительно в интересах ребёнка, способствуя его всестороннему развитию, получению образования  и подготовке к самостоятельной жизни.
-    p
-      | Я подтверждаю, что вышеуказанная  информация является правдивой и полной. Также, даю согласие на проверку данных, указанных в данной анкете.
-    p
-      em
-        | Проект Наставничество обязуется соблюдать конфиденциальность предоставленной волонтёром информации.
-    = f.submit 'Отправить анкету', class: 'ui green button', id: 'submit_button', disabled: true
+    .ui.orange.segment
+      h3.ui.header
+        | Личное заявление:
+      p.field
+        .ui.checkbox.check_box
+          = check_box_tag 'agreement', 1, false, id: 'agreement'
+          label for='agreement'
+            | Я понимаю цели Программы Наставничества и обязуюсь следовать разработанным индивидуальным планам, предложенным мне координатором (с учётом оценки потребностей детей-сирот), а также соблюдать конфиденциальность по любой личной информации о ребёнке, которая может стать мне известной.
+      ul.ui.list
+        li
+          | я обязуюсь сообщать координатору Программы об изменениях в моём графике (при невозможности присутствовать на запланированных ранее мероприятиях), или состоянии моего здоровья.
+        li
+          | я обязуюсь не покидать территорию учреждения вместе с ребёнком, без ведома и разрешения дирекции и координатора.
+        li
+          | я обязуюсь действовать исключительно в интересах ребёнка, способствуя его всестороннему развитию, получению образования  и подготовке к самостоятельной жизни.
+      p
+        | Я подтверждаю, что вышеуказанная  информация является правдивой и полной. Также, даю согласие на проверку данных, указанных в данной анкете.
+      p
+        em
+          | Проект Наставничество обязуется соблюдать конфиденциальность предоставленной волонтёром информации.
+      = f.submit 'Отправить анкету', class: 'ui green button', id: 'submit_button', disabled: true
 
 
 
-    script
-      | $(document).ready(function(){
-      |   $('#agreement').on('change', function(){
-      |     if($(this)[0].checked){
-      |       $('#submit_button')[0].disabled = false;
-      |     }
-      |     else{
-      |       $('#submit_button')[0].disabled = true;
-      |     }
-      |   });
-      | });
+      script
+        | $(document).ready(function(){
+        |   $('#agreement').on('change', function(){
+        |     if($(this)[0].checked){
+        |       $('#submit_button')[0].disabled = false;
+        |     }
+        |     else{
+        |       $('#submit_button')[0].disabled = true;
+        |     }
+        |   });
+        | });

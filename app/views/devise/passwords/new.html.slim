@@ -2,7 +2,7 @@
   h2.ui.header.center.aligned Забыли свой пароль?
 
   .ui.orange.segment.middle.aligned
-    = form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: 'ui large form', method: :post }) do |f|
+    = form_for resource, as: resource_name, url: password_path(resource_name), html: {class: 'ui large form', method: :post } do |f|
       = devise_error_messages!
 
       .field

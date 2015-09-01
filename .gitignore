@@ -6,6 +6,7 @@
 !/log/.keep
 /tmp
 /public/system/*
+/public/assets/*
 
 /config/database.yml
 /config/secrets.yml
