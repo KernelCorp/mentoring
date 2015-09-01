@@ -10,4 +10,4 @@
 #  Scenario: Show list
 #    Given I signed in as user with email: "zoidberg@example.com"
 #    When I click to the link "Мои наставники"
-#    Then I should see user with email "zoidberg@example.com"
+  #    Then I should see user with email "zoidberg@example.com"
