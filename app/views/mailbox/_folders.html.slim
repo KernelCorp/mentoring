@@ -1,7 +1,11 @@
 .ui.secondary.vertical.pointing.menu
   = active_link_to mailbox_inbox_path, class: 'item' do
-    i.icon.inbox
     | Входящие
+    - if unread_mails_count > 0
+      .ui.green.pointing.left.label
+        = unread_mails_count
+    - else
+      i.icon.inbox
 
   = active_link_to mailbox_sent_path, class: 'item' do
     i.icon.folder.open.outline

@@ -25,6 +25,9 @@ html
 
       - if user_signed_in?
         = link_to mailbox_path, class: 'item' do
+          - if unread_mails_count > 0
+            .ui.circular.green.label
+              = unread_mails_count
           i.icon.mail
           | Сообщения
 
@@ -40,7 +43,7 @@ html
 
       - if user_signed_in? && can?(:read, Album)
         = link_to albums_path, class: 'item' do
-          i.icon.photo
+          i.icon.camera.retro
           | Мои фотографии
 
     #page-wrapp

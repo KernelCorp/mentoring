@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :forem_user, :mailbox, :children_for_friendship
+  helper_method :forem_user, :mailbox, :unread_mails_count, :children_for_friendship
 
   def forem_user
     current_user
@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
 
   def mailbox
     current_user.mailbox
+  end
+
+  def unread_mails_count
+    #mailbox.inbox(unread: true).count
+    mailbox.receipts(is_read: false).count
   end
 
   def children_for_friendship
