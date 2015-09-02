@@ -1,0 +1,15 @@
+.event
+  = render partial: 'public_activity/avatar', locals: {avatar: a.owner.avatar}
+
+  .content
+    .summary
+      = link_to a.owner.full_name, user_path(a.owner)
+      | &nbsp;переназначил(а)
+      = link_to meeting_path(a.trackable)
+        | &nbsp;встречу с ребёнком&nbsp;
+        = a.trackable.child.name
+      | &nbsp;на&nbsp;
+      = l a.trackable.date
+      .date
+        = time_ago_in_words a.created_at
+        | &nbsp;назад

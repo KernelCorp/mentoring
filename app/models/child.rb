@@ -22,6 +22,10 @@ class Child < ActiveRecord::Base
   belongs_to :photo
   has_many :meetings
 
+  has_attached_file :avatar
+  validates_attachment_size :avatar, less_than: 1.megabytes
+  validates_attachment_content_type :avatar, content_type: %w(image/jpeg image/jpg image/png image/gif)
+
   validates :first_name, presence: true
   validates :last_name,  presence: true
 

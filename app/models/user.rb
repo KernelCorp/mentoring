@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :registerable,
          :rememberable, :trackable, :validatable
 
+  has_attached_file :avatar
+  validates_attachment_size :avatar, less_than: 1.megabytes
+  validates_attachment_content_type :avatar, content_type: %w(image/jpeg image/jpg image/png image/gif)
+
   validates :email,      presence: true, uniqueness: true
   validates :first_name, presence: true
   validates :last_name,  presence: true
@@ -64,6 +68,11 @@ class User < ActiveRecord::Base
 
   def forem_name
     email
+  end
+
+  def set_avatar value
+    avatar = value
+    save
   end
 
 end

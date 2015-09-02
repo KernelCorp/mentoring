@@ -3,11 +3,24 @@ h2 = @user.full_name
 p#notice = notice
 p#alert = alert
 
-
 .ui.grid.two.column
   .row.two.column
     .four.wide.column
-      = image_tag 'image.png'
+      .ui.image.medium
+        - if @user.avatar.present?
+          = image_tag @user.avatar.url
+        - else
+          = image_tag 'image.png'
+
+      - if (@user == current_user) && (can? :update, @user)
+        br
+        br
+        div
+          = form_for @user, method: :put, html: {class: 'ui forms'}  do |f|
+            .field
+              = f.file_field :avatar, multiple: false
+            br
+            = f.submit 'Сменить аватар', class: 'ui button green'
 
       .ui.header Альбомы
       .ui.list
@@ -22,7 +35,6 @@ p#alert = alert
               .content
                 .header = album.title
                 .description = truncate(album.description, length: 80)
-
 
     .ten.wide.column
       .ui.two.column.grid
@@ -53,4 +65,3 @@ p#alert = alert
           .row
             .four.wide.column Руководитель:
             .twelve.wide.column = @user.curator.mail_name
-

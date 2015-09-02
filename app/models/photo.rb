@@ -20,6 +20,9 @@ class Photo < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_one :child
 
+  include PublicActivity::Model
+  tracked only: [:create], owner: :user
+
   has_attached_file :image
   validates_attachment_presence :image
   validates_attachment_size :image, less_than: 16.megabytes

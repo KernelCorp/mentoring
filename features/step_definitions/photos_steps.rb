@@ -25,3 +25,11 @@ end
 Then /^I should see album "(.+)"$/ do |album|
   expect(page).to have_css('div.ui.list', text: album)
 end
+Given /^a photo in the album "(.+)"$/ do |album|
+  album = Album.find_by_title(album)
+  album.photos.create! do |photo|
+    photo.description = 'description'
+    photo.image = Rack::Test::UploadedFile.new("#{Rails.root}/app/assets/images/image.png", 'image/png')
+    photo.user = album.user
+  end
+end

@@ -1,0 +1,5 @@
+.label
+  - if avatar.present?
+    = image_tag avatar.url
+  - else
+    = image_tag 'image.png'

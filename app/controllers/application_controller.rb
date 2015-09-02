@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include PublicActivity::StoreController
+
   protect_from_forgery with: :exception
   helper_method :forem_user, :mailbox, :unread_mails_count, :children_for_friendship
 
@@ -11,7 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def unread_mails_count
-    #mailbox.inbox(unread: true).count
     mailbox.receipts(is_read: false).count
   end
 

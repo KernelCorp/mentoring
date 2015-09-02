@@ -7,10 +7,11 @@ br
           .ui.items.bxslide
             .item
               .ui.image.medium
-                - if child.photo.blank?
-                  = image_tag 'image.png'
+                - if child.avatar.present?
+                  = image_tag child.avatar.url(:original, false)
                 - else
-                  = image_tag child.photo.image.url(:original, false)
+                  = image_tag 'image.png'
+
               .content
                 .header = child.name
                 .description

@@ -5,6 +5,7 @@ class Ability
     if user
       can [:read, :create], Comment
       can :read, user
+      can :update, user
 
       if user.has_role? :admin
         can :manage, :all
@@ -24,6 +25,8 @@ class Ability
         can :read, Photo
         can :manage, Photo, user_id: user.id
 
+        can :read, PublicActivity::Activity, {owner_type: 'User', owner_id: user.subordinates.with_role(:mentor).map(&:id)}
+
       elsif user.has_role? :mentor
         can :read, User, id: user.curator_id
         can :read, Child, orphanage_id: user.orphanage_id
@@ -35,6 +38,8 @@ class Ability
         can :manage, Album, user_id: user.id
         can :read, Photo
         can :manage, Photo, user_id: user.id
+
+        can :read, PublicActivity::Activity, {owner_type: 'User', owner_id: user.curator_id}
 
       elsif user.has_role? :employee
         can :read, Album

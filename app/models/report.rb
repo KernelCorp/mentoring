@@ -18,9 +18,11 @@
 #
 
 class Report < ActiveRecord::Base
-  include AASM
-
   belongs_to :meeting
+
+  include AASM
+  include PublicActivity::Model
+  tracked only: [:create], owner: -> (controller, model) { model.meeting.mentor }
 
   validates :meeting,         presence: true
   validates :duration,        presence: true
@@ -42,30 +44,36 @@ class Report < ActiveRecord::Base
     state :approved
 
     event :reject do
-      transitions from: :new, to: :rejected do
-        after do
-          meeting.reject_report
-          meeting.save
-        end
+      after do
+        meeting.reject_report
+        meeting.save
+
+        create_activity :reject, owner: meeting.mentor.curator
       end
+
+      transitions from: :new, to: :rejected
     end
 
     event :resend do
-      transitions from: :rejected, to: :new do
-        after do
-          meeting.send_report
-          meeting.save
-        end
+      after do
+        meeting.send_report
+        meeting.save
+
+        create_activity :resend, owner: meeting.mentor
       end
+
+      transitions from: :rejected, to: :new
     end
 
     event :approve do
-      transitions from: :new, to: :approved do
-        after do
-          meeting.approve_report
-          meeting.save
-        end
+      after do
+        meeting.approve_report
+        meeting.save
+
+        create_activity :approve, owner: meeting.mentor.curator
       end
+
+      transitions from: :new, to: :approved
     end
   end
 

@@ -36,5 +36,6 @@ p#alert = alert
 
 == render 'back'
 
-coffee:
-  new @Filedropzone('.dropzone')
+- if can? :edit, @album
+  coffee:
+    new @Filedropzone('.dropzone')

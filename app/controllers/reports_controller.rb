@@ -24,6 +24,7 @@ class ReportsController < ApplicationController
 
   # POST /reports
   def create
+    @report.state = :new
     if @report.save
       redirect_to Meeting, notice: 'Отчёт был успешно создан.'
     else
@@ -33,12 +34,8 @@ class ReportsController < ApplicationController
 
   # PATCH/PUT /reports/1
   def update
+    @report.resend if @report.may_resend?
     if @report.update(report_params)
-      if @report.may_resend?
-        @report.resend
-        @report.save
-      end
-
       redirect_to @report, notice: 'Отчёт успешно обновлён.'
     else
       render :edit

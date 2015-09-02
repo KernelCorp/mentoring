@@ -49,7 +49,3 @@ Feature: Meetings
     And I fill in an input "comment_text" as "Awesome!" in the form "new_comment"
     And I click to the submit button
     Then I should see a new comment
-
-
-
-    

@@ -7,6 +7,8 @@ class @Filedropzone
         maxFilesize: 16
         paramName: 'photo[image]'
         addRemoveLinks: false
+        uploadMultiple: true
+        acceptedFiles: 'image/*'
         dictDefaultMessage: 'Перетащите сюда файл для загрузки в альбом'
 
       dropzone.on 'success', (file) ->

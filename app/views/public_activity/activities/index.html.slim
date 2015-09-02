@@ -1,0 +1,11 @@
+h1 Последние события
+
+p#notice = notice
+p#alert = alert
+
+.ui.segment.orange
+  - if @activities.present?
+    .ui.feed
+      = render_activities @activities
+  - else
+    | Нет данных для отображения

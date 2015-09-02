@@ -49,8 +49,8 @@ end
 
 Given /^I signed in as user with email: "(.+)"$/ do |email|
   visit '/users/sign_in'
-  fill_in 'user_email', :with => email
-  fill_in 'user_password', :with => 'password'
+  fill_in 'user_email', with: email
+  fill_in 'user_password', with: 'password'
   click_button 'Войти'
 end
 

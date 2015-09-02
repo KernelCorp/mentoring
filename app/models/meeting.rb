@@ -12,11 +12,13 @@
 #
 
 class Meeting < ActiveRecord::Base
-  include AASM
-
   belongs_to :child
   belongs_to :mentor, foreign_key: :mentor_id, class_name: 'User'
   has_one :report
+
+  include AASM
+  include PublicActivity::Model
+  tracked only: [:create], owner: :mentor
 
   validates :child, presence: true
   validates :mentor_id, presence: true
@@ -30,6 +32,10 @@ class Meeting < ActiveRecord::Base
     state :report_approved
 
     event :reject do
+      before do
+        create_activity :reject, owner: mentor.curator
+      end
+
       transitions from: :new, to: :rejected
     end
 
@@ -38,6 +44,10 @@ class Meeting < ActiveRecord::Base
     end
 
     event :reopen do
+      before do
+        create_activity :reopen, owner: mentor
+      end
+
       transitions from: :rejected, to: :new
     end
 

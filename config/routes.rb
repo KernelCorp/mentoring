@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'activities/index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'main#index'
   get 'friendship' => 'main#friendship'
@@ -12,6 +14,9 @@ Rails.application.routes.draw do
   end
 
   get 'users/:id' => 'users#show', as: :user
+  put 'users/:id' => 'users#update', as: :update_user
+
+  resources :activities, module: :public_activity, only: [:index]
 
   mount Forem::Engine, at: '/forums'
   
