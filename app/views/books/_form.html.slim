@@ -1,7 +1,7 @@
 = form_for @book, html: { class: 'ui form large'} do |f|
   - if @book.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@book.errors.count, "error")} prohibited this book from being saved:"
+      h2 Книгу не удалось сохранить из-за ошибок:
       ul
         - @book.errors.full_messages.each do |message|
           li = message

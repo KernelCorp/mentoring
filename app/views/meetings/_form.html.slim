@@ -1,7 +1,7 @@
 = form_for @meeting, html: { class: 'ui form large'} do |f|
   - if @meeting.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@meeting.errors.count, "error")} prohibited this meeting from being saved:"
+      h2 Встречу не удалось сохранить из-за ошибок:
       ul
         - @meeting.errors.full_messages.each do |message|
           li = message

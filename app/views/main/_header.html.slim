@@ -10,8 +10,7 @@
 .menu_item
   = active_link_to 'ХОЧУ ДРУЖИТЬ', friendship_path
 .menu_item
-  a
-    | КОНТАКТЫ
+  = active_link_to 'КОНТАКТЫ', contacts_path
 .menu_item
   - if user_signed_in?
     = active_link_to 'МОЙ КАБИНЕТ', user_path(current_user)

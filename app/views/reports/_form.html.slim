@@ -1,7 +1,7 @@
 = form_for @report, html: { class: 'ui form large'} do |f|
   - if @report.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@report.errors.count, "error")} prohibited this report from being saved:"
+      h2 Отчёт не удалось сохранить из-за ошибок:
       ul
         - @report.errors.full_messages.each do |message|
           li = message

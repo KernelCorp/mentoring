@@ -1,0 +1,32 @@
+.contacts_content_block
+  h2 Контакты:
+
+  .ui.cards
+    .card
+      .image
+        = image_tag 'contacts/anastacia.jpg'
+      .content
+        .header
+          | Шилибольская Анастасия
+        .meta
+          | Куратор проекта
+        .description
+          p
+            | 8-952-906-3897
+          p
+            = mail_to 'shilib.anastasia@gmail.com'
+
+    .card
+      .image
+        = image_tag 'contacts/veronika.jpg'
+      .content
+        .header
+          | Винокурова Вероника
+        .meta
+          | Психолог проекта
+        .description
+          p
+            | 8-913-912-6634
+          p
+            = mail_to 'bon-vent@yandex.ru'
+    br

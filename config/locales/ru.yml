@@ -289,18 +289,40 @@ ru:
 
   activerecord:
     models:
+      orphanage: Учреждение
       user: Пользователь
+      child: Ребёнок
       meeting: Встреча
       report: Отчёт
       book: Книга
       comment: Комментарий
       album: Альбом
       photo: Фотография
+      activity: Событие
     attributes:
       user:
         password: Пароль
         current_password: Текущий пароль
         password_confirmation: Подтверждение пароля
+      meeting:
+        date: Дата
+        child: Ребёнок
+        mentor: Наставник
+      report:
+        duration: Длительность
+        aim: Цель
+        short_description: Краткое описание
+        questions: Вопросы
+        result: Результат
+        feelings: Ощущения
+        next_aim: Следующая цель
+        other_comments: Прочие комментарии
+      book:
+        name: Название
+        priority: Приоритет
+      album:
+        title: Название
+        description: Описание
 
     errors:
       models:
