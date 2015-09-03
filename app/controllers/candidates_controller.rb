@@ -10,6 +10,7 @@ class CandidatesController < ApplicationController
   def create
     @candidate = Candidate.new(candidate_params)
     if @candidate.save
+      CandidatesMailer.bid_received(@candidate).deliver_now
       render template: 'candidates/success', layout: 'candidate'
     else
       render :new, layout: 'main'

@@ -1,0 +1,9 @@
+p
+  = @candidate.full_name
+  | &nbsp;заполнил(а) анкету на участие в проекте Наставничество.
+p
+  | ID:&nbsp;
+  = @candidate.id
+p
+  | E-mail:&nbsp;
+  = mail_to @candidate.email

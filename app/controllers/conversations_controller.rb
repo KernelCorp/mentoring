@@ -10,6 +10,7 @@ class ConversationsController < ApplicationController
     recipients = User.where(id: conversation_params[:recipients])
     message = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject])
     flash[:notice] = 'Ваше сообщение было успешно отпавленно!'
+    MailboxMailer.new_message(recipients, current_user).deliver_now
     redirect_to conversation_path(message.conversation)
   end
 
@@ -21,6 +22,7 @@ class ConversationsController < ApplicationController
   def reply
     current_user.reply_to_conversation(@conversation, message_params[:body])
     flash[:notice] = 'Ваше ответное сообщение было успешно отправленно'
+    MailboxMailer.new_message(@conversation.recipients.delete(current_user), current_user).deliver_now
     redirect_to conversation_path(@conversation)
   end
 

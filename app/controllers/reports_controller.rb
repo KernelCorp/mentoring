@@ -27,6 +27,7 @@ class ReportsController < ApplicationController
     @report.state = :new
     if @report.save
       redirect_to Meeting, notice: 'Отчёт был успешно создан.'
+      ReportsMailer.new_report(@report).deliver_now
     else
       render :new
     end

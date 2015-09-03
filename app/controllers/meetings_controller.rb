@@ -24,6 +24,7 @@ class MeetingsController < ApplicationController
   def create
     if @meeting.save
       redirect_to @meeting, notice: 'Новая встреча назначена.'
+      MeetingsMailer.meeting_notification(@meeting).deliver_later(wait_until: (@meeting.date - 1.day))
     else
       render :new, notice: 'Не удалось назначить встречу.', error: @meeting.errors[:name].first
     end

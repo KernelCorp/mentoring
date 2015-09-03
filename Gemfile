@@ -23,9 +23,6 @@ gem 'bxslider-rails'
 # turbolinks
 gem 'turbolinks'
 
-# docs
-gem 'sdoc', '~> 0.4.0', group: :doc
-
 # logic
 gem 'devise'
 gem 'cancancan'
@@ -36,7 +33,11 @@ gem 'mailboxer'
 gem 'public_activity'
 gem 'rails_admin', '~> 0.7.0'
 
+# jobs
+gem 'sidekiq'
+
 # other
+gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'annotate'
 gem 'active_link_to'
 
@@ -57,7 +58,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-sidekiq'
-  gem 'capistrano3-unicorn', :require => false
+  gem 'capistrano3-unicorn', require: false
 
   gem 'capybara', '~> 2.3.0'
   gem 'rspec-rails', '~> 3.0.0'

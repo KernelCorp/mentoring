@@ -70,9 +70,4 @@ class User < ActiveRecord::Base
     email
   end
 
-  def set_avatar value
-    avatar = value
-    save
-  end
-
 end
