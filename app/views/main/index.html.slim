@@ -14,7 +14,7 @@
 
   = link_to new_candidate_path do
     .button_block.green.big_text
-      | Я ХОЧУ ПОМОЧЬ
+      | ХОЧУ УЧАСТВОВАТЬ
 .image_bottom_attached_block.orange.big_text
   | Что такое проект &laquo;Наставничество&raquo;?
 .first_content_block
@@ -116,9 +116,9 @@
         br
         | необходимую информацию.
 
-  = link_to new_candidate_path do
+  = link_to about_path do
     .button_block.orange.big_text
-      | ХОЧУ УЧАСТВОВАТЬ
+      | ПОДРОБНЕЕ
 .second_image_block
   .image_content_block
     | Результаты регулярных тестирований показывают,
@@ -167,10 +167,14 @@
       | преодолеть этот барьер можно – в этом наставнику помогают психологи и
       br
       | специалисты на групповых встречах и индивидуальных консультациях.
-
+  br
   = link_to new_candidate_path do
     .button_block.green.big_text
       | ЗАПОЛНИТЬ АНКЕТУ
+  br
+  = link_to 'http://www.suncitylife.ru/help/how' do
+    .button_block.orange.big_text
+      | СДЕЛАТЬ ПОЖЕРТВОВАНИЕ
 .third_image_block
   .image_content_block
     | Ребёнок в детском доме живет в искусственных условиях.
