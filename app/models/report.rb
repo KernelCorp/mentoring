@@ -19,6 +19,7 @@
 
 class Report < ActiveRecord::Base
   belongs_to :meeting
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   include AASM
   include PublicActivity::Model

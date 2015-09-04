@@ -18,6 +18,11 @@ html
           i.icon.newspaper
           | События
 
+      - if user_signed_in? && can?(:read, Candidate)
+        = link_to candidates_path, class: 'item' do
+          i.icon.suitcase
+          | Кандидаты
+
       - if user_signed_in? && can?(:read, Meeting)
         = link_to meetings_path, class: 'item' do
           i.icon.home

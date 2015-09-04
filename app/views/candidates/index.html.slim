@@ -1,0 +1,37 @@
+h1 Кандидаты
+
+p#notice = notice
+p#alert = flash[:error]
+
+.ui.orange.segment
+  table.ui.table.celled.selectable
+    thead
+      tr
+        th
+          | ФИО
+        th
+          | E-mail
+        th
+          | Роль
+        th
+          | Статус
+        th
+
+    tbody
+      - if @candidates.blank?
+        tr
+          td.disabled colspan=4
+            | Нет данных для отображения
+
+      - else
+        - @candidates.each do |candidate|
+          tr
+            td = link_to  candidate.full_name, candidate_path(candidate), class: 'block'
+            td = link_to  candidate.email, candidate_path(candidate), class: 'block'
+            td = link_to  candidate.program_role, candidate_path(candidate), class: 'block'
+            td = link_to  candidate.state, candidate_path(candidate), class: 'block'
+            td
+              - if candidate.may_approve? && can?(:approve, candidate)
+                = link_to approve_candidate_path(candidate), class: 'ui basic button green'
+                  i.icon.thumbs.up
+                  | Одобрить

@@ -91,6 +91,7 @@ class Candidate < ActiveRecord::Base
       after do
         generated_password = Devise.friendly_token.first(8)
         user = User.create(email: email, first_name: first_name, last_name: last_name, middle_name: middle_name, password: generated_password)
+        user.add_role :mentor
         RegistrationMailer.welcome(user, generated_password).deliver_later
       end
       transitions from: :new, to: :approved

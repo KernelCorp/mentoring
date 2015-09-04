@@ -18,7 +18,7 @@ class Photo < ActiveRecord::Base
   belongs_to :album
   belongs_to :user
   has_many :comments, as: :commentable
-  has_one :child
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   include PublicActivity::Model
   tracked only: [:create], owner: :user

@@ -19,7 +19,6 @@
 class Child < ActiveRecord::Base
   belongs_to :orphanage
   belongs_to :mentor, foreign_key: :mentor_id, class_name: 'User'
-  belongs_to :photo
   has_many :meetings
 
   has_attached_file :avatar

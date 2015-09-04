@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   mount Forem::Engine, at: '/forums'
   
-  resources :candidates, only: [:new, :create]
+  resources :candidates do
+    get :approve, on: :member
+  end
 
   get 'mailbox', to: redirect('/mailbox/inbox')
   get 'mailbox/inbox'

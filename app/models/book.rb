@@ -17,6 +17,7 @@
 class Book < ActiveRecord::Base
   belongs_to :owner, foreign_key: :owner_id, class_name: 'User'
   has_many :comments, as: :commentable
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   include PublicActivity::Model
   tracked only: [:create], owner: :owner

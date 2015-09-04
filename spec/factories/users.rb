@@ -31,9 +31,9 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
 
-    first_name 'name'
-    last_name 'name'
-    middle_name 'name'
+    first_name 'any_first_name'
+    last_name 'any_last_name'
+    middle_name 'any_middle_name'
 
     # orphanage_id 1 # мешает тестам
 

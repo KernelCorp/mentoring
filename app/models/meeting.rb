@@ -15,6 +15,7 @@ class Meeting < ActiveRecord::Base
   belongs_to :child
   belongs_to :mentor, foreign_key: :mentor_id, class_name: 'User'
   has_one :report
+  has_many :activities, as: :trackable, class_name: 'PublicActivity::Activity', dependent: :destroy
 
   include AASM
   include PublicActivity::Model

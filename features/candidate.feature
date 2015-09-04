@@ -19,21 +19,21 @@ Feature: new candidate
     When I go to "/candidates/new"
     Then I should see disabled submit button
 
-#  Scenario: show candidats list
-#    Given a user with email: "hermes@example.com" and role "admin"
-#    And a new candidate
-#    And a approved candidate
-#    And I signed in as user with email: "hermes@example.com"
-#    When I go to dashboard
-#    And I click to link "Кандидаты"
-#    Then I should see 2 candidats
-#
-#  Scenario: Approve candidate
-#    Given a user with email: "hermes@example.com" and role "admin"
-#    And a new candidate with email: "emy@wong.info"
-#    And I signed in as user with email: "hermes@example.com"
-#    When I go to dashboard
-#    And I click to link "Кандидаты"
-#    And I click to button "approve"
-#    Then a new user with email "emy@wong.info" with role "mentor" should be created
-#    And the candidate with email "emy@wong.info" should change state to "approved"
+  Scenario: show candidates list
+    Given a user with email: "hermes@example.com" and role "admin"
+    And a new candidate
+    And a approved candidate
+    And I signed in as user with email: "hermes@example.com"
+    When I go to dashboard
+    And I click to the link "Кандидаты"
+    Then I should see 2 candidates
+
+  Scenario: Approve candidate
+    Given a user with email: "hermes@example.com" and role "admin"
+    And a new candidate with email: "emy@wong.info"
+    And I signed in as user with email: "hermes@example.com"
+    When I go to dashboard
+    And I click to the link "Кандидаты"
+    And I click to the button "Одобрить"
+    Then a new user with email "emy@wong.info" with role "mentor" should be created
+    And the candidate with email "emy@wong.info" should change state to "approved"
