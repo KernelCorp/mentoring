@@ -2,8 +2,11 @@ class CandidatesMailer < ApplicationMailer
 
   def bid_received candidate
     @candidate = candidate
+    admins = User.with_role(:admin).all
 
-    mail to: User.with_role(:admin).map(&:email),
-         subject: "Заполнена анкета кандидата: #{@candidate.full_name}"
+    if admins.present?
+      mail to: admins.map(&:email),
+           subject: "Заполнена анкета кандидата: #{@candidate.full_name}"
+    end
   end
 end
