@@ -68,10 +68,10 @@ class Candidate < ActiveRecord::Base
                         :organization_name, :work_contacts, :work_position, :work_functions, :work_schedule, :hobby,
                         :martial_status, :house_type, :number_of_rooms, :peoples_for_room, :peoples, :pets, :program_role,
                         :program_reason, :person_character, :person_information, :help_reason, :child_age, :child_gender,
-                        :child_character, :visit_frequency, :invalid_child, :alcohol, :tobacco, :psychoactive, :drugs,
-                        :child_crime, :disabled_parental_rights, :reports, :photo_rights, :info_about_program
+                        :child_character, :visit_frequency, :alcohol, :tobacco, :psychoactive, :drugs,
+                        :child_crime, :disabled_parental_rights, :info_about_program
 
-
+  validates_inclusion_of :invalid_child, :reports, :photo_rights, in: [true, false]
   validates_uniqueness_of :email
   validates_format_of     :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
   validates :number_of_rooms, numericality: { greater_than_or_equal_to: 1 }

@@ -15,6 +15,10 @@ Then /^admin should receive email-notification$/ do
   expect(unread_emails_for(admin.email).size).to eq(1)
 end
 
+Then /^new candidate should receive email-notification$/ do
+  expect(unread_emails_for(Candidate.last.email).size).to eq(1)
+end
+
 Then /^curator should receive email-notification$/ do
   curator = User.with_role(:curator).first
   expect(unread_emails_for(curator.email).size).to eq(1)

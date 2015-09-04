@@ -20,6 +20,7 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new(candidate_params)
     if @candidate.save
       CandidatesMailer.bid_received(@candidate).deliver_now
+      CandidatesMailer.bid_sent(@candidate).deliver_now
       render template: 'candidates/success', layout: 'main'
     else
       render :new, layout: 'main'

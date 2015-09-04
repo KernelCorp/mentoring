@@ -24,6 +24,7 @@ Feature: EmailNotifications
     And I click on agreement checkbox
     And I click to the submit button
     Then admin should receive email-notification
+    And new candidate should receive email-notification
 
   Scenario: Curator receive message from mentor
     Given I signed in as user with email: "bender@rodriguez.com"

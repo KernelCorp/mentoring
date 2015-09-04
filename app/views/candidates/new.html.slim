@@ -1,4 +1,12 @@
 .ui.basic.very.padded.container.segment
+
+  - if @candidate.errors.any?
+    #error_explanation
+      h2 Анкету не удалось отправить из-за ошибок:
+      ul
+        - @candidate.errors.full_messages.each do |message|
+          li = message
+
   = form_for @candidate, html: { class: 'ui form' } do |f|
     .ui.orange.segment
       h3.ui.header

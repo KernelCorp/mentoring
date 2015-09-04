@@ -9,4 +9,11 @@ class CandidatesMailer < ApplicationMailer
            subject: "Заполнена анкета кандидата: #{@candidate.full_name}"
     end
   end
+
+  def bid_sent candidate
+    @candidate = candidate
+
+    mail to: candidate.email,
+         subject: 'Наставничество: ваша анкета рассматривается'
+  end
 end
