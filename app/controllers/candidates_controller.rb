@@ -3,11 +3,9 @@ class CandidatesController < ApplicationController
   load_and_authorize_resource only: [:index, :show, :approve]
 
   def index
-
   end
 
   def show
-
   end
 
   def new
