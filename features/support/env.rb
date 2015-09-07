@@ -4,6 +4,7 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+require 'factory_girl_rails'
 require 'cucumber/rails'
 require 'email_spec/cucumber'
 

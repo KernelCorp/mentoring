@@ -63,7 +63,7 @@ group :development, :test do
   gem 'capybara', '~> 2.3.0'
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-mocks'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', require: false
   gem 'database_cleaner'
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'
