@@ -1,6 +1,6 @@
 class CandidatesController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show, :approve]
-  load_and_authorize_resource only: [:index, :show, :approve]
+  before_action :authenticate_user!, only: [:index, :show, :update, :approve]
+  load_and_authorize_resource only: [:index, :show, :update, :approve]
 
   def index
   end
@@ -27,6 +27,14 @@ class CandidatesController < ApplicationController
     end
   end
 
+  def update
+    if @candidate.update(state_comment_params)
+      redirect_to @candidate, notice: 'Комментарий успешно обновлён.'
+    else
+      render :show, notice: 'Комментарий не удалось изменить.'
+    end
+  end
+
   def approve
     if @candidate.approve and @candidate.save
       flash[:notice] = 'Вы одобрили кандидата.'
@@ -39,6 +47,10 @@ class CandidatesController < ApplicationController
   end
 
   private
+    def state_comment_params
+      params.require(:candidate).permit(:state_comment)
+    end
+
     def candidate_params
       params.require(:candidate)
             .permit(:last_name, :first_name, :middle_name, :registration_address, :home_address, :phone_number, :email,

@@ -309,11 +309,11 @@ ru:
         child: Ребёнок
         mentor: Наставник
         state: Статус
-        state/new: Новый
-        state/rejected: Отклонён
-        state/report_sent: Отчёт отправлен
-        state/report_rejected: Отчёт отклонён
-        state/report_approved: Отчёт одобрен
+        state/new: новый
+        state/rejected: отклонён
+        state/report_sent: отчёт отправлен
+        state/report_rejected: отчёт отклонён
+        state/report_approved: отчёт одобрен
       report:
         duration: Длительность
         aim: Цель
@@ -324,15 +324,19 @@ ru:
         next_aim: Следующая цель
         other_comments: Прочие комментарии
         state: Статус
-        state/new: Новый
-        state/rejected: Отклонён
-        state/approved: Одобрен
+        state/new: новый
+        state/rejected: отклонён
+        state/approved: одобрен
       book:
         name: Название
         priority: Приоритет
       album:
         title: Название
         description: Описание
+      candidate:
+        state: Статус
+        state/new: новый
+        state/approved: одобрен
 
     errors:
       models:

@@ -23,6 +23,10 @@
 #  forem_state            :string           default("pending_review")
 #  forem_auto_subscribe   :boolean          default(FALSE)
 #  orphanage_id           :integer
+#  avatar_file_name       :string
+#  avatar_content_type    :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #
 
 class User < ActiveRecord::Base

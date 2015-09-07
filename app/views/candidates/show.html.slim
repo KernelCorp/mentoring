@@ -368,13 +368,24 @@ p#alert = flash[:error]
             = @candidate.info_about_program
 
   .ui.segment.orange
-    p
-      strong = "Статус: #{@candidate.state}"
+    .ui.grid
+      .row
+        .column
+          p
+            strong = "Статус: #{@candidate.aasm.human_state}"
+          = form_for @candidate, html: {class: 'ui form'} do |f|
+            .field
+              = f.label :state_comment, 'Комментарий к статусу:'
+              = f.text_area :state_comment, rows: 2, maxlength: 127, style: 'resize: none'
 
-    - if @candidate.may_approve? && can?(:approve, @candidate)
-      = link_to approve_candidate_path(@candidate), class: 'ui button green'
-        i.icon.thumbs.up
-        | Одобрить
+            = f.submit 'Изменить комментарий', class: 'ui green button'
+
+      .row
+        .column
+          - if @candidate.may_approve? && can?(:approve, @candidate)
+            = link_to approve_candidate_path(@candidate), class: 'ui button green'
+              i.icon.thumbs.up
+              | Одобрить кандидата
 
 - if can? :read, Candidate
   = link_to candidates_path, class: 'ui button green' do

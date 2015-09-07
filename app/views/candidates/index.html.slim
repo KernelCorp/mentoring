@@ -29,7 +29,7 @@ p#alert = flash[:error]
             td = link_to  candidate.full_name, candidate_path(candidate), class: 'block'
             td = link_to  candidate.email, candidate_path(candidate), class: 'block'
             td = link_to  candidate.program_role, candidate_path(candidate), class: 'block'
-            td = link_to  candidate.state, candidate_path(candidate), class: 'block'
+            td = link_to  candidate.aasm.human_state, candidate_path(candidate), class: 'block'
             td
               - if candidate.may_approve? && can?(:approve, candidate)
                 = link_to approve_candidate_path(candidate), class: 'ui basic button green'

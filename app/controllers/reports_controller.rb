@@ -29,7 +29,7 @@ class ReportsController < ApplicationController
       redirect_to Meeting, notice: 'Отчёт был успешно создан.'
       ReportsMailer.new_report(@report).deliver_now
     else
-      render :new
+      render :new, notice: 'Не удалось создать отчёт.'
     end
   end
 
@@ -39,7 +39,7 @@ class ReportsController < ApplicationController
     if @report.update(report_params)
       redirect_to @report, notice: 'Отчёт успешно обновлён.'
     else
-      render :edit
+      render :edit, notice: 'Отчёт не удалось обновить.'
     end
   end
 
