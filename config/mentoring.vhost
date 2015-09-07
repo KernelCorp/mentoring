@@ -6,7 +6,7 @@ server {
     listen 80;
 
     client_max_body_size 1G;
-    server_name mentoring.kerweb.ru www.mentoring.kerweb.ru;
+    server_name mentoring.kerweb.ru www.mentoring.kerweb.ru nastavnik54.ru www.nastavnik54.ru;
     keepalive_timeout 5;
     root /var/www/mentoring/current/public;
         try_files $uri/index.html $uri.html $uri @myapp;

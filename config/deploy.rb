@@ -39,6 +39,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'pids', 'tmp/cache', 'vend
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
 after 'deploy:publishing', 'deploy:restart'
+after "deploy:restart", "deploy:cleanup"
 
 namespace :deploy do
   task :restart do
