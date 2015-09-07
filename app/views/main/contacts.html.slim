@@ -1,32 +1,53 @@
 .contacts_content_block
   h2 Контакты:
 
-  .ui.cards
+  .ui.three.cards
     .card
-      .image
-        = image_tag 'contacts/anastacia.jpg'
+      .image = image_tag 'contacts/anastacia.jpg'
       .content
-        .header
-          | Шилибольская Анастасия
-        .meta
-          | Куратор проекта
+        .header Шилибольская Анастасия
+        .meta Куратор проекта
         .description
-          p
-            | 8-952-906-3897
-          p
-            = mail_to 'shilib.anastasia@gmail.com'
+          p 8-952-906-3897
+      .extra.content = mail_to 'shilib.anastasia@gmail.com'
 
     .card
-      .image
-        = image_tag 'contacts/veronika.jpg'
+      .image = image_tag 'contacts/veronika.jpg'
       .content
-        .header
-          | Винокурова Вероника
-        .meta
-          | Психолог проекта
+        .header Винокурова Вероника
+        .meta Психолог проекта
+        .description
+          p 8-913-912-6634
+      .extra.content = mail_to 'bon-vent@yandex.ru'
+
+    .card
+      .content
+        - 2.times do
+          br
+        = link_to 'http://www.suncitylife.ru', target: '_blank' do
+          .ui.image.medium = image_tag 'contacts/suncity_logo.jpg'
+        - 5.times do
+          br
         .description
           p
-            | 8-913-912-6634
+            | Адрес фонда: 630015, г. Новосибирск,
+            br
+            |  ул. Промышленная, д. 4а
+            br
+            |  Телефон: +7 (383) 208-11-17
+            br
+            |  Факс: +7 (383) 208-11-17
+            br
+            |  E-mail:&nbsp;
+            = mail_to 'office@suncitylife.ru'
           p
-            = mail_to 'bon-vent@yandex.ru'
+            = link_to 'http://www.suncitylife.ru', 'http://www.suncitylife.ru', target: '_blank'
+          - 3.times do
+            br
+          p
+            | Директор фонда
+            br
+            | Аксенова Марина Анатольевна
+            br
+            | +7 (913) 730-31-74
     br
