@@ -4,11 +4,13 @@ p#notice = notice
 p#alert = alert
 
 .ui.segment.orange.grid
-  .row
-    .column.four.wide
-      = link_to new_album_path, class: 'ui button green' do
-        i.icon.add
-        | Добавить новый альбом
+
+  - if can? :create, Album
+    .row
+      .column.four.wide
+        = link_to new_album_path, class: 'ui button green' do
+          i.icon.add
+          | Добавить новый альбом
 
   .row
     .ui.items

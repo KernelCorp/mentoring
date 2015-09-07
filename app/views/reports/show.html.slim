@@ -5,7 +5,7 @@ p#notice = notice
   p
     strong Статус:
     br
-    = @report.state
+    = @report.aasm.human_state
 
   p
     strong Длительность:

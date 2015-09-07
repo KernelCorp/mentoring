@@ -10,7 +10,7 @@ p#alert = alert
   p
     strong Статус:
     br
-    = @meeting.state
+    = @meeting.aasm.human_state
   p
     strong Дата/время:
     br

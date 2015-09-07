@@ -308,6 +308,12 @@ ru:
         date: Дата
         child: Ребёнок
         mentor: Наставник
+        state: Статус
+        state/new: Новый
+        state/rejected: Отклонён
+        state/report_sent: Отчёт отправлен
+        state/report_rejected: Отчёт отклонён
+        state/report_approved: Отчёт одобрен
       report:
         duration: Длительность
         aim: Цель
@@ -317,6 +323,10 @@ ru:
         feelings: Ощущения
         next_aim: Следующая цель
         other_comments: Прочие комментарии
+        state: Статус
+        state/new: Новый
+        state/rejected: Отклонён
+        state/approved: Одобрен
       book:
         name: Название
         priority: Приоритет

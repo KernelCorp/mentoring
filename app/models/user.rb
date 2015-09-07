@@ -49,6 +49,12 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name,  presence: true
 
+  scope :for_messaging, -> (user) do
+    joins(:roles).where('roles.name' => [:employee, :mentor, :curator])
+                 .where('users.orphanage_id' => user.orphanage_id)
+                 .where('users.id != ?', user.id)
+  end
+
 
   def name
     full_name

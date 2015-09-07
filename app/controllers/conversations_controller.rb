@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:show, :reply, :trash, :untrash]
 
   def new
-    @users = User.accessible_by(current_ability)
+    @users = User.for_messaging(current_user)
   end
 
   def create
