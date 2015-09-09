@@ -66,7 +66,7 @@ RSpec.describe CandidatesController, :type => :controller do
         phone_number: "+71112223344",
         email: "osama@alkaida.com",
         birth_date: 50.years.ago,
-        nationality: "Pakistan",
+        russian_citizenship: false,
         confession: "Islam",
         health_status: "ok",
         serious_diseases: "no",

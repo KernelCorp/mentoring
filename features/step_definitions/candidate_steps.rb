@@ -26,7 +26,7 @@ end
 When(/^I choose each radio button with label "(.+)"$/) do |label|
   page.all(".radio_button").each do |input|
     within(input) do
-      page.choose(label)
+      input.choose(label)
     end
   end
 end

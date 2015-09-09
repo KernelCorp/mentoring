@@ -11,7 +11,6 @@
 #  phone_number             :string
 #  email                    :string
 #  birth_date               :date
-#  nationality              :string
 #  confession               :string
 #  health_status            :string
 #  serious_diseases         :string
@@ -52,6 +51,7 @@
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  state_comment            :text
+#  russian_citizenship      :boolean
 #
 
 require 'rails_helper'

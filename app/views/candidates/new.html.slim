@@ -39,9 +39,16 @@
           .three.fields
             = f.date_select :birth_date, { start_year: 1900, end_year: Date.today.year, date_separator: '<div class="big_date_separator"></div>' }
       .two.fields
-        .field.required class=('error' if @candidate.errors.messages[:nationality])
-          = f.label :nationality, 'Национальность/Гражданство'
-          = f.text_field :nationality
+        .field.required class=('error' if @candidate.errors.messages[:russian_citizenship])
+          label
+            | Гражданство РФ
+          .fields.radio_button
+            .inline.field.radio.checkbox
+              = f.label :russian_citizenship_true, 'Да'
+              = f.radio_button :russian_citizenship, true
+            .inline.field.radio.checkbox
+              = f.label :russian_citizenship_false, 'Нет'
+              = f.radio_button :russian_citizenship, false
         .field.required  class=('error' if @candidate.errors.messages[:confession])
           = f.label :confession, 'Вероисповедание'
           = f.text_field :confession, list: 'confessions'

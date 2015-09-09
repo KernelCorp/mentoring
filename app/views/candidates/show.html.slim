@@ -49,9 +49,9 @@ p#alert = flash[:error]
             = @candidate.home_address
         .row
           .column.six.wide
-            strong Национальность/гражданство:
+            strong Гражданство РФ:
             br
-            = @candidate.nationality
+            = @candidate.russian_citizenship? ? 'Да' : 'Нет'
           .column.six.wide
             strong Вероисповедание:
             br
