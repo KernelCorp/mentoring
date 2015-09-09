@@ -223,7 +223,7 @@
         .two.fields
           .field.required class=('error' if @candidate.errors.messages[:child_age])
             = f.label :child_age, 'Возраст'
-            = f.number_field :child_age, min: '1'
+            = f.number_field :child_age, min: 12, max: 18
           .field.required class=('error' if @candidate.errors.messages[:child_gender])
             = f.label :child_gender, 'Пол'
             = f.collection_select(:child_gender, Candidate::GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
