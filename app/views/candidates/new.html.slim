@@ -26,7 +26,13 @@
         = f.text_field :registration_address
       .field.required class=('error' if @candidate.errors.messages[:home_address])
         = f.label :home_address, 'Адрес фактического проживания'
-        = f.text_field :home_address
+        .inline.field
+          .ui.checkbox.check_box
+            = check_box_tag 'address_equality', 1, false, id: 'address_equality'
+            label for='address_equality'
+              | Совпадает с адресом регистрации
+        .field
+          = f.text_field :home_address
       .three.fields
         .field.required class=('error' if @candidate.errors.messages[:phone_number])
           = f.label :phone_number, 'Контактный телефон'
@@ -330,14 +336,21 @@
 
 coffee:
   $(document).ready ->
-    $('#agreement'). on 'change', ->
+    $('#agreement').on 'change', ->
       if $(this)[0].checked && $('#personal_data')[0].checked
         $('#submit_button')[0].disabled = false
       else
         $('#submit_button')[0].disabled = true
 
-    $('#personal_data') . on 'change', ->
+    $('#personal_data').on 'change', ->
       if $(this)[0].checked && $('#agreement')[0].checked
         $('#submit_button')[0].disabled = false
       else
         $('#submit_button')[0].disabled = true
+
+    $('#address_equality').on 'change', ->
+      if $(this)[0].checked
+        $('#candidate_home_address').prop('readonly', true)
+        $('#candidate_home_address').val $('#candidate_registration_address').val()
+      else
+        $('#candidate_home_address').prop('readonly', false)
