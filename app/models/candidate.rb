@@ -73,8 +73,7 @@ class Candidate < ActiveRecord::Base
                         :child_crime, :disabled_parental_rights, :info_about_program
 
   validates_inclusion_of :invalid_child, :reports, :photo_rights, :russian_citizenship, in: [true, false]
-  validates_uniqueness_of :email
-  validates_format_of     :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
+  validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/ }, uniqueness: { case_sensitive: false }
   validates :number_of_rooms, numericality: { greater_than_or_equal_to: 1 }
 
   HEALTH_STATUSES = ['отлично', 'хорошо', 'средне', 'плохо']

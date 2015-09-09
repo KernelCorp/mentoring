@@ -8,10 +8,13 @@ class ConversationsController < ApplicationController
 
   def create
     recipients = User.where(id: conversation_params[:recipients])
-    message = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject])
-    flash[:notice] = 'Ваше сообщение было успешно отпавленно!'
-    MailboxMailer.new_message(recipients, current_user).deliver_now
-    redirect_to conversation_path(message.conversation)
+    if recipients.present?
+      message = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject])
+      MailboxMailer.new_message(recipients, current_user).deliver_now
+      redirect_to conversation_path(message.conversation), notice: 'Ваше сообщение было успешно отпавленно!'
+    else
+      redirect_to new_conversation_path, alert: 'Вы не можете создать диалог без адресатов!'
+    end
   end
 
   def show

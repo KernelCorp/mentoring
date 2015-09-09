@@ -55,7 +55,7 @@ p#alert = alert
         - if @user.roles.present?
           .row
             .four.wide.column Роли:
-            .twelve.wide.column = @user.roles.map(&:name).join(', ')
+            .twelve.wide.column = @user.translated_roles.join(', ')
 
         - if @user.orphanage.present?
           .row

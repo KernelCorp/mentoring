@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   validates_attachment_size :avatar, less_than: 1.megabytes
   validates_attachment_content_type :avatar, content_type: %w(image/jpeg image/jpg image/png image/gif)
 
-  validates :email,      presence: true, uniqueness: true
+  validates :email,      presence: true, uniqueness: { case_sensitive: false }
   validates :first_name, presence: true
   validates :last_name,  presence: true
 
@@ -70,6 +70,14 @@ class User < ActiveRecord::Base
 
   def mail_name
     "#{full_name}  (#{email})"
+  end
+
+  def name_with_roles
+    "#{full_name} (#{translated_roles.join(', ')})"
+  end
+
+  def translated_roles
+    roles.map{|r| I18n.t("activerecord.attributes.role.name/#{r.name}", default: r.name)}
   end
 
   def full_name

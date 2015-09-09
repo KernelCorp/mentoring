@@ -3,14 +3,7 @@
     - if user_signed_in?
       = link_to main_app.user_path(current_user), class: 'item' do
         i.user.icon
-        - if current_user.has_role? :admin
-          = 'Администратор | '
-        - elsif current_user.has_role? :curator
-          = 'Психолог | '
-        - elsif current_user.has_role? :mentor
-          = 'Наставник | '
-        - elsif current_user.has_role? :employee
-          = 'Сотрудник детского дома | '
+        = "#{current_user.translated_roles.join(', ')} | "
         = current_user.email
 
       = link_to main_app.edit_user_registration_path, class: 'item' do
