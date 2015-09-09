@@ -1,0 +1,20 @@
+.nested-fields
+  .field
+    = f.label :organization_name, 'Название организации'
+    = f.text_field :organization_name
+  .field
+    = f.label :organization_contacts, 'Контактная информация (телефон, адрес)'
+    = f.text_field :organization_contacts
+  .field
+    = f.label :position, 'Должность'
+    = f.text_field :position
+  .field
+    = f.label :functions, 'Исполняемые обязанности'
+    = f.text_area :functions
+  .field
+    = f.label :children_age, 'Возрастная группа детей'
+    = f.text_field :children_age
+
+  = link_to_remove_association f, class: 'ui label orange' do
+    i.icon.minus
+    | Удалить

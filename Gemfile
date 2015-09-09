@@ -40,6 +40,7 @@ gem 'sidekiq'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'annotate'
 gem 'active_link_to'
+gem 'cocoon', '~> 1.2.6'
 
 # forum
 gem 'forem', github: 'radar/forem', branch: 'rails4'

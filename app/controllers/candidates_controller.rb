@@ -10,9 +10,9 @@ class CandidatesController < ApplicationController
 
   def new
     @candidate = Candidate.new
-    3.times { @candidate.candidate_educations.build }
-    6.times { @candidate.candidate_family_members.build }
-    2.times { @candidate.candidate_children_experiences.build }
+    @candidate.candidate_educations.new
+    @candidate.candidate_family_members.new
+    @candidate.candidate_children_experiences.new
     render layout: 'main'
   end
 

@@ -33,29 +33,19 @@
               | Совпадает с адресом регистрации
         .field
           = f.text_field :home_address
-      .three.fields
-        .field.required class=('error' if @candidate.errors.messages[:phone_number])
+      .fields
+        .field.five.wide.required class=('error' if @candidate.errors.messages[:phone_number])
           = f.label :phone_number, 'Контактный телефон'
           = f.text_field :phone_number
-        .field.required class=('error' if @candidate.errors.messages[:email])
+        .field.six.wide.required class=('error' if @candidate.errors.messages[:email])
           = f.label :email, 'Электронный адрес'
           = f.email_field :email
-        .field.required class=('error' if @candidate.errors.messages[:birth_date])
+        .field.five.wide.required class=('error' if @candidate.errors.messages[:birth_date])
           = f.label :birth_date, 'Дата рождения'
           .three.fields
-            = f.date_select :birth_date, { start_year: 1900, end_year: Date.today.year, date_separator: '<div class="big_date_separator"></div>' }
+            = f.date_select :birth_date, {start_year: 1917, end_year: Date.today.year, date_separator: '<div class="big_date_separator"></div>'}
       .two.fields
-        .field.required class=('error' if @candidate.errors.messages[:russian_citizenship])
-          label
-            | Гражданство РФ
-          .fields.radio_button
-            .inline.field.radio.checkbox
-              = f.label :russian_citizenship_true, 'Да'
-              = f.radio_button :russian_citizenship, true
-            .inline.field.radio.checkbox
-              = f.label :russian_citizenship_false, 'Нет'
-              = f.radio_button :russian_citizenship, false
-        .field.required  class=('error' if @candidate.errors.messages[:confession])
+        .field.eleven.wide.required  class=('error' if @candidate.errors.messages[:confession])
           = f.label :confession, 'Вероисповедание'
           = f.text_field :confession, list: 'confessions'
           datalist#confessions
@@ -66,6 +56,16 @@
             option value='Буддизм'
             option value='Ислам'
             option value='Атеизм'
+        .field.five.wide.required class=('error' if @candidate.errors.messages[:russian_citizenship])
+          label
+            | Гражданство РФ
+          .fields.radio_button
+            .inline.field.radio.checkbox
+              = f.label :russian_citizenship_true, 'Да'
+              = f.radio_button :russian_citizenship, true
+            .inline.field.radio.checkbox
+              = f.label :russian_citizenship_false, 'Нет'
+              = f.radio_button :russian_citizenship, false
     .ui.orange.segment
       h3.ui.header
         | 2. Состояние здоровья:
@@ -78,23 +78,12 @@
     .ui.orange.segment
       h3.ui.header
         | 3. Образование:
-      = f.fields_for :candidate_educations do |e|
-        .field
-          = e.label :education, 'Образование'
-          = e.collection_select(:education, Candidate::EDUCATION_TYPES, :to_s, :to_s, { prompt: 'Выбрать...' })
-        .two.fields
-          .field
-            = e.label :start_date, 'С'
-            .two.fields
-              = e.date_select :start_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
-          .field
-            = e.label :end_date, 'До'
-            .two.fields
-              = e.date_select :end_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
-        .field
-          = e.label :specialty, 'Полученная специальность, степени или другие квалификации'
-          = e.text_field :specialty
-        .ui.divider
+      = f.fields_for :candidate_educations do |education|
+        = render 'candidate_education_fields', f: education
+      .actions
+        = link_to_add_association f, :candidate_educations, class: 'ui button green fluid' do
+          i.icon.plus
+          | Добавить образование
     .ui.orange.segment
       h3.ui.header
         | 4. Трудоустройство:
@@ -104,11 +93,11 @@
         .field.required class=('error' if @candidate.errors.messages[:work_start_date])
           = f.label :work_start_date, 'С'
           .two.fields
-            = f.date_select :work_start_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
+            = f.date_select :work_start_date, {start_year: 1928, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
         .field
           = f.label :work_end_date, 'До'
           .two.fields
-            = f.date_select :work_end_date, {start_year: 1900, end_year: Date.today.year, discard_day: true, include_blank: true, date_separator: '<div class="small_date_separator"></div>'}
+            = f.date_select :work_end_date, {start_year: 1928, end_year: Date.today.year, discard_day: true, include_blank: true, date_separator: '<div class="small_date_separator"></div>'}
       .field.required class=('error' if @candidate.errors.messages[:organization_name])
         = f.label :organization_name, 'Название организации'
         = f.text_field :organization_name
@@ -140,20 +129,11 @@
         label
           | Пожалуйста, укажите членов вашей семьи:
         = f.fields_for :candidate_family_members do |fam|
-          .four.fields
-            .field
-              = fam.label :name, 'Имя'
-              = fam.text_field :name
-            .field
-              = fam.label :gender, 'Пол'
-              = fam.collection_select(:gender, Candidate::GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
-            .field
-              = fam.label :age, 'Возраст'
-              = fam.number_field :age, min: '1'
-            .field
-              = fam.label :relation, 'Кем приходится?'
-              = fam.text_field :relation
-          .ui.divider
+          = render 'candidate_family_member_fields', f: fam
+        .actions
+          = link_to_add_association f, :candidate_family_members, class: 'ui button green fluid' do
+            i.icon.plus
+            | Добавить члена семьи
     .ui.orange.segment
       h3.ui.header
         | 7. Жилищно-бытовые условия:
@@ -180,23 +160,12 @@
         | 8. Опыт работы с детьми:
       p
         | Пожалуйста, укажите ваш текущий и предыдущий опыт работы с детьми (оплачиваемая работа, волонтёрская деятельность и т.д.)
-      = f.fields_for :candidate_children_experiences do |child|
-        .field
-          = child.label :organization_name, 'Название организации'
-          = child.text_field :organization_name
-        .field
-          = child.label :organization_contacts, 'Контактная информация (телефон, адрес)'
-          = child.text_field :organization_contacts
-        .field
-          = child.label :position, 'Должность'
-          = child.text_field :position
-        .field
-          = child.label :functions, 'Исполняемые обязанности'
-          = child.text_area :functions
-        .field
-          = child.label :children_age, 'Возрастная группа детей'
-          = child.text_field :children_age
-        .ui.divider
+      = f.fields_for :candidate_children_experiences do |experience|
+        = render 'candidate_children_experience_fields', f: experience
+      .actions
+        = link_to_add_association f, :candidate_children_experiences, class: 'ui button green fluid' do
+          i.icon.plus
+          | Добавить пункт
     .ui.orange.segment
       h3.ui.header
         | 9. Пожалуйста, как можно подробнее ответьте на следующие вопросы:
