@@ -226,7 +226,7 @@
             = f.number_field :child_age, min: 12, max: 18
           .field.required class=('error' if @candidate.errors.messages[:child_gender])
             = f.label :child_gender, 'Пол'
-            = f.collection_select(:child_gender, Candidate::GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
+            = f.collection_select(:child_gender, Candidate::CHILD_GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
       .field.required class=('error' if @candidate.errors.messages[:child_character])
         = f.label :child_character, 'Насколько важным для вас является характер ребёнка (внешний вид, поведенческие особенности)?'
         = f.text_area :child_character
