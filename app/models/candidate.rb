@@ -77,7 +77,7 @@ class Candidate < ActiveRecord::Base
   validates_format_of     :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
   validates :number_of_rooms, numericality: { greater_than_or_equal_to: 1 }
 
-
+  HEALTH_STATUSES = ['отлично', 'хорошо', 'средне', 'плохо']
   GENDERS = ['Мужской', 'Женский']
   EDUCATION_TYPES = ['Общеобразовательная школа', 'Университет, Институт, техникум', 'Дополнительные курсы, тренинги, семинары']
   MARTIAL_STATUSES = ['Женат (замужем)', 'Гражданский брак', 'Разведён (разведена)', 'Вдовец (вдова)', 'Не женат (не замужем)']

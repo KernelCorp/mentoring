@@ -65,7 +65,7 @@
         | 2. Состояние здоровья:
       .field.required class=('error' if @candidate.errors.messages[:health_status])
         = f.label :health_status, 'Как вы оцениваете своё состояние здоровья?'
-        = f.text_field :health_status
+        = f.collection_select(:health_status, Candidate::HEALTH_STATUSES, :to_s, :to_s, { prompt: 'Выбрать...' })
       .field.required class=('error' if @candidate.errors.messages[:serious_diseases])
         = f.label :serious_diseases, 'Имеете ли вы серьёзные заболевания? Если да, укажите, какие.'
         = f.text_field :serious_diseases
