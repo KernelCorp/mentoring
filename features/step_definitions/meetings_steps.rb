@@ -62,6 +62,10 @@ When /^I click to the button "(.+)"$/ do |button_label|
   click_on button_label
 end
 
+When /^I click on "(.+)"$/ do |label|
+  click_on label
+end
+
 When /^I select child "(.+)"$/ do |child_name|
   select child_name, from: 'Ребёнок'
 end

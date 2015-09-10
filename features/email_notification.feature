@@ -53,3 +53,11 @@ Feature: EmailNotifications
     And I click to the submit button
     Then a report of the meeting should be created
     And curator should receive email-notification
+
+  Scenario: Candidate approved
+    Given a new candidate with email: "leela@example.com"
+    And I signed in as user with email: "hubert.j@farnsworth.com"
+    When I go to "/candidates"
+    And I click on "leela@example.com"
+    And I click to the button "Одобрить"
+    And new candidate should receive email-notification
