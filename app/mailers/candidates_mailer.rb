@@ -14,6 +14,6 @@ class CandidatesMailer < ApplicationMailer
     @candidate = candidate
 
     mail to: candidate.email,
-         subject: 'Наставничество: ваша анкета рассматривается'
+         subject: 'Ваша анкета рассматривается'
   end
 end

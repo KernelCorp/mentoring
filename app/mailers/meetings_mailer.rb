@@ -4,7 +4,7 @@ class MeetingsMailer < ApplicationMailer
 
     if meeting.new?
       mail to: meeting.mentor,
-           subject: 'Наставничество: напоминание о встрече'
+           subject: 'Напоминание о встрече'
     end
   end
 end

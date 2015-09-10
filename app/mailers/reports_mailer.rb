@@ -3,6 +3,6 @@ class ReportsMailer < ApplicationMailer
     @report = report
 
     mail to: report.meeting.mentor.curator.email,
-         subject: "Наставничество: новый отчёт от #{report.meeting.mentor.full_name}"
+         subject: "Получен новый отчёт от #{report.meeting.mentor.full_name}"
   end
 end
