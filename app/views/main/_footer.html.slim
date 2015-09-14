@@ -1,4 +1,20 @@
-| &copy; 2015 Проект &laquo;Наставничество&raquo;
-br
-| Студия разработки&nbsp;
-= link_to 'Kernel Web', 'http://kerweb.ru/', target: '_blank'
+.footer_content_block
+  .social_greenhouse_block
+    .social_greenhouse_text
+      | Проект
+      br
+      | создан
+      br
+      | при поддержке:
+    .logo
+      = link_to 'https://te-st.ru/', target: '_blank'
+        = image_tag 'main_page/greenhouse_logo.png', width: 100
+  .mentoring_block
+    = link_to 'http://www.suncitylife.ru/', target: '_blank'
+      = image_tag 'main_page/suncity_logo_white.png', width: 254
+  .kernel_block
+    = link_to 'http://kerweb.ru/', target: '_blank'
+      = image_tag 'main_page/kernel_logo.png'
+  br
+  br
+  | &copy; 2015 Благотворительный проект «Наставничество»

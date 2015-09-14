@@ -97,7 +97,6 @@ class Candidate < ActiveRecord::Base
       end
       transitions from: :new, to: :approved
     end
-
   end
 
   def full_name

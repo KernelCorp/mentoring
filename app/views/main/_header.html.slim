@@ -1,8 +1,11 @@
 .title
   span.middle_text.bold_text
-    = link_to 'НАСТАВНИЧЕСТВО', root_path, class: 'white_text'
-  br
-  | благотворительный проект
+      = link_to 'http://www.suncitylife.ru/', target: '_blank'
+        = image_tag 'main_page/suncity_logo_white.png', width: 201
+        |  &nbsp;&nbsp;
+      br
+      = link_to root_path, class: 'white_text'
+        | НАСТАВНИЧЕСТВО
 .menu_item
   = active_link_to 'О ПРОЕКТЕ', about_path
 .menu_item
