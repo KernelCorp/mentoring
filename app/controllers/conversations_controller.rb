@@ -3,7 +3,11 @@ class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:show, :reply, :trash, :untrash]
 
   def new
-    @users = User.for_messaging(current_user)
+    if current_user.has_role? :admin
+      @users = User.where.not(id: current_user.id)
+    else
+      @users = User.for_messaging(current_user)
+    end
   end
 
   def create
