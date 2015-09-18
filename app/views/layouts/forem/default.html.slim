@@ -1,15 +1,19 @@
 doctype html
 html
   head
-    title Наставничество
+    title
+      | Forem
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-
+    = forem_atom_auto_discovery_link_tag
   body
     = render partial: '/layouts/header'
     = render partial: '/layouts/menu'
 
     #page-wrapp
       .ui.basic.container.segment
+        - flash.each do |k,v|
+          .flash.ui.message class="#{k.gsub(/alert/, 'error').gsub(/notice/, 'success')}"
+            = v
         = yield

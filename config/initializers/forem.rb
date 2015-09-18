@@ -13,4 +13,3 @@ Forem.per_page = 20
 #   Forem::Ability.register_ability(Ability)
 # end
 #
-# By default, these lines will use the layout located at app/views/layouts/forem.html.erb in your application.
