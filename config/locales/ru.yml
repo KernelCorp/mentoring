@@ -331,6 +331,9 @@ ru:
       book:
         name: Название
         priority: Приоритет
+        priority/interesting: Это интересно
+        priority/must_read: Обязательно к прочтению
+        priority/immediately_read: Срочно прочесть
       album:
         title: Название
         description: Описание
