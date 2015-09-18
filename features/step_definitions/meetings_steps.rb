@@ -1,5 +1,5 @@
 Given /^a orphanage "(.+)"$/ do |name|
-  Orphanage.new do |orphanage|
+  Orphanage.create! do |orphanage|
     orphanage.name = name
     orphanage.address = 'any address'
   end

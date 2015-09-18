@@ -78,7 +78,7 @@ RSpec.describe Candidate, :type => :model do
 
     it "should be set to be delivered to the email passed in" do
       @email = RegistrationMailer.welcome(user, "test_password")
-      @email.should deliver_to("jojo@yahoo.com")
+      expect(@email).to deliver_to("jojo@yahoo.com")
     end
   end
 
