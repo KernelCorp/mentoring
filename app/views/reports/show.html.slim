@@ -14,38 +14,44 @@ p#notice = notice
 
   p
     strong Цель:
-    br
-    = @report.aim
+    .ui.segment
+      = simple_format @report.aim
 
   p
+    br
     strong Краткое описание:
-    br
-    = @report.short_description
+    .ui.segment
+      = simple_format @report.short_description
 
   p
+    br
     strong Ощущения:
-    br
-    = @report.feelings
+    .ui.segment
+      = simple_format @report.feelings
 
   p
+    br
     strong Вопросы:
-    br
-    = @report.questions
+    .ui.segment
+      = simple_format @report.questions
 
   p
+    br
     strong Следующая цель:
-    br
-    = @report.next_aim
+    .ui.segment
+      = simple_format @report.next_aim
 
   p
+    br
     strong Дополнительные комментарии:
-    br
-    = @report.other_comments
+    .ui.segment
+      = simple_format @report.other_comments
 
   p
-    strong Результат:
     br
-    = @report.result
+    strong Результат:
+    .ui.segment
+      = simple_format @report.result
 
   - if can?(:read, @report.meeting)
     p
