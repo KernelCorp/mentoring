@@ -3,55 +3,55 @@ p#notice = notice
 
 .ui.orange.segment
   p
-    strong Статус:
+    strong = Report.human_attribute_name(:state)
     br
     = @report.aasm.human_state
 
   p
-    strong Длительность:
+    strong = '1.  ' + Report.human_attribute_name(:duration)
     br
     = @report.duration
 
   p
-    strong Цель:
+    strong = '2.  ' + Report.human_attribute_name(:aim)
     .ui.segment
       = simple_format @report.aim
 
   p
     br
-    strong Краткое описание:
+    strong = '3.  ' + Report.human_attribute_name(:short_description)
     .ui.segment
       = simple_format @report.short_description
 
   p
     br
-    strong Ощущения:
+    strong = '4.  ' + Report.human_attribute_name(:result)
     .ui.segment
-      = simple_format @report.feelings
+      = simple_format @report.result
 
   p
     br
-    strong Вопросы:
-    .ui.segment
-      = simple_format @report.questions
-
-  p
-    br
-    strong Следующая цель:
+    strong = '5.  ' + Report.human_attribute_name(:next_aim)
     .ui.segment
       = simple_format @report.next_aim
 
   p
     br
-    strong Дополнительные комментарии:
+    strong = '6.  ' + Report.human_attribute_name(:feelings)
+    .ui.segment
+      = simple_format @report.feelings
+
+  p
+    br
+    strong = '7.  ' + Report.human_attribute_name(:other_comments)
     .ui.segment
       = simple_format @report.other_comments
 
   p
     br
-    strong Результат:
+    strong = '8.  ' + Report.human_attribute_name(:questions)
     .ui.segment
-      = simple_format @report.result
+      = simple_format @report.questions
 
   - if can?(:read, @report.meeting)
     p
