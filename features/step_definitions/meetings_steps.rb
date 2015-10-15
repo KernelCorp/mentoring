@@ -16,34 +16,15 @@ Given /^a child with name "(.+)" in orphanage "(.+)"$/ do |name, orphanage|
 end
 
 Given /^a user with email: "(.+)" and role "curator" for orphanage "(.+)"$/ do |email, orphanage_name|
-  curator = User.create! do |user|
-    user.email = email
-    user.orphanage = Orphanage.find_by_name(orphanage_name)
-    user.first_name = 'any_first_name'
-    user.last_name = 'any_last_name'
-    user.middle_name = 'any_middle_name'
-    user.password = 'password'
-  end
-
-  curator.add_role :curator
+  FactoryGirl.create :user, :curator, email: email, orphanage: Orphanage.find_by_name(orphanage_name)
 end
 
 Given /^a user with email: "(.+)" and role "mentor" for child "(.+)" and curator: "(.+)"$/ do |email, child_name, curator_email|
   curator = User.with_role(:curator).find_by_email(curator_email)
-  mentor = User.create! do |user|
-    user.email = email
-    user.orphanage = curator.orphanage
-    user.first_name = 'any_first_name'
-    user.last_name = 'any_last_name'
-    user.middle_name = 'any_middle_name'
-    user.curator_id = curator.id
-    user.password = 'password'
-  end
+  mentor = FactoryGirl.create :user, :mentor, email: email, orphanage: curator.orphanage, curator_id: curator.id
 
   child = Child.where(orphanage: mentor.orphanage).find_by_first_name(child_name)
   child.update mentor_id: mentor.id
-
-  mentor.add_role :mentor
 end
 
 

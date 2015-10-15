@@ -4,13 +4,13 @@ class Ability
   def initialize(user)
     if user
       roles = user.roles.map(&:name)
-      collaborators_ids = user.orphanage ? user.orphanage.users.where.not(id: user.id).map(&:id) : []
+      collaborators_ids = user.orphanage ? user.orphanage.users.where.not(id: user.id).pluck(:id) : []
 
       if roles.include? 'employee'
         common_access user
 
       elsif roles.include? 'mentor'
-        meetings_ids = user.meetings.map(&:id)
+        meetings_ids = user.meetings.pluck(:id)
 
         common_access user
         can :read, User, id: user.curator_id
@@ -35,7 +35,7 @@ class Ability
                                               trackable_type: 'Forem::Topic'}
 
       elsif roles.include? 'curator'
-        subordinates_ids = user.subordinates.with_role(:mentor).map(&:id)
+        subordinates_ids = user.subordinates.with_role(:mentor).pluck(:id)
 
         common_access user
         can :read, User, curator_id: user.id

@@ -53,13 +53,6 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name,  presence: true
 
-  scope :for_messaging, -> (user) do
-    joins(:roles).where('roles.name' => [:employee, :mentor, :curator])
-                 .where('users.orphanage_id' => user.orphanage_id)
-                 .where('users.id != ?', user.id)
-  end
-
-
   def name
     full_name
   end
@@ -86,6 +79,11 @@ class User < ActiveRecord::Base
 
   def forem_name
     mail_name
+  end
+
+  def for_messaging
+    (User.joins(:roles).where(orphanage_id: orphanage_id, 'roles.name' => [:employee, :mentor]).where.not(id: id).all +
+    User.joins(:roles).where('roles.name' => [:curator, :admin]).all).uniq
   end
 
 end

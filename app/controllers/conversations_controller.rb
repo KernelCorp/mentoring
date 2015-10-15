@@ -3,10 +3,10 @@ class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:show, :reply, :trash, :untrash]
 
   def new
-    if current_user.has_role? :admin
+    if current_user.has_any_role? :admin, :curator
       @users = User.where.not(id: current_user.id)
     else
-      @users = User.for_messaging(current_user)
+      @users = current_user.for_messaging
     end
   end
 
