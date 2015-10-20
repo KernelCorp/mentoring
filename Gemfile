@@ -18,7 +18,7 @@ gem 'jquery-rails'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'jquery-datetimepicker-rails'
 gem 'dropzonejs-rails'
-gem 'bxslider-rails'
+gem 'bxslider-rails', '~> 4.2', '>= 4.2.5.1'
 
 # turbolinks
 gem 'turbolinks'
