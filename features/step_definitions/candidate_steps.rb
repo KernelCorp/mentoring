@@ -26,13 +26,15 @@ end
 When(/^I choose each radio button with label "(.+)"$/) do |label|
   page.all(".radio_button").each do |input|
     within(input) do
-      page.choose(label)
+      input.choose(label)
     end
   end
 end
 
 When(/^I click on agreement checkbox$/) do
-  page.find(".check_box label").click
+  page.all(".check_box label").each do |element|
+    element.click
+  end
 end
 
 Then(/^I should see success message$/) do

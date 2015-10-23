@@ -18,7 +18,7 @@ gem 'jquery-rails'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'jquery-datetimepicker-rails'
 gem 'dropzonejs-rails'
-gem 'bxslider-rails'
+gem 'bxslider-rails', '~> 4.2', '>= 4.2.5.1'
 
 # turbolinks
 gem 'turbolinks'
@@ -40,6 +40,7 @@ gem 'sidekiq'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'annotate'
 gem 'active_link_to'
+gem 'cocoon', '~> 1.2.6'
 
 # forum
 gem 'forem', github: 'radar/forem', branch: 'rails4'
@@ -63,7 +64,7 @@ group :development, :test do
   gem 'capybara', '~> 2.3.0'
   gem 'rspec-rails', '~> 3.0.0'
   gem 'rspec-mocks'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', require: false
   gem 'database_cleaner'
   gem 'cucumber-rails', require: false
   gem 'selenium-webdriver'

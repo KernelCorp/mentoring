@@ -49,16 +49,9 @@ class User < ActiveRecord::Base
   validates_attachment_size :avatar, less_than: 1.megabytes
   validates_attachment_content_type :avatar, content_type: %w(image/jpeg image/jpg image/png image/gif)
 
-  validates :email,      presence: true, uniqueness: true
+  validates :email,      presence: true, uniqueness: { case_sensitive: false }
   validates :first_name, presence: true
   validates :last_name,  presence: true
-
-  scope :for_messaging, -> (user) do
-    joins(:roles).where('roles.name' => [:employee, :mentor, :curator])
-                 .where('users.orphanage_id' => user.orphanage_id)
-                 .where('users.id != ?', user.id)
-  end
-
 
   def name
     full_name
@@ -72,12 +65,25 @@ class User < ActiveRecord::Base
     "#{full_name}  (#{email})"
   end
 
+  def name_with_roles
+    "#{full_name} (#{translated_roles.join(', ')})"
+  end
+
+  def translated_roles
+    roles.map{|r| I18n.t("activerecord.attributes.role.name/#{r.name}", default: r.name)}
+  end
+
   def full_name
     "#{last_name} #{first_name} #{middle_name}"
   end
 
   def forem_name
-    email
+    mail_name
+  end
+
+  def for_messaging
+    (User.joins(:roles).where(orphanage_id: orphanage_id, 'roles.name' => [:employee, :mentor]).where.not(id: id).all +
+    User.joins(:roles).where('roles.name' => [:curator, :admin]).all).uniq
   end
 
 end

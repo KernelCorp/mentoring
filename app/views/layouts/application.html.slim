@@ -8,53 +8,7 @@ html
 
   body
     = render partial: '/layouts/header'
-
-    .ui.visible.inverted.left.vertical.sidebar.labeled.icon.menu.green
-      .ui.inverted.header
-        = link_to 'Наставничество', root_path, class: 'item'
-
-      - if user_signed_in? && can?(:read, PublicActivity::Activity)
-        = link_to activities_path, class: 'item' do
-          i.icon.newspaper
-          | События
-
-      - if user_signed_in? && can?(:read, Candidate)
-        = link_to candidates_path, class: 'item' do
-          i.icon.suitcase
-          | Кандидаты
-
-      - if user_signed_in? && can?(:read, Meeting)
-        = link_to meetings_path, class: 'item' do
-          i.icon.home
-          | Мои встречи
-
-      - if user_signed_in? && can?(:read, Report)
-        = link_to reports_path, class: 'item' do
-          i.icon.folder.open
-          | Отчёты
-
-      - if user_signed_in?
-        = link_to mailbox_path, class: 'item' do
-          - if unread_mails_count > 0
-            .ui.circular.green.label
-              = unread_mails_count
-          i.icon.mail
-          | Сообщения
-
-      - if user_signed_in?
-        = link_to forem_path, class: 'item' do
-          i.icon.users
-          | Форум
-
-      - if user_signed_in? && can?(:read, Book)
-        = link_to books_path, class: 'item' do
-          i.icon.book
-          | Библиотека
-
-      - if user_signed_in? && can?(:read, Album)
-        = link_to albums_path, class: 'item' do
-          i.icon.camera.retro
-          | Мои фотографии
+    = render partial: '/layouts/menu'
 
     #page-wrapp
       .ui.basic.container.segment

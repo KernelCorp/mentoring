@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
 
+  before_filter :main_ability
   protect_from_forgery with: :exception
   helper_method :forem_user, :mailbox, :unread_mails_count, :children_for_friendship
 
@@ -39,5 +40,9 @@ class ApplicationController < ActionController::Base
       else
         redirect_to main_app.root_path
       end
+    end
+
+    def main_ability
+      @main_ability ||= Ability.new(current_user)
     end
 end

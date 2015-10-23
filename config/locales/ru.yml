@@ -299,6 +299,7 @@ ru:
       album: Альбом
       photo: Фотография
       activity: Событие
+      role: Роль
     attributes:
       user:
         password: Пароль
@@ -316,13 +317,13 @@ ru:
         state/report_approved: отчёт одобрен
       report:
         duration: Длительность
-        aim: Цель
-        short_description: Краткое описание
+        aim: Чем планировали заниматься на встрече?
+        short_description: Чем в итоге занимались?
         questions: Вопросы
-        result: Результат
-        feelings: Ощущения
-        next_aim: Следующая цель
-        other_comments: Прочие комментарии
+        result: Оцените настроение ребенка до и после встречи
+        feelings: Опишите свое настроение после встречи
+        next_aim: Цель на следующую встречу
+        other_comments: Дополнительные комментарии
         state: Статус
         state/new: новый
         state/rejected: отклонён
@@ -330,6 +331,9 @@ ru:
       book:
         name: Название
         priority: Приоритет
+        priority/interesting: Это интересно
+        priority/must_read: Обязательно к прочтению
+        priority/immediately_read: Срочно прочесть
       album:
         title: Название
         description: Описание
@@ -337,6 +341,12 @@ ru:
         state: Статус
         state/new: новый
         state/approved: одобрен
+      role:
+        name: Название
+        name/admin: Админинстратор
+        name/curator: Психолог
+        name/mentor: Наставник
+        name/employee: Сотрудник детского дома
 
     errors:
       models:

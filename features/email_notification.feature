@@ -17,7 +17,7 @@ Feature: EmailNotifications
     When I go to "/candidates/new"
     And I fill in all "text" inputs with "test"
     And I fill in all textarea fields with "test"
-    And I fill in all "number" inputs with "10"
+    And I fill in all "number" inputs with "12"
     And I fill in all "email" inputs with "test@example.com"
     And I select option from each select
     And I choose each radio button with label "Да"
@@ -42,14 +42,22 @@ Feature: EmailNotifications
     And I signed in as user with email: "bender@rodriguez.com"
     When I go to "/meetings"
     And I click to the button "Составить отчёт"
-    And I fill in an input "Длительность в часах" as "2" in the form "new_report"
-    And I fill in an input "Цель" as "blitzkrieg" in the form "new_report"
-    And I fill in an input "Краткое описание" as "blitzkrieg" in the form "new_report"
-    And I fill in an input "Результат" as "fail" in the form "new_report"
-    And I fill in an input "Ощущения" as "vexation" in the form "new_report"
-    And I fill in an input "Вопросы" as "no" in the form "new_report"
-    And I fill in an input "Следующая цель" as "no" in the form "new_report"
-    And I fill in an input "Дополнительные комментарии" as "no" in the form "new_report"
+    And I fill in an input "report_duration" as "2" in the form "new_report"
+    And I fill in an input "report_aim" as "blitzkrieg" in the form "new_report"
+    And I fill in an input "report_short_description" as "blitzkrieg" in the form "new_report"
+    And I fill in an input "report_result" as "fail" in the form "new_report"
+    And I fill in an input "report_feelings" as "vexation" in the form "new_report"
+    And I fill in an input "report_next_aim" as "no" in the form "new_report"
+    And I fill in an input "report_other_comments" as "no" in the form "new_report"
+    And I fill in an input "report_questions" as "no" in the form "new_report"
     And I click to the submit button
     Then a report of the meeting should be created
     And curator should receive email-notification
+
+  Scenario: Candidate approved
+    Given a new candidate with email: "leela@example.com"
+    And I signed in as user with email: "hubert.j@farnsworth.com"
+    When I go to "/candidates"
+    And I click on "leela@example.com"
+    And I click to the button "Одобрить"
+    And new candidate should receive email-notification

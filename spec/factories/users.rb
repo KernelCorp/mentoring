@@ -35,7 +35,7 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
 
-    first_name 'any_first_name'
+    sequence(:first_name) {|n| "first_name_#{n}"}
     last_name 'any_last_name'
     middle_name 'any_middle_name'
 

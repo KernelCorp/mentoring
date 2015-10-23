@@ -11,7 +11,6 @@
 #  phone_number             :string
 #  email                    :string
 #  birth_date               :date
-#  nationality              :string
 #  confession               :string
 #  health_status            :string
 #  serious_diseases         :string
@@ -52,6 +51,7 @@
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  state_comment            :text
+#  russian_citizenship      :boolean
 #
 
 require 'rails_helper'
@@ -78,7 +78,7 @@ RSpec.describe Candidate, :type => :model do
 
     it "should be set to be delivered to the email passed in" do
       @email = RegistrationMailer.welcome(user, "test_password")
-      @email.should deliver_to("jojo@yahoo.com")
+      expect(@email).to deliver_to("jojo@yahoo.com")
     end
   end
 

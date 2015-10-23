@@ -1,6 +1,7 @@
 When /^I select destination "(.+)"$/ do |user_email|
   expect(current_path).to eq(new_conversation_path)
-  select user_email, from: 'Получатели'
+  user = User.find_by_email user_email
+  select user.full_name, from: 'Получатели'
 end
 
 Then /^a new conversation with "(.+)" should be created$/ do |email|

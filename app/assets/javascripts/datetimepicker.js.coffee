@@ -3,5 +3,8 @@ class @Datetimepicker
     $(document).ready ->
       $(selector).datetimepicker
         lang: 'ru'
-        inline: true
         minDate: new Date
+        yearStart: new Date().getFullYear()
+        yearEnd: new Date().getFullYear() + 1
+        dayOfWeekStart: 1
+        inline: true

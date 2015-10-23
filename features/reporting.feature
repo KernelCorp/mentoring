@@ -23,14 +23,14 @@ Feature: Reporting
       And I signed in as user with email: "mentor@example.com"
     When I go to "/meetings"
      And I click to the button "Составить отчёт"
-     And I fill in an input "Длительность в часах" as "2" in the form "new_report"
-     And I fill in an input "Цель" as "blitzkrieg" in the form "new_report"
-     And I fill in an input "Краткое описание" as "blitzkrieg" in the form "new_report"
-     And I fill in an input "Результат" as "fail" in the form "new_report"
-     And I fill in an input "Ощущения" as "vexation" in the form "new_report"
-     And I fill in an input "Вопросы" as "no" in the form "new_report"
-     And I fill in an input "Следующая цель" as "no" in the form "new_report"
-     And I fill in an input "Дополнительные комментарии" as "no" in the form "new_report"
+     And I fill in an input "report_duration" as "2" in the form "new_report"
+     And I fill in an input "report_aim" as "blitzkrieg" in the form "new_report"
+     And I fill in an input "report_short_description" as "blitzkrieg" in the form "new_report"
+     And I fill in an input "report_result" as "fail" in the form "new_report"
+     And I fill in an input "report_feelings" as "vexation" in the form "new_report"
+     And I fill in an input "report_next_aim" as "no" in the form "new_report"
+     And I fill in an input "report_other_comments" as "no" in the form "new_report"
+     And I fill in an input "report_questions" as "no" in the form "new_report"
      And I click to the submit button
     Then a report of the meeting should be created
      And I should be redirected to list of meetings

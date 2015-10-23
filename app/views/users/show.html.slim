@@ -16,11 +16,10 @@ p#alert = alert
         br
         br
         div
-          = form_for @user, method: :put, html: {class: 'ui forms'}  do |f|
+          = form_for @user, method: :put, html: {class: 'ui small form'}  do |f|
             .field
-              = f.file_field :avatar, multiple: false
-            br
-            = f.submit 'Сменить аватар', class: 'ui button green'
+              = f.label :avatar, 'Сменить аватар'
+              = f.file_field :avatar, multiple: false, class: 'ui label under_avatar'
 
       .ui.header Альбомы
       .ui.list
@@ -55,7 +54,7 @@ p#alert = alert
         - if @user.roles.present?
           .row
             .four.wide.column Роли:
-            .twelve.wide.column = @user.roles.map(&:name).join(', ')
+            .twelve.wide.column = @user.translated_roles.join(', ')
 
         - if @user.orphanage.present?
           .row
@@ -65,3 +64,6 @@ p#alert = alert
           .row
             .four.wide.column Руководитель:
             .twelve.wide.column = @user.curator.mail_name
+
+coffee:
+  new @AutoSubmitInput('#user_avatar')
