@@ -3,7 +3,7 @@ lock '3.4.0'
 
 set :application, 'mentoring'
 set :repo_url, 'https://github.com/KernelCorp/mentoring.git'
-# set :sidekiq_pid, File.join(shared_path, 'pids', 'sidekiq.pid')
+set :sidekiq_pid, File.join(shared_path, 'pids', 'sidekiq.pid')
 
 set :password, ask('Server password:', nil, echo: false)
 # Default branch is :master
