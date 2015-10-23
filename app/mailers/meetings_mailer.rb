@@ -3,7 +3,7 @@ class MeetingsMailer < ApplicationMailer
     @meeting = meeting
 
     if meeting.new?
-      mail to: meeting.mentor,
+      mail to: meeting.mentor.email,
            subject: 'Напоминание о встрече'
     end
   end

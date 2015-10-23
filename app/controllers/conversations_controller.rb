@@ -29,7 +29,9 @@ class ConversationsController < ApplicationController
   def reply
     current_user.reply_to_conversation(@conversation, message_params[:body])
     flash[:notice] = 'Ваше ответное сообщение было успешно отправленно'
-    MailboxMailer.new_message(@conversation.recipients.delete(current_user), current_user).deliver_now
+    recipients = @conversation.recipients
+    recipients.delete(current_user)
+    MailboxMailer.new_message(recipients, current_user).deliver_now
     redirect_to conversation_path(@conversation)
   end
 
