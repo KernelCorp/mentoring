@@ -343,7 +343,7 @@ ru:
         state/approved: одобрен
       role:
         name: Название
-        name/admin: Админинстратор
+        name/admin: Администратор
         name/curator: Психолог
         name/mentor: Наставник
         name/employee: Сотрудник детского дома
