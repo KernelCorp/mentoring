@@ -23,7 +23,7 @@ p#notice = notice
           tr
             td = meeting.id
             td = meeting.date.to_date
-            td = meeting.state
+            td = meeting.aasm.human_state
             td = meeting.child.name
             td
               = link_to meeting_path(meeting), class: 'ui basic button green' do

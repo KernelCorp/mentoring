@@ -1,5 +1,7 @@
 When /^I select priority "(.+)"$/ do |priority|
-  select priority, from: 'Приоритет'
+  within '#book_priority' do
+    find("option[value='#{priority}']").click
+  end
 end
 
 When /^I attach some file$/ do

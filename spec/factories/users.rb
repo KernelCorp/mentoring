@@ -23,6 +23,10 @@
 #  forem_state            :string           default("pending_review")
 #  forem_auto_subscribe   :boolean          default(FALSE)
 #  orphanage_id           :integer
+#  avatar_file_name       :string
+#  avatar_content_type    :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #
 
 FactoryGirl.define do
@@ -31,9 +35,9 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
 
-    first_name 'name'
-    last_name 'name'
-    middle_name 'name'
+    sequence(:first_name) {|n| "first_name_#{n}"}
+    last_name 'any_last_name'
+    middle_name 'any_middle_name'
 
     # orphanage_id 1 # мешает тестам
 

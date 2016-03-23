@@ -8,37 +8,37 @@
 
   = f.hidden_field :meeting_id, value: @report.meeting_id || params[:meeting_id]
 
-  .field.three.wide
-    = f.label :duration, 'Длительность в часах'
+  .field.four.wide
+    = f.label :duration, '1.  ' + Report.human_attribute_name(:duration)
     = f.number_field :duration, min: 0
 
-  .field.six.wide
-    = f.label :aim, 'Цель'
+  .field.eight.wide
+    = f.label :aim, '2.  ' + Report.human_attribute_name(:aim)
     = f.text_area :aim
-
-  .field.six.wide
-    = f.label :short_description, 'Краткое описание'
+  br
+  .field.eight.wide
+    = f.label :short_description, '3.  ' + Report.human_attribute_name(:short_description)
     = f.text_area :short_description
-
-  .field.six.wide
-    = f.label :result, 'Результат'
+  br
+  .field.eight.wide
+    = f.label :result, '4.  ' + Report.human_attribute_name(:result)
     = f.text_area :result
-
-  .field.six.wide
-    = f.label :feelings, 'Ощущения'
-    = f.text_area :feelings
-
-  .field.six.wide
-    = f.label :questions, 'Вопросы'
-    = f.text_area :questions
-
-  .field.six.wide
-    = f.label :next_aim, 'Следующая цель'
+  br
+  .field.eight.wide
+    = f.label :next_aim, '5.  ' + Report.human_attribute_name(:next_aim)
     = f.text_area :next_aim
-
-  .field.six.wide
-    = f.label :other_comments, 'Дополнительные комментарии'
+  br
+  .field.eight.wide
+    = f.label :feelings, '6.  ' + Report.human_attribute_name(:feelings)
+    = f.text_area :feelings
+  br
+  .field.eight.wide
+    = f.label :other_comments, '7.  ' + Report.human_attribute_name(:other_comments)
     = f.text_area :other_comments
+  br
+  .field.eight.wide
+    = f.label :questions, '8.  ' + Report.human_attribute_name(:questions)
+    = f.text_area :questions
 
   .actions
     = f.submit class: 'ui green button'

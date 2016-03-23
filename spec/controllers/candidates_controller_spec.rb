@@ -1,14 +1,61 @@
 require 'rails_helper'
 
 RSpec.describe CandidatesController, :type => :controller do
-  describe "GET new" do
+
+  let! (:admin) { create :user, :admin }
+  let (:candidate) { create :candidate }
+
+  describe '#index' do
+    context 'when loggen in' do
+      before do
+        sign_in admin
+        get :index
+      end
+
+      it { expect(response.status).to eq(200) }
+      it { expect(response).to render_template('index') }
+    end
+  end
+
+  describe '#show' do
+    context 'when loggen in' do
+      before do
+        sign_in admin
+        get :show, id: candidate.to_param
+      end
+
+      it { expect(response.status).to eq(200) }
+      it { expect(response).to render_template('show') }
+    end
+  end
+
+  describe '#approve' do
+    context 'when loggen in' do
+      before do
+        sign_in admin
+      end
+
+      subject { get :approve, id: candidate.to_param }
+
+      it { expect{subject}.to change{candidate.reload.state}.from('new').to('approved') }
+      it { expect{subject}.to change(User, :count).by(1) }
+
+      it do
+        subject
+        expect(response).to redirect_to(Candidate.last)
+      end
+    end
+  end
+
+
+  describe '#new' do
     it "assigns a new candidate as @candidate" do
       get :new
       expect(assigns(:candidate)).to be_a_new(Candidate)
     end
   end
 
-  describe "POST create" do
+  describe '#create' do
 
     let(:valid_attributes) {{
         last_name: "Laden",
@@ -19,7 +66,7 @@ RSpec.describe CandidatesController, :type => :controller do
         phone_number: "+71112223344",
         email: "osama@alkaida.com",
         birth_date: 50.years.ago,
-        nationality: "Pakistan",
+        russian_citizenship: false,
         confession: "Islam",
         health_status: "ok",
         serious_diseases: "no",

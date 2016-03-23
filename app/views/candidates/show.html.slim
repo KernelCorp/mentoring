@@ -1,0 +1,393 @@
+h1
+  | Анкета кандидата:&nbsp;
+  = @candidate.full_name
+
+p#notice = notice
+p#alert = flash[:error]
+
+.ui.segments
+  .ui.segment
+    h3.ui.header 1. Общие сведения:
+
+    .ui.segment
+      .ui.grid
+        .row
+          .column.four.wide
+            strong Фамилия:
+            br
+            = @candidate.last_name
+          .column.four.wide
+            strong Имя:
+            br
+            = @candidate.first_name
+          .column.four.wide
+            strong Отчество:
+            br
+            = @candidate.middle_name
+        .row
+          .column.four.wide
+            strong Электронная почта:
+            br
+            = @candidate.email
+          .column.four.wide
+            strong Контактный телефон:
+            br
+            = @candidate.phone_number
+          .column.four.wide
+            strong Дата рождения:
+            br
+            = l @candidate.birth_date
+        .row
+          .column
+            strong Адрес регистрации:
+            br
+            = @candidate.registration_address
+        .row
+          .column
+            strong Домашний адрес:
+            br
+            = @candidate.home_address
+        .row
+          .column.six.wide
+            strong Гражданство РФ:
+            br
+            = @candidate.russian_citizenship? ? 'Да' : 'Нет'
+          .column.six.wide
+            strong Вероисповедание:
+            br
+            = @candidate.confession
+
+  .ui.segment
+    h3.ui.header 2. Состояние здоровья:
+
+    .ui.segment
+      .ui.grid
+        .row
+          .column.six.wide
+            strong Состояние здоровья:
+            br
+            = @candidate.health_status
+          .column.six.wide
+            strong Серьёзные заболевания:
+            br
+            = @candidate.serious_diseases
+
+  .ui.segment
+    h3.ui.header 3. Образование:
+
+    - educations = @candidate.candidate_educations.where.not(education: '')
+
+    - if educations.blank?
+      | Нет данных
+
+    - else
+      -  educations.each do |education|
+        .ui.segment
+          .ui.grid
+            .row
+              .column
+                strong Образование:
+                br
+                = education.education
+            .row
+              .column.six.wide
+                strong C:
+                br
+                = education.start_date
+              .column.six.wide
+                strong До:
+                br
+                = education.end_date
+            .row
+              .column
+                strong Специальность:
+                br
+                = education.specialty
+
+  .ui.segment
+    h3.ui.header 4. Трудоустройство:
+
+    .ui.segment
+      .ui.grid
+        .row
+          .column.six.wide
+            strong C:
+            br
+            = @candidate.work_start_date
+          .column.six.wide
+            strong До:
+            br
+            = @candidate.work_end_date
+        .row
+          .column
+            strong Название организации:
+            br
+            = @candidate.organization_name
+        .row
+          .column
+            strong Контактная информация (телефон, адрес):
+            br
+            = @candidate.work_contacts
+        .row
+          .column
+            strong Должность:
+            br
+            = @candidate.work_position
+        .row
+          .column
+            strong Исполняемые обязанности:
+            br
+            = @candidate.work_functions
+        .row
+          .column
+            strong Текущий рабочий график:
+            br
+            = @candidate.work_schedule
+
+  .ui.segment
+    h3.ui.header 5. Интересы, хобби:
+
+    .ui.segment
+      = @candidate.hobby
+
+  .ui.segment
+    h3.ui.header 6. Семейное положение:
+
+    .ui.segment
+      .ui.grid
+        .row
+          .column
+            = @candidate.martial_status
+        .row
+          .column
+            h4.ui.header Члены семьи:
+
+            - family_members = @candidate.candidate_family_members.where('(name != ?) or (relation != ?)', '', '')
+
+            - if family_members.blank?
+              | Нет данных
+            - else
+              .ui.grid
+                - family_members.each do |member|
+                  .row
+                    .column.four.wide
+                      strong Имя:
+                      br
+                      = member.name
+                    .column.two.wide
+                      strong Пол:
+                      br
+                      = member.gender
+                    .column.two.wide
+                      strong Возраст:
+                      br
+                      = member.age
+                    .column.four.wide
+                      strong Кем приходится:
+                      br
+                      = member.relation
+
+  .ui.segment
+    h3.ui.header 7. Жилищно-бытовые условия:
+
+    .ui.segment
+      .ui.grid
+        .row
+          .column.four.wide
+            strong Тип жилья:
+            br
+            = @candidate.house_type
+          .column.four.wide
+            strong Количество комнат:
+            br
+            = @candidate.number_of_rooms
+          .column.four.wide
+            strong Проживает в одной комнате:
+            br
+            = @candidate.peoples_for_room
+        .row
+          .column
+            strong Информация о других членах семьи:
+            br
+            = @candidate.peoples
+        .row
+          .column
+            strong Домашние животные:
+            br
+            = @candidate.pets
+
+  .ui.segment
+    h3.ui.header 8. Опыт работы с детьми:
+
+    - children_experiences = @candidate.candidate_children_experiences.where.not(organization_name: '')
+
+    - if children_experiences.blank?
+      | Нет данных
+
+    - else
+      - children_experiences.each do |experience|
+        .ui.segment
+          .ui.grid
+            .row
+              .column
+                strong Название организации:
+                br
+                = experience.organization_name
+            .row
+              .column
+                strong Контактная информация:
+                br
+                = experience.organization_contacts
+            .row
+              .column
+                strong Должность:
+                br
+                = experience.position
+            .row
+              .column
+                strong Исполняемые обязанности:
+                br
+                = experience.functions
+            .row
+              .column
+                strong Возрастная группа детей:
+                br
+                = experience.children_age
+
+  .ui.segment
+    h3.ui.header 9. Пожалуйста, как можно подробнее ответьте на следующие вопросы:
+
+    .ui.segment
+      .ui.grid
+        .row
+          .column
+            strong Вы хотите участвовать в Программе Наставничества в качестве:
+            br
+            = @candidate.program_role
+        .row
+          .column
+            strong Почему вы хотите стать наставником (волонтером/партнёром)?
+            br
+            = @candidate.program_reason
+        .row
+          .column
+            strong Какие качества вашего характера, особенные знания, навыки и т.д., могут , по вашему мнению, помочь становлению и развитию ребёнка-сироты?
+            br
+            = @candidate.person_character
+        .row
+          .column
+            strong Как бы вы описали (охарактеризовали) сами себя?
+            br
+            = @candidate.person_information
+        .row
+          .column
+            strong Почему вы хотите помогать ребёнку-сироте?
+            br
+            = @candidate.help_reason
+        .row
+          .column.six.wide
+            strong Ожидаемый возраст ребёнка:
+            br
+            = @candidate.child_age
+          .column.six.wide
+            strong Пол:
+            br
+            = @candidate.child_gender
+        .row
+          .column
+            strong Насколько важным для вас является характер ребёнка (внешний вид, поведенческие особенности)?
+            br
+            = @candidate.child_character
+        .row
+          .column
+            strong Как часто вы сможете навещать ребенка в учреждении?
+            br
+            = @candidate.visit_frequency
+        .row
+          .column
+            strong Согласны ли вы взаимодействовать с ребёнком имеющим функциональные ограничения или особенные потребности?
+            br
+            = @candidate.invalid_child ? 'Да' : 'Нет'
+
+  .ui.segment
+    h3.ui.header
+      | 10. В целях соблюдения прав и интересов ребёнка (в том числе его безопасности и здорового развития),
+        мы просим вас сообщить нам следующее:
+
+    .ui.segment
+      .ui.grid
+        .row
+          .column
+            strong Употребляете ли вы алкоголь? Если да, то как часто?
+            br
+            = @candidate.alcohol
+        .row
+          .column
+            strong Употребляете ли вы табачные изделия?
+            br
+            = @candidate.tobacco
+        .row
+          .column
+            strong Употребляете ли вы психотропные вещества? Если да, укажите какие.
+            br
+            = @candidate.psychoactive
+        .row
+          .column
+            strong Употребляли ли вы наркотики? Если да, укажите, какие, и как давно.
+            br
+            = @candidate.drugs
+        .row
+          .column
+            strong
+              | Были ли вы осуждены за преступления, связанные с унижением человеческого достоинства,
+                вовлечением детей в незаконную деятельность, жестоким обращением с детьми, сексуальными
+                посягательствами любого рода, пренебрежением ребёнка и т.д.? Если да, пожалуйста, объясните.
+            br
+            = @candidate.child_crime
+        .row
+          .column
+            strong Были ли вы ранее лишены родительских или опекунских прав? Если да, пожалуйста, конкретизируйте.
+            br
+            = @candidate.disabled_parental_rights
+        .row
+          .column
+            strong Согласны ли вы по необходимости заполнять отчёты о проделанной совместно с ребёнком деятельности ( 1 раз/ месяц)?
+            br
+            = @candidate.reports ? 'Да' : 'Нет'
+        .row
+          .column
+            strong
+              | Разрешаете ли вы использовать ваши фотографии и комментарии, сделанные в процессе вашего участия
+                в Программе, на информационных носителях Проекта, с целью популяризации идеи Наставничества?
+            br
+            = @candidate.photo_rights ? 'Да' : 'Нет'
+        .row
+          .column
+            strong Откуда вы получили информацию о Программе Наставничества и необходимости помощи детям – сиротам?
+            br
+            = @candidate.info_about_program
+
+  .ui.segment.orange
+    .ui.grid
+      .row
+        .column
+          p
+            strong = "Статус: #{@candidate.aasm.human_state}"
+          = form_for @candidate, html: {class: 'ui form'} do |f|
+            .field
+              = f.label :state_comment, 'Комментарий к статусу:'
+              = f.text_area :state_comment, rows: 2, maxlength: 127, style: 'resize: none'
+
+            = f.submit 'Изменить комментарий', class: 'ui green button'
+
+      .row
+        .column
+          - if @candidate.may_approve? && can?(:approve, @candidate)
+            = link_to approve_candidate_path(@candidate), class: 'ui button green'
+              i.icon.thumbs.up
+              | Одобрить кандидата
+
+- if can? :read, Candidate
+  = link_to candidates_path, class: 'ui button green' do
+    i.icon.chevron.left
+    | Назад

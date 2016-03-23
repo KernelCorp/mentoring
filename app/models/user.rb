@@ -23,6 +23,10 @@
 #  forem_state            :string           default("pending_review")
 #  forem_auto_subscribe   :boolean          default(FALSE)
 #  orphanage_id           :integer
+#  avatar_file_name       :string
+#  avatar_content_type    :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #
 
 class User < ActiveRecord::Base
@@ -45,10 +49,9 @@ class User < ActiveRecord::Base
   validates_attachment_size :avatar, less_than: 1.megabytes
   validates_attachment_content_type :avatar, content_type: %w(image/jpeg image/jpg image/png image/gif)
 
-  validates :email,      presence: true, uniqueness: true
+  validates :email,      presence: true, uniqueness: { case_sensitive: false }
   validates :first_name, presence: true
   validates :last_name,  presence: true
-
 
   def name
     full_name
@@ -62,17 +65,25 @@ class User < ActiveRecord::Base
     "#{full_name}  (#{email})"
   end
 
+  def name_with_roles
+    "#{full_name} (#{translated_roles.join(', ')})"
+  end
+
+  def translated_roles
+    roles.map{|r| I18n.t("activerecord.attributes.role.name/#{r.name}", default: r.name)}
+  end
+
   def full_name
     "#{last_name} #{first_name} #{middle_name}"
   end
 
   def forem_name
-    email
+    mail_name
   end
 
-  def set_avatar value
-    avatar = value
-    save
+  def for_messaging
+    (User.joins(:roles).where(orphanage_id: orphanage_id, 'roles.name' => [:employee, :mentor]).where.not(id: id).all +
+    User.joins(:roles).where('roles.name' => [:curator, :admin]).all).uniq
   end
 
 end

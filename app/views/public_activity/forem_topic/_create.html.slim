@@ -1,0 +1,13 @@
+.event
+  = render partial: 'public_activity/avatar', locals: {avatar: a.owner.avatar}
+
+  .content
+    .summary
+      = link_to a.owner.full_name, user_path(a.owner)
+      | &nbsp;создал(а) новую тему&nbsp;"
+      = link_to a.trackable.subject, forem.forum_topic_path(forum_id: a.trackable.forum_id, id: a.trackable.id)
+      | "&nbsp;на форуме.
+
+      .date
+        = time_ago_in_words a.created_at
+        | &nbsp;назад

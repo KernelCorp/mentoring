@@ -5,6 +5,7 @@
 /log/*
 !/log/.keep
 /tmp
+
 /public/system/*
 /public/assets/*
 
@@ -16,3 +17,4 @@
 
 /db/schema.rb
 
+*.rdb

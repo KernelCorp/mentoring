@@ -11,7 +11,6 @@
 #  phone_number             :string
 #  email                    :string
 #  birth_date               :date
-#  nationality              :string
 #  confession               :string
 #  health_status            :string
 #  serious_diseases         :string
@@ -51,6 +50,8 @@
 #  state                    :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
+#  state_comment            :text
+#  russian_citizenship      :boolean
 #
 
 class Candidate < ActiveRecord::Base
@@ -64,20 +65,20 @@ class Candidate < ActiveRecord::Base
   accepts_nested_attributes_for :candidate_children_experiences
 
   validates_presence_of :first_name, :last_name, :middle_name, :registration_address, :home_address, :phone_number,
-                        :email, :birth_date, :nationality, :confession, :health_status, :serious_diseases, :work_start_date,
+                        :email, :birth_date, :confession, :health_status, :serious_diseases, :work_start_date,
                         :organization_name, :work_contacts, :work_position, :work_functions, :work_schedule, :hobby,
                         :martial_status, :house_type, :number_of_rooms, :peoples_for_room, :peoples, :pets, :program_role,
                         :program_reason, :person_character, :person_information, :help_reason, :child_age, :child_gender,
-                        :child_character, :visit_frequency, :invalid_child, :alcohol, :tobacco, :psychoactive, :drugs,
-                        :child_crime, :disabled_parental_rights, :reports, :photo_rights, :info_about_program
+                        :child_character, :visit_frequency, :alcohol, :tobacco, :psychoactive, :drugs,
+                        :child_crime, :disabled_parental_rights, :info_about_program
 
-
-  validates_uniqueness_of :email
-  validates_format_of     :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
+  validates_inclusion_of :invalid_child, :reports, :photo_rights, :russian_citizenship, in: [true, false]
+  validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/ }, uniqueness: { case_sensitive: false }
   validates :number_of_rooms, numericality: { greater_than_or_equal_to: 1 }
 
-
+  HEALTH_STATUSES = ['отлично', 'хорошо', 'средне', 'плохо']
   GENDERS = ['Мужской', 'Женский']
+  CHILD_GENDERS = ['Мужской', 'Женский', 'Не имеет значения']
   EDUCATION_TYPES = ['Общеобразовательная школа', 'Университет, Институт, техникум', 'Дополнительные курсы, тренинги, семинары']
   MARTIAL_STATUSES = ['Женат (замужем)', 'Гражданский брак', 'Разведён (разведена)', 'Вдовец (вдова)', 'Не женат (не замужем)']
   HOUSE_TYPES = ['Квартира', 'Частный дом', 'Арендованное жильё']
@@ -91,11 +92,15 @@ class Candidate < ActiveRecord::Base
       after do
         generated_password = Devise.friendly_token.first(8)
         user = User.create(email: email, first_name: first_name, last_name: last_name, middle_name: middle_name, password: generated_password)
-        RegistrationMailer.welcome(user, generated_password).deliver_later
+        user.add_role :mentor
+        RegistrationMailer.welcome(user, generated_password).deliver_now
       end
       transitions from: :new, to: :approved
     end
+  end
 
+  def full_name
+    "#{last_name} #{first_name} #{middle_name}"
   end
 
 end

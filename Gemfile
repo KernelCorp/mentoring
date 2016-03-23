@@ -18,13 +18,10 @@ gem 'jquery-rails'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'jquery-datetimepicker-rails'
 gem 'dropzonejs-rails'
-gem 'bxslider-rails'
+gem 'bxslider-rails', '~> 4.2', '>= 4.2.5.1'
 
 # turbolinks
 gem 'turbolinks'
-
-# docs
-gem 'sdoc', '~> 0.4.0', group: :doc
 
 # logic
 gem 'devise'
@@ -36,9 +33,14 @@ gem 'mailboxer'
 gem 'public_activity'
 gem 'rails_admin', '~> 0.7.0'
 
+# jobs
+gem 'sidekiq'
+
 # other
+gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'annotate'
 gem 'active_link_to'
+gem 'cocoon', '~> 1.2.6'
 
 # forum
 gem 'forem', github: 'radar/forem', branch: 'rails4'
@@ -57,7 +59,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-sidekiq'
-  gem 'capistrano3-unicorn', :require => false
+  gem 'capistrano3-unicorn', require: false
 
   gem 'capybara', '~> 2.3.0'
   gem 'rspec-rails', '~> 3.0.0'

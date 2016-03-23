@@ -3,6 +3,7 @@
     - if user_signed_in?
       = link_to main_app.user_path(current_user), class: 'item' do
         i.user.icon
+        = "#{current_user.translated_roles.join(', ')} | "
         = current_user.email
 
       = link_to main_app.edit_user_registration_path, class: 'item' do

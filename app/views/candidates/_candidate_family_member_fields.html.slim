@@ -1,0 +1,17 @@
+.nested-fields
+  .four.fields
+    .field
+      = f.label :name, 'Имя'
+      = f.text_field :name
+    .field
+      = f.label :gender, 'Пол'
+      = f.collection_select(:gender, Candidate::GENDERS, :to_s, :to_s, { prompt: 'Выбрать...' })
+    .field
+      = f.label :age, 'Возраст'
+      = f.number_field :age, min: '1'
+    .field
+      = f.label :relation, 'Кем приходится?'
+      = f.text_field :relation
+  = link_to_remove_association f, class: 'ui label orange' do
+    i.icon.minus
+    | Удалить

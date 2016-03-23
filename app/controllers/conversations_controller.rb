@@ -3,14 +3,22 @@ class ConversationsController < ApplicationController
   before_action :set_conversation, only: [:show, :reply, :trash, :untrash]
 
   def new
-    @users = User.accessible_by(current_ability)
+    if current_user.has_any_role? :admin, :curator
+      @users = User.where.not(id: current_user.id)
+    else
+      @users = current_user.for_messaging
+    end
   end
 
   def create
     recipients = User.where(id: conversation_params[:recipients])
-    message = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject])
-    flash[:notice] = 'Ваше сообщение было успешно отпавленно!'
-    redirect_to conversation_path(message.conversation)
+    if recipients.present?
+      message = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject])
+      MailboxMailer.new_message(recipients, current_user).deliver_now
+      redirect_to conversation_path(message.conversation), notice: 'Ваше сообщение было успешно отправлено!'
+    else
+      redirect_to new_conversation_path, alert: 'Вы не можете создать диалог без адресатов!'
+    end
   end
 
   def show
@@ -20,7 +28,10 @@ class ConversationsController < ApplicationController
 
   def reply
     current_user.reply_to_conversation(@conversation, message_params[:body])
-    flash[:notice] = 'Ваше ответное сообщение было успешно отправленно'
+    flash[:notice] = 'Ваше ответное сообщение было успешно отправлено'
+    recipients = @conversation.recipients
+    recipients.delete(current_user)
+    MailboxMailer.new_message(recipients, current_user).deliver_now
     redirect_to conversation_path(@conversation)
   end
 

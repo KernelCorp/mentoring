@@ -14,7 +14,8 @@
 
   .field.five.wide
     = f.label :priority, 'Приоритет'
-    = f.select :priority, Book.priorities.keys, {include_blank: 'Назначьте приоритет'}, {class: 'ui dropdown'}
+    = f.select :priority, Book.priorities.keys.map{|key| [t("activerecord.attributes.book.priority/#{key}"), key]},
+        {include_blank: 'Назначьте приоритет'}, {class: 'ui dropdown'}
 
   .field.five.wide
     = f.label :file, 'Файл'

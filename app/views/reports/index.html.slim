@@ -29,7 +29,7 @@ p#alert = flash[:error]
             td = report.meeting.date.to_date
             td = report.meeting.child.name
             td = report.meeting.mentor.email
-            td = report.state
+            td = report.aasm.human_state
             td
               = link_to report_path(report), class: 'ui basic button green' do
                 i.icon.unhide
@@ -49,5 +49,3 @@ p#alert = flash[:error]
                 = link_to approve_report_path(report), class: 'ui basic button green' do
                   i.icon.checkmark
                   | Одобрить
-
-

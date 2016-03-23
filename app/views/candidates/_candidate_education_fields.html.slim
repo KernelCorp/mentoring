@@ -1,0 +1,20 @@
+.nested-fields
+  .field
+    = f.label :education, 'Образование'
+    = f.collection_select(:education, Candidate::EDUCATION_TYPES, :to_s, :to_s, { prompt: 'Выбрать...' })
+  .two.fields
+    .field
+      = f.label :start_date, 'С'
+      .two.fields
+        = f.date_select :start_date, {start_year: 1924, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
+    .field
+      = f.label :end_date, 'До'
+      .two.fields
+        = f.date_select :end_date, {start_year: 1928, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
+  .field
+    = f.label :specialty, 'Полученная специальность, степени или другие квалификации'
+    = f.text_field :specialty
+
+  = link_to_remove_association f, class: 'ui label orange' do
+    i.icon.minus
+    | Удалить

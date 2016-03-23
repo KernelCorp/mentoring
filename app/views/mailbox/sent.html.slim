@@ -1,4 +1,7 @@
 h1 Исходящие
 
+p#notice = notice
+p#alert = alert
+
 .ui.segment.orange.grid
   = render partial: 'mailbox/folder_view', locals: { is_conversation: false, conversations: @sent }

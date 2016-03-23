@@ -10,7 +10,7 @@ p#alert = alert
   p
     strong Статус:
     br
-    = @meeting.state
+    = @meeting.aasm.human_state
   p
     strong Дата/время:
     br
@@ -42,7 +42,7 @@ p#alert = alert
         i.icon.repeat
         | Переназначить встречу
 
-    - if @meeting.may_send_report? && @meeting.date.past? && can?(:new, Report)
+    - if @meeting.may_send_report? && @meeting.report.blank? && @meeting.date.past? && can?(:new, Report)
       = link_to new_report_path(meeting_id: @meeting.id), class: 'ui button green' do
         i.icon.file.text.outline
         | Составить отчёт

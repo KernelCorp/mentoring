@@ -13,7 +13,7 @@ p#notice = notice
       p
         strong Приоритет:
         br
-        = @book.priority
+        = t "activerecord.attributes.book.priority/#{@book.priority}"
 
       p
         strong Владелец:
