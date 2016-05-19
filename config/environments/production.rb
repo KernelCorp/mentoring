@@ -67,9 +67,9 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'nastavnik54.ru' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address:              'smtp.mandrillapp.com',
-      port:                 587,
-      domain:               'mandrillapp.com',
+      address:              'smtp.yandex.ru',
+      port:                  587,
+      domain:               'yandex.ru',
       user_name:            'notify@nastavnik54.ru',
       password:             'EZsZ-XUAlC-6TJqFk0mimg',
       authentication:       :plain,
