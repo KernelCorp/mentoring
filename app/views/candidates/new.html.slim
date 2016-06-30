@@ -89,7 +89,7 @@
         | 4. Трудоустройство:
       p
         | Укажите место вашей работы на данный момент:
-      .two.fields
+      /.two.fields
         .field.required class=('error' if @candidate.errors.messages[:work_start_date])
           = f.label :work_start_date, 'С'
           .two.fields
@@ -134,7 +134,7 @@
           = link_to_add_association f, :candidate_family_members, class: 'ui button green fluid' do
             i.icon.plus
             | Добавить члена семьи
-    .ui.orange.segment
+    /.ui.orange.segment
       h3.ui.header
         | 7. Жилищно-бытовые условия:
       p
@@ -157,7 +157,7 @@
         = f.text_field :pets
     .ui.orange.segment
       h3.ui.header
-        | 8. Опыт работы с детьми:
+        | 7. Опыт работы с детьми:
       p
         | Пожалуйста, укажите ваш текущий и предыдущий опыт работы с детьми (оплачиваемая работа, волонтёрская деятельность и т.д.)
       = f.fields_for :candidate_children_experiences do |experience|
@@ -168,7 +168,7 @@
           | Добавить пункт
     .ui.orange.segment
       h3.ui.header
-        | 9. Пожалуйста, как можно подробнее ответьте на следующие вопросы:
+        | 8. Пожалуйста, как можно подробнее ответьте на следующие вопросы:
       p
         | Используя данную вами информацию, мы сможем предложить вам наиболее подходящую программу взаимодействия с Воспитанником.
       .field.required class=('error' if @candidate.errors.messages[:program_role])
@@ -218,7 +218,7 @@
             = f.radio_button :invalid_child, false
     .ui.orange.segment
       h3.ui.header
-        | 10. В целях соблюдения прав и  интересов ребёнка (в том числе его  безопасности и здорового развития), мы просим вас сообщить нам следующее:
+        | 9. В целях соблюдения прав и  интересов ребёнка (в том числе его  безопасности и здорового развития), мы просим вас сообщить нам следующее:
       .field.required class=('error' if @candidate.errors.messages[:alcohol])
         = f.label :alcohol, 'Употребляете ли вы алкоголь? Если да, то как часто?'
         = f.text_field :alcohol

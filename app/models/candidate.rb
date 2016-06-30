@@ -65,16 +65,15 @@ class Candidate < ActiveRecord::Base
   accepts_nested_attributes_for :candidate_children_experiences
 
   validates_presence_of :first_name, :last_name, :middle_name, :registration_address, :home_address, :phone_number,
-                        :email, :birth_date, :confession, :health_status, :serious_diseases, :work_start_date,
-                        :organization_name, :work_contacts, :work_position, :work_functions, :work_schedule, :hobby,
-                        :martial_status, :house_type, :number_of_rooms, :peoples_for_room, :peoples, :pets, :program_role,
+                        :email, :birth_date, :confession, :health_status, :serious_diseases, :organization_name, :work_contacts, :work_position, :work_functions, :work_schedule, :hobby,
+                        :martial_status, :program_role,
                         :program_reason, :person_character, :person_information, :help_reason, :child_age, :child_gender,
                         :child_character, :visit_frequency, :alcohol, :tobacco, :psychoactive, :drugs,
                         :child_crime, :disabled_parental_rights, :info_about_program
 
   validates_inclusion_of :invalid_child, :reports, :photo_rights, :russian_citizenship, in: [true, false]
   validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/ }, uniqueness: { case_sensitive: false }
-  validates :number_of_rooms, numericality: { greater_than_or_equal_to: 1 }
+  # validates :number_of_rooms, numericality: { greater_than_or_equal_to: 1 }
 
   HEALTH_STATUSES = ['отлично', 'хорошо', 'средне', 'плохо']
   GENDERS = ['Мужской', 'Женский']

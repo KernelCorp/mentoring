@@ -89,7 +89,7 @@ p#alert = flash[:error]
                 strong Образование:
                 br
                 = education.education
-            .row
+            /.row
               .column.six.wide
                 strong C:
                 br
@@ -98,6 +98,11 @@ p#alert = flash[:error]
                 strong До:
                 br
                 = education.end_date
+            .row
+              .column
+                strong Учебное заведение:
+                br
+                = education.institution
             .row
               .column
                 strong Специальность:
@@ -109,7 +114,7 @@ p#alert = flash[:error]
 
     .ui.segment
       .ui.grid
-        .row
+        /.row
           .column.six.wide
             strong C:
             br
@@ -187,7 +192,7 @@ p#alert = flash[:error]
                       br
                       = member.relation
 
-  .ui.segment
+  /.ui.segment
     h3.ui.header 7. Жилищно-бытовые условия:
 
     .ui.segment
@@ -217,7 +222,7 @@ p#alert = flash[:error]
             = @candidate.pets
 
   .ui.segment
-    h3.ui.header 8. Опыт работы с детьми:
+    h3.ui.header 7. Опыт работы с детьми:
 
     - children_experiences = @candidate.candidate_children_experiences.where.not(organization_name: '')
 
@@ -255,7 +260,7 @@ p#alert = flash[:error]
                 = experience.children_age
 
   .ui.segment
-    h3.ui.header 9. Пожалуйста, как можно подробнее ответьте на следующие вопросы:
+    h3.ui.header 8. Пожалуйста, как можно подробнее ответьте на следующие вопросы:
 
     .ui.segment
       .ui.grid
@@ -311,7 +316,7 @@ p#alert = flash[:error]
 
   .ui.segment
     h3.ui.header
-      | 10. В целях соблюдения прав и интересов ребёнка (в том числе его безопасности и здорового развития),
+      | 9. В целях соблюдения прав и интересов ребёнка (в том числе его безопасности и здорового развития),
         мы просим вас сообщить нам следующее:
 
     .ui.segment

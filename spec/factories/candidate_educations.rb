@@ -7,6 +7,7 @@
 #  education    :string
 #  start_date   :date
 #  end_date     :date
+#  institution  :string
 #  specialty    :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -17,6 +18,7 @@ FactoryGirl.define do
     education "Средне-высшее"
     start_date  6.years.ago
     end_date 1.years.ago
+    institution "НГУ"
     specialty "Специальность"
   end
 

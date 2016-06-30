@@ -19,8 +19,8 @@ class CandidatesController < ApplicationController
   def create
     @candidate = Candidate.new(candidate_params)
     if @candidate.save
-      CandidatesMailer.bid_received(@candidate).deliver_now
-      CandidatesMailer.bid_sent(@candidate).deliver_now
+      # CandidatesMailer.bid_received(@candidate).deliver_now
+      # CandidatesMailer.bid_sent(@candidate).deliver_now
       render template: 'candidates/success', layout: 'main'
     else
       render :new, layout: 'main'
@@ -62,7 +62,7 @@ class CandidatesController < ApplicationController
                     :psychoactive, :drugs, :child_crime, :disabled_parental_rights, :reports, :photo_rights,
                     :info_about_program,
                     candidate_educations_attributes:
-                        [:education, :start_date, :end_date, :specialty],
+                        [:education, :start_date, :end_date, :institution, :specialty],
                     candidate_family_members_attributes:
                         [:name, :gender, :age, :relation],
                     candidate_children_experiences_attributes:

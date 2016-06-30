@@ -2,7 +2,7 @@
   .field
     = f.label :education, 'Образование'
     = f.collection_select(:education, Candidate::EDUCATION_TYPES, :to_s, :to_s, { prompt: 'Выбрать...' })
-  .two.fields
+  /.two.fields
     .field
       = f.label :start_date, 'С'
       .two.fields
@@ -11,6 +11,9 @@
       = f.label :end_date, 'До'
       .two.fields
         = f.date_select :end_date, {start_year: 1928, end_year: Date.today.year, discard_day: true, date_separator: '<div class="small_date_separator"></div>'}
+  .field
+    = f.label :institution, 'Учебное заведение'
+    = f.text_field :institution
   .field
     = f.label :specialty, 'Полученная специальность, степени или другие квалификации'
     = f.text_field :specialty
