@@ -22,7 +22,7 @@ p#notice = notice
         - @meetings.each do |meeting|
           tr
             td = meeting.id
-            td = meeting.date.to_date
+            td = meeting.date.strftime("%d-%m-%Y")
             td = meeting.aasm.human_state
             td = meeting.child.name
             td

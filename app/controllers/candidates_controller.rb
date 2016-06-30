@@ -3,6 +3,7 @@ class CandidatesController < ApplicationController
   load_and_authorize_resource only: [:index, :show, :update, :approve]
 
   def index
+    @candidates = @candidates.order created_at: :desc
   end
 
   def show

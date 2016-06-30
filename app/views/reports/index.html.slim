@@ -26,7 +26,7 @@ p#alert = flash[:error]
       - else
         - @reports.each do |report|
           tr
-            td = report.meeting.date.to_date
+            td = report.meeting.date.strftime("%d-%m-%Y")
             td = report.meeting.child.name
             td = report.meeting.mentor.email
             td = report.aasm.human_state
