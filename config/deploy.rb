@@ -5,6 +5,8 @@ set :application, 'mentoring'
 set :repo_url, 'https://github.com/KernelCorp/mentoring.git'
 set :sidekiq_pid, File.join(shared_path, 'pids', 'sidekiq.pid')
 
+set :rvm_ruby_version, '2.3.3'
+
 set :password, ask('Server password:', nil, echo: false)
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
