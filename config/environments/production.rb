@@ -7,7 +7,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
   LogStashLogger.configure do |config|
     config.customize_event do |event|
-      event['app_name'] = 'sibireurasia_production'
+      event['app_name'] = 'nastavnik54_production'
     end
   end
 
