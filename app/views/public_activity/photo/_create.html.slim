@@ -5,11 +5,13 @@
     .summary
       = link_to a.owner.full_name, user_path(a.owner)
       | &nbsp;добавил(а)&nbsp;
-      = link_to 'новую фотографию', photo_path(a.trackable)
+      - if !a.trackable.nil?
+        = link_to 'новую фотографию', photo_path(a.trackable)
       .date
         = time_ago_in_words a.created_at
         | &nbsp;назад
 
     .extra.images
-      = link_to photo_path(a.trackable) do
-        = image_tag a.trackable.image.url
+      - if !a.trackable.nil?
+        = link_to photo_path(a.trackable) do
+          = image_tag a.trackable.image.url
