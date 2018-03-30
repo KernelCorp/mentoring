@@ -79,3 +79,9 @@ end
 group :production do
   gem 'unicorn'
 end
+
+group :production, :staging do
+  gem 'logstash-logger', '~> 0.24.0'
+  gem 'lograge', '~> 0.5.0'
+end
+

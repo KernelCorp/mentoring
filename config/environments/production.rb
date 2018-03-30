@@ -4,6 +4,19 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+  config.log_formatter = ::Logger::Formatter.new
+  LogStashLogger.configure do |config|
+    config.customize_event do |event|
+      event['app_name'] = 'sibireurasia_production'
+    end
+  end
+
+  config.logstash.host = 'localhost'
+  config.logstash.type = :udp
+  config.logstash.port = 5228
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Logstash.new
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
