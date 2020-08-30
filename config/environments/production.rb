@@ -3,7 +3,8 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-
+  require 'logstash-logger'
+  
   config.log_formatter = ::Logger::Formatter.new
   LogStashLogger.configure do |config|
     config.customize_event do |event|
