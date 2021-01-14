@@ -31,7 +31,7 @@ gem 'aasm'
 gem 'paperclip', '~> 4.3.0'
 gem 'mailboxer'
 gem 'public_activity'
-gem 'rails_admin', '~> 0.7.0'
+gem 'rails_admin', '~> 1.4.3'
 
 # jobs
 gem 'sidekiq'
